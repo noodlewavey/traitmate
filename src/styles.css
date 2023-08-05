@@ -1,0 +1,27 @@
+/* styles.css */
+
+@font-face {
+    font-family: 'DisplayRegular';
+    src: url("../public/fonts/PPEditorialNew-Regular.otf") format('opentype');
+  }
+  
+  @font-face {
+    font-family: 'DisplayItalic';
+    src: url("../public/fonts/PPEditorialNew-Italic.otf") format('opentype');
+  }
+  
+  @font-face {
+    font-family: 'DisplayLightItalic';
+    src: url("../public/fonts/PPEditorialNew-UltralightItalic.otf") format('opentype');
+  }
+  
+  @font-face {
+    font-family: 'DisplayBoldItalic';
+    src: url("../public/fonts/PPEditorialNew-UltraboldItalic.otf") format('opentype');
+  }
+  
+  @font-face {
+    font-family: 'DisplayBold';
+    src: url("../public/fonts/PPEditorialNew-Ultrabold.otf") format('opentype');
+  }
+  

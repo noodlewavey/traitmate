@@ -1,3 +1,42 @@
+
+
+@font-face {
+  font-family: 'Display Regular'; /* you can choose any name here */
+  src: url('../public/fonts/PPEditorialNew-Regular.otf') format('opentype'),
+  /* add other formats as needed */
+  /* adjust as needed based on the styles your font supports */
+}
+
+
+@font-face {
+  font-family: 'Display Italic'; /* you can choose any name here */
+  src: url('../public/fonts/PPEditorialNew-Italic.otf') format('opentype'),
+  /* add other formats as needed */
+  /* adjust as needed based on the styles your font supports */
+}
+
+
+@font-face {
+  font-family: 'Display Light Italic'; /* you can choose any name here */
+  src: url('../public/fonts/PPEditorialNew-UltralightItalic.otf') format('opentype'),
+  /* add other formats as needed */
+  /* adjust as needed based on the styles your font supports */
+}
+
+@font-face {
+  font-family: 'Display Bold Italic'; /* you can choose any name here */
+  src: url('../public/fonts/PPEditorialNew-UltraboldItalic.otf') format('opentype'),
+  /* add other formats as needed */
+  /* adjust as needed based on the styles your font supports */
+}
+
+@font-face {
+  font-family: 'Display Bold'; /* you can choose any name here */
+  src: url('../public/fonts/PPEditorialNew-Ultrabold.otf') format('opentype'),
+  /* add other formats as needed */
+  /* adjust as needed based on the styles your font supports */
+}
+
 body {
   margin: 0;
   font-family: 'IBM Plex Mono', monospace, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -8,4 +47,8 @@ body {
 code {
   font-family: 'IBM Plex Mono', monospace, source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.h1{
+  font-family: 'Display Light Italic';
 }
