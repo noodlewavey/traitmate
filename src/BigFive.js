@@ -4,10 +4,10 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MusicNoteIcon from '@mui/icons-material/MusicNote';
-import { MusicNote } from '@mui/icons-material';
+import PsychologyIcon from '@mui/icons-material/Psychology';
+import { Box } from '@mui/material';
 
-export default function Lyrics() {
+export default function BigFive() {
   return (
     <div style={{overflow: 'auto'}}>
       <Accordion
@@ -24,8 +24,8 @@ export default function Lyrics() {
           id="panel1a-header"
           sx={{paddingLeft:'0.3rem'}}
         >
-        <MusicNoteIcon />
-          <Typography variant="body1" paddingLeft='0.4rem'>MY SONG</Typography>
+        <PsychologyIcon />
+          <Typography variant="body1" paddingLeft='0.3rem'>BIG FIVE RESULTS</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography variant="body2">
