@@ -25,3 +25,11 @@
     src: url("../public/fonts/PPEditorialNew-Ultrabold.otf") format('opentype');
   }
   
+  pre {
+    font-family: 'IBM Plex Mono';
+    font-size: 13px;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    text-align: left; /* or "left" for left-aligned lyrics */
+    color: black; /* Adjust color as needed */
+}

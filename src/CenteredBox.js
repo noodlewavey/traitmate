@@ -6,27 +6,40 @@ const CenteredBox = ({children}) => {
     <Box
       sx={{
         display: 'flex',
+        position: 'relative', 
         justifyContent: 'center',
         alignItems: 'center',
         minHeight: '100vh',
-        backgroundColor: 'white',
       }}
     >
       <Box
         sx={{
           width: '50%',
+          position: 'relative',//makes child elements, the children relative
           height: '85vh',
           borderRadius: '16px',
-          backgroundColor: 'white',
           padding: '16px',
           color: 'black',
           border: '1px solid black',
           marginTop: '20%',
           marginBottom: '5%',
+          overflow: 'auto',
         }}
       >
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',  // <--- Added
+            gap: '1rem',
+            width: '100%',  // <--- Added
+          }}
+          //we wrap the children inside this box to order
+          //CSS properties arent inherited down DOM tree....
+          //properties like color and font are inherited, but flexbox properties are not...
+        >
       {children}
       </Box>
+    </Box>
     </Box>
   );
 };

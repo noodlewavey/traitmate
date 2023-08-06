@@ -1,12 +1,14 @@
 import React from "react";
 
-const CircularFrame = ({ imageUrl }) => {
+const CircularFrame = ({ imageUrl}) => {
   return (
     <div
       style={{
-        position: "relative",
-        width: "100px",
-        height: "100px",
+        position: "absolute",
+        top: "1.5rem",
+        right: "1rem",
+        width: "8rem",
+        height: "8rem",
         borderRadius: "50%",
         overflow: "hidden",
       }}
