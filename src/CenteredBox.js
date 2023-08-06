@@ -24,6 +24,9 @@ const CenteredBox = ({children}) => {
           marginTop: '20%',
           marginBottom: '5%',
           overflow: 'auto',
+          '&::-webkit-scrollbar-track': { // styles the track (background) of the scrollbar
+            backgroundColor: 'transparent', // makes the background transparent
+          },
         }}
       >
         <Box

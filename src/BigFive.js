@@ -28,8 +28,12 @@ export default function BigFive() {
           <Typography variant="body1" paddingLeft='0.3rem'>BIG FIVE RESULTS</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography variant="body2">
-          <pre>
+        <Typography 
+            variant="body2" 
+            sx={{
+              overflowWrap: 'break-word', // ensures text wraps within the container
+              whiteSpace: 'pre-wrap', // preserves spaces and line breaks, but wraps text
+            }}>
             {`Someday we're gonna look back
 On a night like tonight
 The car I pulled up in
@@ -48,7 +52,6 @@ I just want to love you
 Like it's all I'm living for
 Hold you close, enjoy you more
 And spend a little less time keeping score`}
-          </pre>
           </Typography>
         </AccordionDetails>
       </Accordion>
