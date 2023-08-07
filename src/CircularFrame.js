@@ -5,7 +5,7 @@ const CircularFrame = ({ imageUrl}) => {
     <div
       style={{
         position: "absolute",
-        top: "1.5rem",
+        top: "2rem",
         right: "1rem",
         width: "8rem",
         height: "8rem",

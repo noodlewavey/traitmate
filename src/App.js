@@ -66,7 +66,7 @@ function App() {
           position: 'relative',        // relative positioning context for the buttons
         }}
       >
-        <ProfileTemplate sx={{width: '100%', maxWidth: 'none'}}/>
+        <ProfileTemplate />
         <IconButton 
           aria-label="dislike" 
           sx={{ 
@@ -96,3 +96,6 @@ function App() {
 
 
 export default App;
+
+
+//setting maxWidth to none makes it take up the whole space!!!

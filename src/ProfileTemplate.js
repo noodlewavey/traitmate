@@ -32,7 +32,7 @@ const ProfileTemplate = () => {
 
     return (
         <CenteredBox>
-            <Typography variant = "h2" style={{maxWidth: "80%", wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem'}}>Jasmine Wang</Typography>
+            <Typography variant = "h2" style={{maxWidth: "80%", wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>Jasmine Wang</Typography>
             <CircularFrame imageUrl="https://st3.depositphotos.com/1017228/18861/i/450/depositphotos_188618952-stock-photo-portrait-of-asian-lovely-woman.jpg"/>
             <MyStack>
                 <Root>
