@@ -16,6 +16,7 @@ const CenteredBox = ({children}) => {
         sx={{
           width: '30rem',
           minWidth: '30rem',
+          maxWidth: '30rem',
           position: 'relative',//makes child elements, the children relative
           height: '85vh',
           borderRadius: '16px',
