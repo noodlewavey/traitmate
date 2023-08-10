@@ -3,6 +3,13 @@ import Box from '@mui/material/Box';
 import styled from '@emotion/styled';
 import RightBox from '../components/RightBox.jsx';
 import CreateNavbar from '../components/CreateNavbar.js';
+import LeftBox from '../components/LeftBox.js'
+// import '../styles.css';
+// import '../index.css';
+import { Typography } from "@mui/material"; 
+// this typography import was necessary to use the font?
+//ask chatgpt
+//apparently its not important?
 
 const FullPageCenter = styled('div')({
   display: 'flex',
@@ -12,6 +19,15 @@ const FullPageCenter = styled('div')({
 });
 
 //this is to center the content
+
+const ItalicText = styled('div')(({ theme }) => ({
+  fontFamily: theme.typography.h1.fontFamily,
+  fontStyle: 'italic',
+  fontSize: '8rem',
+  color: theme.palette.accent.main,  // Accessing the accent.main color
+  // other styles for your component
+  lineHeight: '0.9',
+}));
 
 
 const Wrapper = styled('div')({
@@ -54,6 +70,9 @@ const CenterContainer = styled(Box)(({ theme }) => ({
 
 // you can add styling on top of navbar to position it!
 
+
+
+
 export default function ProfileCreation({children}) {
   return (
     <FullPageCenter>
@@ -61,7 +80,9 @@ export default function ProfileCreation({children}) {
     <CreateNavbar />
     {/* adding navbar above container so its rendered above containers... */}
     <CenterContainer>
-      {/* adding this margin top to make space for appbar */}
+      <LeftBox>
+      <ItalicText style={{marginLeft: '6rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>"Tell me about yourself!"</ItalicText> 
+      </LeftBox>
         <RightBox>
             <h1>Hello</h1>
         </RightBox>

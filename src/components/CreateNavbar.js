@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const NavbarWrapper = styled('div')({
-  width: '100%',
+  width: '80rem',
   height: '4rem', // Set the height to 4rem 
   // Add any other styling you need for the navbar
   position: 'fixed',
+  overflow: 'auto',
+  // i think this overflow auto is what causes it to be fixed size
 });
 
 const NavbarAppBar = styled(AppBar)`
@@ -18,7 +20,6 @@ const NavbarToolbar = styled(Toolbar)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
 `;
 
 const NavbarLogo = styled(Typography)`
@@ -38,7 +39,8 @@ margin: 10rem 10rem;
 const NavbarLink = styled(Link)`
   text-decoration: none;
   color: black;
-  margin-left: 20px;
+  margin-left: 4.2rem; 
+  // this margin left shifts the quit key 
   &:hover {
     color: blue;
     border-bottom: 1px solid blue;
