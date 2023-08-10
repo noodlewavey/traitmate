@@ -54,3 +54,13 @@ export default CenteredBox;
 //we have outer box...this is like a flexbox container...centering child elements horizontally and vertically
 //min height maeans iot takes at least full height of viewport
 //inner box eelment is actual content box...what you want to define its appearance as 
+
+
+//outerbox is full-screen container with min height..purpose to center child box hroizontally and vertically
+//middle box is main content conainer....handles scrollbar, wwidth, height....given margins, paddig, color, border
+//innerbox is layout container for children..styles children 
+
+
+//The outermost box is for vertical and horizontal centering.
+///The middle box is the main styled content container with fixed dimensions.
+//The innermost box manages the layout of the content (children) within the main container.

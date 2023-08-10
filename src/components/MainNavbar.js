@@ -9,6 +9,7 @@ const NavbarWrapper = styled('div')({
   // Add any other styling you need for the navbar
   position: 'fixed',
   overflow: 'auto',
+  zIndex: '1000', //set this to high value to make text hoverable in MyProfile.js
   // i think this overflow auto is what causes it to be fixed size
 });
 
