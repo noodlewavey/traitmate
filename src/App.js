@@ -4,7 +4,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MyProfile from './pages/MyProfile';
 import { Box } from '@mui/material';
-import ProfileCreation from './components/ProfileCreation';
+import ProfileCreation from './pages/ProfileCreation';
 import styled from '@emotion/styled';
 
 const theme = createTheme({
@@ -52,6 +52,9 @@ const MainContainer = styled(Box)({
   minHeight: '45rem', // or your desired value
   overflow: 'auto'
 });
+
+//THIS WAS THE FIX
+//I NEEDED MAIN CONTAINER TO PREVENT CHILD ELEMENTS FROM RESIING
 
 
 

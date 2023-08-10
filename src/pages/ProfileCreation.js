@@ -1,7 +1,18 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import styled from '@emotion/styled';
-import RightBox from './RightBox.jsx';
+import RightBox from '../components/RightBox.jsx';
+import CreateNavbar from '../components/CreateNavbar.js';
+
+const FullPageCenter = styled('div')({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  minHeight: '100vh', // Set the minimum height to 100% of the viewport height
+});
+
+//this is to center the content
+
 
 const Wrapper = styled('div')({
     justifyContent: 'center',
@@ -10,8 +21,9 @@ const Wrapper = styled('div')({
     width: '80rem',
     overflowX: 'hidden',
     overflowY: 'hidden',
-    position: 'relative' // This is important for the absolute positioning of the child.
+    position: 'relative', // This is important for the absolute positioning of the child.
 });
+//this is to prevent resizing....
 
 
 //does putting position of top level copmonent as relative make all the child components, including grandchildren components, relative to the top level component? 
@@ -22,10 +34,10 @@ const Wrapper = styled('div')({
 //overflowing content will be clipped
 //relative means child elements will be positioned relative to wrapper
 const CenterContainer = styled(Box)(({ theme }) => ({
-    width: '95%',
+    width: '98%',
     display: 'flex', //this ensures marginLeft: auto on right box pushes to right
-    minHeight: '95%',
-    height: '95%',
+    minHeight: '98%',
+    height: '98%',
     margin: 'auto',
     overflowX: 'hidden',
     border: '1px solid black',
@@ -40,13 +52,16 @@ const CenterContainer = styled(Box)(({ theme }) => ({
 
 export default function ProfileCreation({children}) {
   return (
+    <FullPageCenter>
     <Wrapper>
     <CenterContainer>
+      <CreateNavbar /> 
         <RightBox>
             <h1>Hello</h1>
         </RightBox>
     </CenterContainer>
     </Wrapper>
+    </FullPageCenter>
   );
 }
 
