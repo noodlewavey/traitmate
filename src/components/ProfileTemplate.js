@@ -15,6 +15,7 @@ import Avatar from '@mui/material/Avatar';
 import styled from "@emotion/styled";
 import Box from "@mui/material/Box";
 
+
 const ProfileTemplate = () => {
 
     const Root = styled('div')(({ theme }) => ({

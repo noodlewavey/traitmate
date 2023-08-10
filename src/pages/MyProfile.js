@@ -10,10 +10,13 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { Delete } from '@mui/icons-material';
 import Box from '@mui/material/Box';
+import MainNavbar from '../components/MainNavbar';
 
 
 function MyProfile() {
   return (
+    <div>
+      <MainNavbar />
       <Box
         sx={{
           display: 'flex',
@@ -49,6 +52,7 @@ function MyProfile() {
           <FavoriteBorderIcon style={{ fontSize: '6rem' }}/>
         </IconButton>
       </Box>
+      </div>
   );
 }
 
