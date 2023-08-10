@@ -39,6 +39,7 @@ const CenterContainer = styled(Box)(({ theme }) => ({
     minHeight: '98%',
     height: '98%',
     margin: 'auto',
+    marginTop: '4rem',
     overflowX: 'hidden',
     border: '1px solid black',
     overflowY: 'hidden',
@@ -50,12 +51,17 @@ const CenterContainer = styled(Box)(({ theme }) => ({
   //overflowX: 'scroll' and overflowY: 'scroll': These styles force both horizontal and vertical scrollbars to appear if the content inside CenterContainer exceeds its boundaries.
   
 
+
+// you can add styling on top of navbar to position it!
+
 export default function ProfileCreation({children}) {
   return (
     <FullPageCenter>
     <Wrapper>
+    <CreateNavbar />
+    {/* adding navbar above container so its rendered above containers... */}
     <CenterContainer>
-      <CreateNavbar /> 
+      {/* adding this margin top to make space for appbar */}
         <RightBox>
             <h1>Hello</h1>
         </RightBox>

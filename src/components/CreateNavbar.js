@@ -3,6 +3,13 @@ import { AppBar, Toolbar, CssBaseline, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+const NavbarWrapper = styled('div')({
+  width: '100%',
+  height: '4rem', // Set the height to 4rem 
+  // Add any other styling you need for the navbar
+  position: 'fixed',
+});
+
 const NavbarAppBar = styled(AppBar)`
   background-color: transparent;
 `;
@@ -44,9 +51,10 @@ const LargerFontNavbarLink = styled(NavbarLink)`
 
 function CreateNavbar() {
   return (
+    <NavbarWrapper>
     <NavbarAppBar position="static" elevation={0} sx={{background: '#dfd3bc', maxHeight:'4rem',}}>
       {/* the sx prop has a higher specificity...easier to override styles */}
-      <CssBaseline />
+      <CssBaseline/>
       <NavbarToolbar>
         <NavbarNavlinks>
           <NavbarLink to="/">←BACK</NavbarLink>
@@ -55,6 +63,7 @@ function CreateNavbar() {
         </NavbarNavlinks>
       </NavbarToolbar>
     </NavbarAppBar>
+    </NavbarWrapper>
   );
 }
 
