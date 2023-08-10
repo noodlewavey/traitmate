@@ -34,6 +34,10 @@ const theme = createTheme({
       fontFamily: 'IBM Plex Mono, monospace',
       fontWeight: 300,
     },
+    light:{
+      fontFamily: 'IBM Plex Mono, monospace',
+      fontWeight: 200,
+    },
     h1: {
       fontFamily:'DisplayLightItalic, serif',
     },

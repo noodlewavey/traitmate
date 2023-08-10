@@ -10,6 +10,7 @@ import { Typography } from "@mui/material";
 // this typography import was necessary to use the font?
 //ask chatgpt
 //apparently its not important?
+import InputField from '../components/InputFIeld.js';
 
 const FullPageCenter = styled('div')({
   display: 'flex',
@@ -84,7 +85,8 @@ export default function ProfileCreation({children}) {
       <ItalicText style={{marginLeft: '6rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>"Tell me about yourself!"</ItalicText> 
       </LeftBox>
         <RightBox>
-            <h1>Hello</h1>
+            <InputField />
+            <InputField />
         </RightBox>
     </CenterContainer>
     </Wrapper>

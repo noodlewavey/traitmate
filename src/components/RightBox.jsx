@@ -14,6 +14,8 @@ function RightBox({ children }) {
       display: 'flex', // Add display flex to center children
       justifyContent: 'center', // Center horizontally, this affects children
       alignItems: 'center', 
+      gap: '1rem', //this gives gap to child elements
+      flexDirection: 'column' //stacks children top to bottom
     }));
 
   return (

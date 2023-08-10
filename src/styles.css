@@ -1,6 +1,6 @@
 /* styles.css */
 
-@font-face {
+ @font-face {
     font-family: 'DisplayRegular';
     src: url("../public/fonts/PPEditorialNew-Regular.otf") format('opentype');
   }
@@ -30,8 +30,9 @@
     font-size: 13px;
     line-height: 1.5;
     letter-spacing: 1px;
-    text-align: left; /* or "left" for left-aligned lyrics */
-    color: black; /* Adjust color as needed */
-}
+    text-align: left; 
+    color: black;
+} 
 
 /*this is adding styling to the pre preserved html stuff*/
+/* styles.css applies fonts globally */
