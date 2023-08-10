@@ -6,6 +6,7 @@ import MyProfile from './pages/MyProfile';
 import { Box } from '@mui/material';
 import ProfileCreation from './pages/ProfileCreation';
 import styled from '@emotion/styled';
+import MainPage from './pages/MainPage';
 
 const theme = createTheme({
   palette: {
@@ -44,6 +45,9 @@ const theme = createTheme({
     h2:{
       fontFamily: 'DisplayItalic, serif',
     },
+    h3:{
+      fontFamily: 'DisplayLight, serif'
+    },
     button: {
       fontFamily: 'IBM Plex Mono, monospace',
       fontWeight: 600,
@@ -70,6 +74,7 @@ function App() {
         <MainContainer>
         <Routes>
           <Route path="/myprofile" element={<MyProfile />} />
+          <Route path="/" element={<MainPage />} />
           <Route path="/create" element={<ProfileCreation />} />
         </Routes>
         </MainContainer>

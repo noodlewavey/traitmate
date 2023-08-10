@@ -24,6 +24,11 @@
     font-family: 'DisplayBold';
     src: url("../public/fonts/PPEditorialNew-Ultrabold.otf") format('opentype');
   }
+
+  @font-face {
+    font-family: 'DisplayLight';
+    src: url("../public/fonts/PPEditorialNew-Ultralight.otf") format('opentype');
+  }
   
   pre {
     font-family: 'IBM Plex Mono';

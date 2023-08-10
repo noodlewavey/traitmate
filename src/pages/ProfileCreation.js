@@ -37,7 +37,8 @@ const Wrapper = styled('div')({
     height: '45rem',
     width: '80rem',
     overflowX: 'hidden',
-    overflowY: 'hidden',
+    overflowY: 'scroll',
+    marginBottom: '4rem',
     position: 'relative', // This is important for the absolute positioning of the child.
 });
 //this is to prevent resizing....
