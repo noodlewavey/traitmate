@@ -4,13 +4,16 @@ const CircularFrame = ({ imageUrl}) => {
   return (
     <div
       style={{
-        position: "absolute",
-        top: "2rem",
-        right: "1rem",
+        position: "relative",
+        // top: "2rem",
+        // right: "1rem",
         width: "8rem",
         height: "8rem",
         borderRadius: "50%",
         overflow: "hidden",
+        display: "flex",
+        alignItems: "center",
+        justifyItems: "center",
       }}
     >
       {/* Image placed inside the circular frame */}

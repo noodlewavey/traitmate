@@ -34,7 +34,9 @@ const CenteredBox = ({children}) => {
         <Box
           sx={{
             display: 'flex',
-            flexDirection: 'column',  // <--- Added
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
             gap: '1rem',
             width: '100%',  // <--- Added
           }}
