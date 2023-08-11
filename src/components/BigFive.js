@@ -9,7 +9,7 @@ import { Box } from '@mui/material';
 
 export default function BigFive() {
   return (
-    <div style={{overflow: 'auto'}}>
+    <div style={{overflow: 'auto', minWidth: '100%'}}>
       <Accordion
         sx={{
           backgroundColor: 'transparent', 
