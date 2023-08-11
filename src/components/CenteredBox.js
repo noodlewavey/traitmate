@@ -23,8 +23,8 @@ const CenteredBox = ({children}) => {
           padding: '16px',
           color: 'black',
           border: '1px solid black',
-          marginTop: '20%',
-          marginBottom: '5%',
+          marginTop: '7rem',
+          marginBottom: '3rem',
           overflow: 'auto',
           '&::-webkit-scrollbar-track': { // styles the track (background) of the scrollbar
             backgroundColor: 'transparent', // makes the background transparent
