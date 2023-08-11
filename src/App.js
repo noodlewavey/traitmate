@@ -30,10 +30,12 @@ const theme = createTheme({
     body1: {
       fontFamily: 'IBM Plex Mono, monospace',
       fontWeight: 400,
+      fontSize: '0.91rem',
     },
     body2: {
       fontFamily: 'IBM Plex Mono, monospace',
       fontWeight: 300,
+      fontSize: '0.85rem',
     },
     light:{
       fontFamily: 'IBM Plex Mono, monospace',

@@ -1,3 +1,4 @@
+
 import CenteredBox from "./CenteredBox";
 import { Typography } from "@mui/material";
 import CircularFrame from "./CircularFrame";
@@ -14,9 +15,10 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import styled from "@emotion/styled";
 import Box from "@mui/material/Box";
-
-
+import { useEffect } from "react";
+import { useRef } from "react";
 const ProfileTemplate = () => {
+
 
     const Root = styled('div')(({ theme }) => ({
         width: '100%',
@@ -28,13 +30,13 @@ const ProfileTemplate = () => {
 
       const StyledText = styled(Typography)(({ theme }) => ({
         ...theme.typography.body2,
-        fontSize: '0.9em',
       }));
 
     return (
         <CenteredBox>
             <CircularFrame imageUrl="https://st3.depositphotos.com/1017228/18861/i/450/depositphotos_188618952-stock-photo-portrait-of-asian-lovely-woman.jpg"/>
-            <Typography variant = "h2" style={{maxWidth: "80%", marginBottom: '1rem',marginTop: '0.7rem'}}>Jasmine Wang</Typography>
+              <Typography variant="h1" style={{justifyContent: 'center', fontSize: '2rem' }}>
+  Jasmine Wang</Typography>
             <MyStack>
                 <Root>
                 <Box display="flex" justifyContent="space-between">

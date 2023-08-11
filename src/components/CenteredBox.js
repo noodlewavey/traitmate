@@ -23,8 +23,8 @@ const CenteredBox = ({children}) => {
           padding: '16px',
           color: 'black',
           border: '1px solid black',
-          marginTop: '20%',
-          marginBottom: '5%',
+          marginTop: '6rem',
+          marginBottom: '3rem',
           overflow: 'auto',
           '&::-webkit-scrollbar-track': { // styles the track (background) of the scrollbar
             backgroundColor: 'transparent', // makes the background transparent
@@ -35,10 +35,12 @@ const CenteredBox = ({children}) => {
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'center',
+            //justifyContent: 'center', this is centering heightwise
             alignItems: 'center',
             gap: '1rem',
-            width: '100%',  // <--- Added
+            width: '100%',
+            height: '33rem', 
+            top: '3',
           }}
           //we wrap the children inside this box to order
           //CSS properties arent inherited down DOM tree....
