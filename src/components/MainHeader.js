@@ -32,9 +32,9 @@ function MainHeader() {
     
     return (
       <NavbarWrapper>
-        <OppositesText>OPPOSITES ATTRACT</OppositesText>
-        <OppositesText>OPPOSITES ATTRACT</OppositesText>
-        <OppositesText>OPPOSITES ATTRACT</OppositesText>
+        <OppositesText>TRAITMATE</OppositesText>
+        <OppositesText>TRAITMATE</OppositesText>
+        <OppositesText>TRAITMATE</OppositesText>
       </NavbarWrapper>
     );
   };

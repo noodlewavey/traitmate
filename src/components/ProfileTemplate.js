@@ -52,7 +52,7 @@ const ProfileTemplate = () => {
             </MyStack>
             <MyStack>
                 <BrightnessMediumIcon />
-                <b>OPPOSITENESS SCORE:</b> 90% HIGH
+                <b>COMPATIBILITY SCORE:</b> 90% HIGH
             </MyStack>
             <MyStack>
                 <AutoStoriesIcon />
