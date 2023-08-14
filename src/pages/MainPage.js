@@ -10,6 +10,7 @@ const FullPageCenter = styled('div')({
     alignItems: 'center',
     minHeight: '100vh', // Set the minimum height to 100% of the viewport height
     zIndex: 1,
+    //position: 'relative', //ensure relative positioning for stacking context
   });
   
   
@@ -18,11 +19,11 @@ const FullPageCenter = styled('div')({
       alignItems: 'center',
       height: '45rem',
       width: '80rem',
-      overflowX: 'hidden',
+      overflowX: 'auto',
       overflowY: 'scroll',
       marginBottom: '4rem',
       position: 'relative', // This is important for the absolute positioning of the child.
-      zIndex: 1,
+      
   });
   //this is to prevent resizing....
   
@@ -41,25 +42,25 @@ const FullPageCenter = styled('div')({
       height: '98%',
       margin: 'auto',
       marginTop: '4rem',
-      overflowX: 'hidden',
+      overflowX: 'auto',
       border: '1px solid black',
       zIndex: 2,
       overflowY: 'hidden',
       //if there isnt enough space, parent container forces horizonal scroll
     }));
-
+    
   
 
 function MainPage() {
   return (
     <div>
-    <MainHeader style={{zIndex: 4000}}/>
     <FullPageCenter>
-    <Wrapper>
-    <CenterContainer>
-    </CenterContainer>
-    </Wrapper>
-    </FullPageCenter>
+    <Wrapper> 
+    {/* <CenterContainer> */}
+    <MainHeader />
+    {/* </CenterContainer> */}
+    </Wrapper> 
+    </FullPageCenter> 
     </div>
   );
 }

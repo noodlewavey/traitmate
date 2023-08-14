@@ -7,18 +7,18 @@ import styled from "@emotion/styled";
 const NavbarWrapper = styled('div')(({ theme }) => ({
     fontFamily: theme.typography.h3.fontFamily,
     fontSize: '5rem',
-    width: '100vw',
+    width: '100%',
     height: '30rem', // Set the height to 4rem 
     // Add any other styling you need for the navbar
-    position: 'fixed',
-    overflow: 'hidden',
+    position: 'relative',
+    overflow: 'auto',
     alignItems: 'center',
     whiteSpace: 'nowrap', //
     display: 'flex', // added for flexbox
     //look up when to use display flex
     justifyContent: 'center', // horizontal centering in flexbox
     alignItems: 'center', // vertical centering in flexbox
-    zIndex: 3000, // set this to a high value to make text hoverable in MyProfile.js
+    zIndex: 2000, // set this to a high value to make text hoverable in MyProfile.js
     // i think this overflow auto is what causes it to be fixed size
 }));
 
