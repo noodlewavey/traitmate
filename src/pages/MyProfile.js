@@ -12,6 +12,7 @@ import { Delete } from '@mui/icons-material';
 import Box from '@mui/material/Box';
 import MainNavbar from '../components/MainNavbar';
 import HeartIcon from '../components/HeartIcon';
+import TrashIcon from '../components/TrashIcon';
 
 
 function MyProfile() {
@@ -52,6 +53,17 @@ function MyProfile() {
         >
           <FavoriteBorderIcon style={{ fontSize: '6rem' }}/>
         </IconButton> */}
+        <IconButton 
+          aria-label="dislike" 
+          sx={{ 
+            position: 'absolute',          // absolute positioning
+            top: '59%',                    // half the height of the viewport
+            left: '13.5rem',                  // 1rem from the left edge
+            transform: 'translateY(-50%)'  // vertical centering
+          }}
+        >
+          <TrashIcon height="115rem" width="115rem"/>
+        </IconButton>
         <IconButton 
           aria-label="like" 
           sx={{ 
