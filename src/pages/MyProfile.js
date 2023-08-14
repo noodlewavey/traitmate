@@ -11,6 +11,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { Delete } from '@mui/icons-material';
 import Box from '@mui/material/Box';
 import MainNavbar from '../components/MainNavbar';
+import HeartIcon from '../components/HeartIcon';
 
 
 function MyProfile() {
@@ -29,7 +30,7 @@ function MyProfile() {
         }}
       >
         <ProfileTemplate />
-        <IconButton 
+        {/* <IconButton 
           aria-label="dislike" 
           sx={{ 
             position: 'absolute',          // absolute positioning
@@ -50,6 +51,17 @@ function MyProfile() {
           }}
         >
           <FavoriteBorderIcon style={{ fontSize: '6rem' }}/>
+        </IconButton> */}
+        <IconButton 
+          aria-label="like" 
+          sx={{ 
+            position: 'absolute',          // absolute positioning
+            top: '60%',                    // half the height of the viewport
+            right: '14rem',                  // 1rem from the left edge
+            transform: 'translateY(-50%)'  // vertical centering
+          }}
+        >
+          <HeartIcon height="90rem" width="90rem"/>
         </IconButton>
       </Box>
       </div>
