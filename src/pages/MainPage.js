@@ -18,11 +18,12 @@ const FullPageCenter = styled('div')({
       justifyContent: 'center',
       alignItems: 'center',
       height: '45rem',
-      width: '80rem',
-      overflowX: 'auto',
+      width: '100%',
+      overflowX: 'hidden',
       overflowY: 'scroll',
       marginBottom: '4rem',
-      position: 'relative', // This is important for the absolute positioning of the child.
+      position: 'relative',
+      // This is important for the absolute positioning of the child.
       
   });
   //this is to prevent resizing....
@@ -35,20 +36,19 @@ const FullPageCenter = styled('div')({
   //wrapper is outermost container...centers stuff in scree horizontall yand vefitcally
   //overflowing content will be clipped
   //relative means child elements will be positioned relative to wrapper
-  const CenterContainer = styled(Box)(({ theme }) => ({
-      width: '98%',
+  const CenterContainer = styled('div')(({ theme }) => ({
+      width: '100%',
       display: 'flex', //this ensures marginLeft: auto on right box pushes to right
       minHeight: '98%',
       height: '98%',
       margin: 'auto',
-      marginTop: '4rem',
-      overflowX: 'auto',
+      marginTop: '2rem',
+      overflowX: 'hidden',
       border: '1px solid black',
       zIndex: 2,
       overflowY: 'hidden',
       //if there isnt enough space, parent container forces horizonal scroll
     }));
-    
   
 
 function MainPage() {
@@ -56,9 +56,9 @@ function MainPage() {
     <div>
     <FullPageCenter>
     <Wrapper> 
-    {/* <CenterContainer> */}
+    <CenterContainer>
     <MainHeader />
-    {/* </CenterContainer> */}
+    </CenterContainer>
     </Wrapper> 
     </FullPageCenter> 
     </div>

@@ -7,11 +7,11 @@ import styled from "@emotion/styled";
 const NavbarWrapper = styled('div')(({ theme }) => ({
     fontFamily: theme.typography.h3.fontFamily,
     fontSize: '5rem',
-    width: '100%',
+    width: '100%', //before, 100vw was causing text to be covered
     height: '30rem', // Set the height to 4rem 
     // Add any other styling you need for the navbar
     position: 'relative',
-    overflow: 'auto',
+    overflow: 'hidden',//prevents horizontal scroll if mainheader is too large
     alignItems: 'center',
     whiteSpace: 'nowrap', //
     display: 'flex', // added for flexbox
