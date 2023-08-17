@@ -11,6 +11,7 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import { useTheme } from '@mui/material';
 import Button from '@mui/material/Button';
+import {useParams} from 'react-router-dom';
 
 //we use usetheme hook when applying theme-specific styling on components
 //styled takes theme as input if we access it from a styled component declaration
@@ -88,8 +89,18 @@ const CenterContainer = styled(Box)(({ theme }) => ({
 
 
 
-export default function QuizPage({children}) {
+export default function QuizPage({children, questions}) {
     const theme = useTheme();
+
+    // useParams: when component is rendered, useParams hook will provide object containing values of dynamic parameters
+
+    //this extracts everything after quiz...i think
+    //confirm 
+    const {questionId} = useParams();
+
+    const questionIndex = parseInt(questionId) - 1;
+    
+    const currentQuestion = questions[questionIndex];
 
 
   return (
@@ -100,8 +111,7 @@ export default function QuizPage({children}) {
     <CenterContainer>
       <LeftBox>
         <div>
-      <ItalicText style={{wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>"	
-I am the life of the party."</ItalicText> 
+      <ItalicText style={{wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>"{currentQuestion.text}"</ItalicText> 
 <Button
                 variant="text"
                 style={{

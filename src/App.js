@@ -58,6 +58,21 @@ const theme = createTheme({
   },
 });
 
+const questions = [
+  {
+    id: 1,
+    text: "I am the life of the party"
+  },
+  {
+    id: 2,
+    text: "I feel little concern for others"
+  },
+  {
+    id: 3,
+    text: "I am always prepared"
+  },
+]
+
 const MainContainer = styled(Box)({
   minWidth: '80rem', // or your desired value
   minHeight: '45rem', // or your desired value
@@ -79,7 +94,16 @@ function App() {
           <Route path="/myprofile" element={<MyProfile />} />
           <Route path="/" element={<MainPage />} />
           <Route path="/create" element={<ProfileCreation />} />
-          <Route path="/quiz"element={<QuizPage />} />
+          <Route path="/quiz/:questionIndex"element={<QuizPage questions={questions} />} />
+          {/* /this :questionIndex is a dynamic parameter!  */}
+          {/* 
+No, the :questionIndex in the route <Route path="/quiz/:questionIndex" ... /> is a dynamic route parameter, which means it can represent any value you provide in the URL. It doesn't automatically set the page to be 1.
+
+For example:
+
+If you navigate to /quiz/1, then questionIndex will be 1.
+If you navigate to /quiz/2, then questionIndex will be 2.
+... and so on.*/}
         </Routes> 
         </MainContainer>
       </Router>
