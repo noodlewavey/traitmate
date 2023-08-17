@@ -11,6 +11,7 @@ const NavbarWrapper = styled('div')(({ theme }) => ({
     height: '30rem', // Set the height to 4rem 
     // Add any other styling you need for the navbar
     position: 'relative',
+    marginTop: '-2rem',
     overflow: 'hidden',//prevents horizontal scroll if mainheader is too large
     alignItems: 'center',
     whiteSpace: 'nowrap', //

@@ -7,6 +7,7 @@ import { Box } from '@mui/material';
 import ProfileCreation from './pages/ProfileCreation';
 import styled from '@emotion/styled';
 import MainPage from './pages/MainPage';
+import QuizPage from './pages/QuizPage';
 
 const theme = createTheme({
   palette: {
@@ -14,7 +15,7 @@ const theme = createTheme({
       default: '#dfd3bc',
     },
     text: {
-      primary: 'black',
+      primary: '#000000',
     },
 
     accent: {
@@ -22,7 +23,7 @@ const theme = createTheme({
       accent1: '#0018bc',
       accent2: '#0a2381',
       accent3: '#00114d',
-      accent4: 'black',
+      accent4: '#000000',
     }
   },
   typography: {
@@ -78,7 +79,8 @@ function App() {
           <Route path="/myprofile" element={<MyProfile />} />
           <Route path="/" element={<MainPage />} />
           <Route path="/create" element={<ProfileCreation />} />
-        </Routes>
+          <Route path="/quiz"element={<QuizPage />} />
+        </Routes> 
         </MainContainer>
       </Router>
     </ThemeProvider>
