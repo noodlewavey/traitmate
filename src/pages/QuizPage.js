@@ -98,9 +98,12 @@ export default function QuizPage({children, questions}) {
     //confirm 
     const {questionId} = useParams();
 
-    const questionIndex = parseInt(questionId) - 1;
-    
+    const questionIndex = parseInt(questionId)-1;
+
+    console.log(questionId);
+
     const currentQuestion = questions[questionIndex];
+    //changing this to questions[0] works....
 
 
   return (
@@ -111,7 +114,11 @@ export default function QuizPage({children, questions}) {
     <CenterContainer>
       <LeftBox>
         <div>
-      <ItalicText style={{wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>"{currentQuestion.text}"</ItalicText> 
+        {currentQuestion.text && (
+                <ItalicText style={{ wordWrap: "break-word", overflowWrap: "break-word", marginBottom: '5rem', marginTop: '0.7rem' }}>
+                  "{currentQuestion.text}"
+                </ItalicText>
+              )}
 <Button
                 variant="text"
                 style={{
