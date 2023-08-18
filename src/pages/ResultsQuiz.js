@@ -91,7 +91,7 @@ export default function ResultsQuiz({children}) {
     {/* adding navbar above container so its rendered above containers... */}
     <CenterContainer>
         <Typography variant="h1">Your Big 5 Results!</Typography>
-        <BarResult  /> 
+        <BarResult  />  
     </CenterContainer>
     </Wrapper>
     </FullPageCenter>

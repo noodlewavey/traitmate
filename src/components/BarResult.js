@@ -1,27 +1,17 @@
-import * as React from 'react';
-import { BarChart } from '@mui/x-charts/BarChart';
+import React from "react";
+import Chart from 'chart.js';
 
-export default function BarResult({width, height}) {
-  return (
-    <BarChart
-  xAxis={[
-    {
-      id: 'Big 5 categories',
-      data: ['Extraversion', 'Agreeableness', 'Conscientiousness', 'Emotional Stability', 'Intellect' ],
-      scaleType: 'band',
-    },
-  ]}
-  series={[
-    {
-      data: [12, 4, 5, 19, 20],
-    },
-  ]}
-  width={width}
-  height={height}
-/>
-  );
-}
 
-//i get a bug when i put only one value inside each data
-//like data: [4] 
-
+const ctx = document.getElementById('chart_id').getContext('2d');
+const BarResult = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Orange'],
+          datasets: [{
+              label: 'Different colors bars',
+              data: [90, 100, 80, 50, 70],
+              backgroundColor: ["#ed1e1e", "#2269e5", "#fce302", "#04f759", "#fc9700"]
+          }]
+      }
+  });
+export default BarResult;
