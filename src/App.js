@@ -10,9 +10,6 @@ import MainPage from './pages/MainPage';
 import QuizPage from './pages/QuizPage';
 import { TransitionGroup, CSSTransition } from 'react-transition-group'; 
 import { QuizProvider } from './components/QuizContext';
-import './App.css';
-import { useLocation } from 'react-router-dom';
-import AppContent from './pages/AppContent'
 
 const theme = createTheme({
   palette: {
@@ -94,14 +91,30 @@ const MainContainer = styled(Box)({
 
 
 function App() {
-
-
   return (
     <QuizProvider>
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
-        <AppContent />
+        <MainContainer>
+        <Routes>
+          <Route path="/myprofile" element={<MyProfile />} />
+          <Route path="/" element={<MainPage />} />
+          <Route path="/create" element={<ProfileCreation />} />
+          <Route path="/quiz/:questionId" element={<QuizPage questions={questions}/> }  />
+          {/* accidentally named questionId as questoinIndex */}
+          {/* /this :questionIndex is a dynamic parameter!  */}
+          {/* 
+No, the :questionIndex in the route <Route path="/quiz/:questionIndex" ... /> is a dynamic route parameter, which means it can represent any value you provide in the URL. It doesn't automatically set the page to be 1.
+
+For example:
+
+If you navigate to /quiz/1, then questionIndex will be 1.
+If you navigate to /quiz/2, then questionIndex will be 2.
+... and so on.*/}
+     
+        </Routes> 
+        </MainContainer>
       </Router>
     </ThemeProvider>
     </QuizProvider>
