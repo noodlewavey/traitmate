@@ -106,7 +106,7 @@ export default function QuizPage({children, questions}) {
 
     console.log(questionId);
 
-    const [selectedValue, setSelectedValue] = React.useState('');
+    const [selectedValue, setSelectedValue] = React.useState(null);
 
     const currentQuestion = questions[questionIndex];
     //changing this to questions[0] works....
@@ -121,6 +121,7 @@ export default function QuizPage({children, questions}) {
     const handleNextClick = () => {
 
         if (selectedValue === null){
+            console.log(selectedValue);
             setError(true);
             return;
         }//return is to exit function early if null...
@@ -242,3 +243,5 @@ export default function QuizPage({children, questions}) {
   );
 }
 
+
+//error...the error message is not popping up ...how to fix?
