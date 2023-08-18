@@ -71,6 +71,10 @@ const questions = [
     id: 3,
     text: "I am always prepared"
   },
+  {
+    id: 4,
+    text: "I have a high self esteem'"
+  }
 ]
 
 const MainContainer = styled(Box)({
@@ -95,6 +99,7 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/create" element={<ProfileCreation />} />
           <Route path="/quiz/:questionId"element={<QuizPage questions={questions} />} />
+          {/* accidentally named questionId as questoinIndex */}
           {/* /this :questionIndex is a dynamic parameter!  */}
           {/* 
 No, the :questionIndex in the route <Route path="/quiz/:questionIndex" ... /> is a dynamic route parameter, which means it can represent any value you provide in the URL. It doesn't automatically set the page to be 1.

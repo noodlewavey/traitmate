@@ -11,7 +11,7 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import { useTheme } from '@mui/material';
 import Button from '@mui/material/Button';
-import {useParams, useHistory} from 'react-router-dom';
+import {useParams, useNavigate} from 'react-router-dom';
 
 //we use usetheme hook when applying theme-specific styling on components
 //styled takes theme as input if we access it from a styled component declaration
@@ -91,7 +91,7 @@ const CenterContainer = styled(Box)(({ theme }) => ({
 
 export default function QuizPage({children, questions}) {
     const theme = useTheme();
-    const history = useHistory();
+    const navigate = useNavigate();
 
     // useParams: when component is rendered, useParams hook will provide object containing values of dynamic parameters
 
@@ -111,11 +111,12 @@ export default function QuizPage({children, questions}) {
     const handleNextClick = () => {
         const nextQuestionID = (questionIndex+2).toString; //going to the next question's route...
         //we do +2 since questionIndex is id minus 1...indexing by zero
-        history.push(`/quiz/${nextQuestionID}`);
+        navigate(`/quiz/${nextQuestionID}`);
     }
 
-    const handlePrevClick = () => { //going to prev index...current index is +1 
-        history.goBack(); //change this...this will pop the stack...
+    const handlePrevClick = () => {
+        const prevQuestionID = (questionIndex).toString;
+        navigate(`/quiz/${prevQuestionID}`);
     }
 
     //we useh history.push with history.goback()
