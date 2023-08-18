@@ -6,9 +6,9 @@ import ProfileCreation from './ProfileCreation';
 import styled from '@emotion/styled';
 import MainPage from './MainPage';
 import QuizPage from './QuizPage';
-import { TransitionGroup, CSSTransition } from 'react-transition-group'; 
 import '../App.css'
 import { useLocation } from 'react-router-dom';
+import { AnimatePresence} from 'framer-motion';
 
 
 function AppContent() {
@@ -40,18 +40,16 @@ function AppContent() {
       ]
 
     return (
+    <AnimatePresence>
       <MainContainer>
-        <TransitionGroup>
-          <CSSTransition key={location.key} classNames="fade" timeout={500}>
-            <Routes>
+            <Routes location={location} key={location.pathname}>
               <Route path="/myprofile" element={<MyProfile />} />
               <Route path="/" element={<MainPage />} />
               <Route path="/create" element={<ProfileCreation />} />
               <Route path="/quiz/:questionId" element={<QuizPage questions={questions}/> }  />
             </Routes>
-          </CSSTransition>
-        </TransitionGroup>
       </MainContainer>
+      </AnimatePresence>
     );
   }
   

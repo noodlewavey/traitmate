@@ -2,6 +2,7 @@ import React from "react";
 import MainHeader from "../components/MainHeader";
 import Box from '@mui/material/Box';
 import styled from '@emotion/styled';
+import {motion} from 'framer-motion';
 
 
 const FullPageCenter = styled('div')({
@@ -53,7 +54,10 @@ const FullPageCenter = styled('div')({
 
 function MainPage() {
   return (
-    <div>
+    <motion.div
+    initial={{opacity: 0}}
+    animate={{opacity: 1}}
+    exit={{opacity: 0, transition: {duration: 0.4}}}>
     <FullPageCenter>
     <Wrapper> 
     <CenterContainer>
@@ -61,7 +65,7 @@ function MainPage() {
     </CenterContainer>
     </Wrapper> 
     </FullPageCenter> 
-    </div>
+    </motion.div>
   );
 }
 

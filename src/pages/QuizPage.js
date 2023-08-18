@@ -15,16 +15,14 @@ import {useParams, useNavigate} from 'react-router-dom';
 import { useQuiz} from '../components/QuizContext.js';
 import { useState } from 'react';
 import SelectError from '../components/SelectError.js';
+import {motion} from 'framer-motion';
 
 //we use usetheme hook when applying theme-specific styling on components
 //styled takes theme as input if we access it from a styled component declaration
 
-// import '../styles.css';
-// import '../index.css';
+
 import { Typography } from "@mui/material"; 
-// this typography import was necessary to use the font?
-//ask chatgpt
-//apparently its not important?
+
 import InputField from '../components/InputFIeld.js';
 
 const FullPageCenter = styled('div')({
@@ -144,7 +142,7 @@ export default function QuizPage({children, questions}) {
         //we do +2 since questionIndex is id minus 1...indexing by zero
         navigate(`/quiz/${nextQuestionID}`);
         //REMOVED TO STRING FOR NEXTQUESTIONID....
-        //TO STRING WAS NEEDED FOR useHistory, but not for useNavigate
+        //TO STRING WAS NEEDED FOR useHistory, but not for 
         //i UPDATE the global state from here since next button triggers form submission...
         //remember to throw an error if selectedValue is null...
 
@@ -167,6 +165,10 @@ export default function QuizPage({children, questions}) {
 
 
   return (
+    <motion.div
+    initial={{opacity: 0}}
+    animate={{opacity: 1}}
+    exit={{opacity: 0, transition: {duration: 0.4}}}>
     <FullPageCenter>
     <Wrapper>
     {/* <CreateNavbar /> */}
@@ -240,6 +242,7 @@ export default function QuizPage({children, questions}) {
     </CenterContainer>
     </Wrapper>
     </FullPageCenter>
+    </motion.div>
   );
 }
 

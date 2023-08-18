@@ -11,6 +11,7 @@ import { Typography } from "@mui/material";
 //ask chatgpt
 //apparently its not important?
 import InputField from '../components/InputFIeld.js';
+import {motion} from 'framer-motion';
 
 const FullPageCenter = styled('div')({
   display: 'flex',
@@ -76,6 +77,10 @@ const CenterContainer = styled(Box)(({ theme }) => ({
 
 export default function ProfileCreation({children}) {
   return (
+    <motion.div
+    initial={{opacity: 0}}
+    animate={{opacity: 1}}
+    exit={{opacity: 0, transition: {duration: 0.4}}}>
     <FullPageCenter>
     <Wrapper>
     <CreateNavbar />
@@ -91,6 +96,7 @@ export default function ProfileCreation({children}) {
     </CenterContainer>
     </Wrapper>
     </FullPageCenter>
+    </motion.div>
   );
 }
 

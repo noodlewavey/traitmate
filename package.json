@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^13.5.0",
     "fittext.js": "^1.2.0",
     "fitty": "^2.3.7",
+    "framer-motion": "^10.16.0",
     "jquery": "^3.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

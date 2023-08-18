@@ -13,11 +13,15 @@ import Box from '@mui/material/Box';
 import MainNavbar from '../components/MainNavbar';
 import HeartIcon from '../components/HeartIcon';
 import TrashIcon from '../components/TrashIcon';
+import {motion} from 'framer-motion';
 
 function MyProfile() {
 
   return (
-    <div>
+    <motion.div
+    initial={{width: 0}}
+    animate={{width: "100%"}}
+    exit={{x: window.innerWidt, transition: {duration: 0.2}}}>
       <MainNavbar />
       <Box
         sx={{
@@ -76,7 +80,7 @@ function MyProfile() {
           <HeartIcon height="90rem" width="90rem"/>
         </IconButton>
       </Box>
-      </div>
+      </motion.div>
   );
 }
 
