@@ -39,7 +39,7 @@ const Wrapper = styled('div')({
     alignItems: 'center',
     height: '45rem',
     width: '80rem',
-    overflowX: 'hidden',
+    overflowX: 'scroll',
     overflowY: 'scroll',
     marginBottom: '4rem',
     position: 'relative', // This is important for the absolute positioning of the child.
@@ -61,12 +61,13 @@ const CenterContainer = styled(Box)(({ theme }) => ({
     height: '98%',
     margin: 'auto',
     marginTop: '4rem',
-    overflowX: 'hidden',
+    overflowX: 'scroll',
     border: '1px solid black',
-    overflowY: 'hidden',
+    overflowY: 'scroll',
     justifyContent:'center', //add this to center content 
     alignItems: 'center', //add this to center content
     //if there isnt enough space, parent container forces horizonal scroll
+    flexDirection: 'column',
   }));
 
   //this is immediate child of wrapper, contains right box
@@ -91,7 +92,7 @@ export default function ResultsQuiz({children}) {
     {/* adding navbar above container so its rendered above containers... */}
     <CenterContainer>
         <Typography variant="h1">Your Big 5 Results!</Typography>
-        <BarResult  />  
+        <BarResult height={20} width={40}/>  
     </CenterContainer>
     </Wrapper>
     </FullPageCenter>

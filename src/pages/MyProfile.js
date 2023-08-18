@@ -19,9 +19,9 @@ function MyProfile() {
 
   return (
     <motion.div
-    initial={{width: 0}}
-    animate={{width: "100%"}}
-    exit={{x: window.innerWidt, transition: {duration: 0.2}}}>
+    initial={{opacity: 0}}
+    animate={{opacity: 1}}
+    exit={{opacity: 0, transition: {duration: 0.4}}}>
       <MainNavbar />
       <Box
         sx={{

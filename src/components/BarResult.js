@@ -1,28 +1,78 @@
-import React, { useEffect, useRef } from "react";
-import { Chart } from 'chart.js';
+import React from "react";
+import { Bar } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+} from "chart.js";
+import { useTheme } from "@mui/material";
 
-const BarChart = () => {
-  const chartRef = useRef(null);
+ChartJS.register(BarElement, CategoryScale, LinearScale);
 
-  useEffect(() => {
-    if (chartRef.current) {
-      const ctx = chartRef.current.getContext('2d');
-      
-      new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Orange'],
-          datasets: [{
-            label: 'Different colors bars',
-            data: [90, 100, 80, 50, 70],
-            backgroundColor: ["#ed1e1e", "#2269e5", "#fce302", "#04f759", "#fc9700"]
-          }]
-        }
-      });
-    }
-  }, []);
+const BarChart = ({ width, height }) => {
+  const theme = useTheme();
 
-  return <canvas id="chart_id" ref={chartRef}></canvas>;
-}
+  const data = {
+    labels: [
+      "Extraversion",
+      "Agreeableness",
+      "Conscientiousness",
+      "Emotional Stability",
+      "Intellect",
+    ],
+    datasets: [
+      {
+        labels: [3, 12, 4, 5, 2],
+        data: [3, 12, 4, 5, 2],
+        backgroundColor: ["red", "green", "blue", "purple", "orange"],
+        borderColor: "black",
+      },
+    ],
+  };
+
+  const options = {
+    indexAxis: "y", //this makes the chart horizontal
+    plugins: {
+      tooltip: {
+        callbacks: {
+          label: context => {
+            return {
+              font: {
+                family: theme.typography.body2.fontFamily,
+              },
+            };
+          },
+        },
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          font: {
+            family: theme.typography.body2.fontFamily,
+          },
+        },
+      },
+      y: {
+        ticks: {
+          font: {
+            family: theme.typography.body2.fontFamily,
+          },
+        },
+      },
+    },
+    maintainAspectRatio: false,
+    // according to documentation, we need to set aspectratio to false for barchart to be resized
+  };
+
+  return (
+    <div style={{ height: `${height}rem`, width: `${width}rem` }}>
+      {/* we resize the bar chart via div wrapping it */}
+      <Bar data={data} options={options} />
+    </div>
+  );
+};
 
 export default BarChart;
