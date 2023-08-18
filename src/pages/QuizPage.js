@@ -109,13 +109,13 @@ export default function QuizPage({children, questions}) {
     //fuck you rename variables wrong alot 
 
     const handleNextClick = () => {
-        const nextQuestionID = (questionIndex+2).toString; //going to the next question's route...
+        const nextQuestionID = (questionIndex+2) //going to the next question's route...
         //we do +2 since questionIndex is id minus 1...indexing by zero
         navigate(`/quiz/${nextQuestionID}`);
     }
 
     const handlePrevClick = () => {
-        const prevQuestionID = (questionIndex).toString;
+        const prevQuestionID = (questionIndex)
         navigate(`/quiz/${prevQuestionID}`);
     }
 
@@ -194,3 +194,7 @@ export default function QuizPage({children, questions}) {
     </FullPageCenter>
   );
 }
+
+//error: Cannot read properties of undefined (reading 'text')
+//TypeError: Cannot read properties of undefined (reading 'text')
+//at QuizPage 
