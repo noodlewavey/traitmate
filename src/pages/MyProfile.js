@@ -14,8 +14,8 @@ import MainNavbar from '../components/MainNavbar';
 import HeartIcon from '../components/HeartIcon';
 import TrashIcon from '../components/TrashIcon';
 
-
 function MyProfile() {
+
   return (
     <div>
       <MainNavbar />

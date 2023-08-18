@@ -3,7 +3,7 @@ import React, { createContext, useState, useContext } from 'react';
 const QuizContext = createContext();
 
 export function QuizProvider({ children }) {
-  const [answers, setAnswers] = useState(new Array(50).fill(''));  // initializing with 50 empty strings
+  const [answers, setAnswers] = useState({});  
 
   return (
     <QuizContext.Provider value={{ answers, setAnswers }}>

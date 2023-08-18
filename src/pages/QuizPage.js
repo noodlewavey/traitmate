@@ -12,7 +12,7 @@ import FormLabel from '@mui/material/FormLabel';
 import { useTheme } from '@mui/material';
 import Button from '@mui/material/Button';
 import {useParams, useNavigate} from 'react-router-dom';
-import { useQuiz } from '../components/QuizContext.js';
+import { useQuiz} from '../components/QuizContext.js';
 import { useState } from 'react';
 import SelectError from '../components/SelectError.js';
 
@@ -116,6 +116,7 @@ export default function QuizPage({children, questions}) {
     const [error, setError] = useState(null)
 
     const {setAnswers} = useQuiz();
+    //seems to be import statement causing the problem...
 
     const handleNextClick = () => {
 
@@ -129,9 +130,10 @@ export default function QuizPage({children, questions}) {
         }
 
         setAnswers(prevAnswers => ({
-            ...prevAnswers,
-            [questionId]: selectedValue
+          ...prevAnswers,
+          [questionId]: selectedValue
         }));
+      //this code is not what is causing setAnswers to be undefined...
 
 
         //prevAnswers are spread into new object....

@@ -8,6 +8,7 @@ import ProfileCreation from './pages/ProfileCreation';
 import styled from '@emotion/styled';
 import MainPage from './pages/MainPage';
 import QuizPage from './pages/QuizPage';
+import { QuizProvider } from './components/QuizContext';
 
 const theme = createTheme({
   palette: {
@@ -90,6 +91,7 @@ const MainContainer = styled(Box)({
 
 function App() {
   return (
+    <QuizProvider>
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
@@ -109,10 +111,12 @@ For example:
 If you navigate to /quiz/1, then questionIndex will be 1.
 If you navigate to /quiz/2, then questionIndex will be 2.
 ... and so on.*/}
+     
         </Routes> 
         </MainContainer>
       </Router>
     </ThemeProvider>
+    </QuizProvider>
   );
 }
 
