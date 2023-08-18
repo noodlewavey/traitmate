@@ -12,6 +12,9 @@ import FormLabel from '@mui/material/FormLabel';
 import { useTheme } from '@mui/material';
 import Button from '@mui/material/Button';
 import {useParams, useNavigate} from 'react-router-dom';
+import { useQuiz } from '../components/QuizContext.js';
+import { useState } from 'react';
+import SelectError from '../components/SelectError.js';
 
 //we use usetheme hook when applying theme-specific styling on components
 //styled takes theme as input if we access it from a styled component declaration
@@ -103,15 +106,46 @@ export default function QuizPage({children, questions}) {
 
     console.log(questionId);
 
+    const [selectedValue, setSelectedValue] = React.useState('');
+
     const currentQuestion = questions[questionIndex];
     //changing this to questions[0] works....
     //mnevermind...variable named improperly....
     //fuck you rename variables wrong alot 
 
+    const [error, setError] = useState(null)
+
+    const {setAnswers} = useQuiz();
+
     const handleNextClick = () => {
+
+        if (selectedValue === null){
+            setError(true);
+            return;
+        }//return is to exit function early if null...
+
+        else{
+            setError(false);
+        }
+
+        setAnswers(prevAnswers => ({
+            ...prevAnswers,
+            [questionId]: selectedValue
+        }));
+
+
+        //prevAnswers are spread into new object....
+        //new answer is added using questionId keywith value selectedValue
+
         const nextQuestionID = (questionIndex+2) //going to the next question's route...
         //we do +2 since questionIndex is id minus 1...indexing by zero
         navigate(`/quiz/${nextQuestionID}`);
+        //REMOVED TO STRING FOR NEXTQUESTIONID....
+        //TO STRING WAS NEEDED FOR useHistory, but not for useNavigate
+        //i UPDATE the global state from here since next button triggers form submission...
+        //remember to throw an error if selectedValue is null...
+
+        
     }
 
     const handlePrevClick = () => {
@@ -121,6 +155,12 @@ export default function QuizPage({children, questions}) {
 
     //we useh history.push with history.goback()
     //using history.goback() wit history.goforward() might lead to unexpected behaviours...
+
+    const handleRadioChange = (event) => {
+        setSelectedValue(event.target.value);
+        setError(false); //this is necessary to give it a value once selected...
+        //two setErrors are not redundant... 
+    }
 
 
   return (
@@ -163,6 +203,8 @@ export default function QuizPage({children, questions}) {
                     aria-labelledby="demo-radio-buttons-group-label"
                     defaultValue="female"
                     name="radio-buttons-group"
+                    onChange={handleRadioChange}
+                    value={selectedValue} //value is set after handleRadioCHange is called...
                 >
             <FormControlLabel value="1" control={<Radio />} label={<Typography color={theme.palette.accent.main}>Very Inaccurate</Typography>} />
             <FormControlLabel value="2" control={<Radio />} label={<Typography color={theme.palette.accent.accent1}>Moderately Inaccurate</Typography>} />
@@ -187,6 +229,9 @@ export default function QuizPage({children, questions}) {
                 >
                   NEXT →
                 </Typography>
+                {error && (
+                    <SelectError />
+                )}
               </Button>
         </RightBox>
     </CenterContainer>
@@ -195,6 +240,3 @@ export default function QuizPage({children, questions}) {
   );
 }
 
-//error: Cannot read properties of undefined (reading 'text')
-//TypeError: Cannot read properties of undefined (reading 'text')
-//at QuizPage 
