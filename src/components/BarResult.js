@@ -4,11 +4,21 @@ import { BarChart } from '@mui/x-charts/BarChart';
 export default function BarResult({width, height}) {
   return (
     <BarChart
-    xAxis={[{ scaleType: 'band', data: ['group A', 'group B', 'group C'] }]}
-    series={[{ data: [4, 3, 5] }, { data: [1, 6, 3] }, { data: [2, 5, 6] }]}
-    width={width}
-    height={height}
-  />
+  xAxis={[
+    {
+      id: 'Big 5 categories',
+      data: ['Extraversion', 'Agreeableness', 'Conscientiousness', 'Emotional Stability', 'Intellect' ],
+      scaleType: 'band',
+    },
+  ]}
+  series={[
+    {
+      data: [12, 4, 5, 19, 20],
+    },
+  ]}
+  width={width}
+  height={height}
+/>
   );
 }
 
