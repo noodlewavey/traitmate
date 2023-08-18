@@ -11,7 +11,7 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import { useTheme } from '@mui/material';
 import Button from '@mui/material/Button';
-import {useParams} from 'react-router-dom';
+import {useParams, useHistory} from 'react-router-dom';
 
 //we use usetheme hook when applying theme-specific styling on components
 //styled takes theme as input if we access it from a styled component declaration
@@ -91,6 +91,7 @@ const CenterContainer = styled(Box)(({ theme }) => ({
 
 export default function QuizPage({children, questions}) {
     const theme = useTheme();
+    const history = useHistory();
 
     // useParams: when component is rendered, useParams hook will provide object containing values of dynamic parameters
 
@@ -104,6 +105,21 @@ export default function QuizPage({children, questions}) {
 
     const currentQuestion = questions[questionIndex];
     //changing this to questions[0] works....
+    //mnevermind...variable named improperly....
+    //fuck you rename variables wrong alot 
+
+    const handleNextClick = () => {
+        const nextQuestionID = (questionIndex+2).toString; //going to the next question's route...
+        //we do +2 since questionIndex is id minus 1...indexing by zero
+        history.push(`/quiz/${nextQuestionID}`);
+    }
+
+    const handlePrevClick = () => { //going to prev index...current index is +1 
+        history.goBack(); //change this...this will pop the stack...
+    }
+
+    //we useh history.push with history.goback()
+    //using history.goback() wit history.goforward() might lead to unexpected behaviours...
 
 
   return (
@@ -119,6 +135,7 @@ export default function QuizPage({children, questions}) {
                   "{currentQuestion.text}"
                 </ItalicText>
               )}
+              {questionIndex > 0 && (
 <Button
                 variant="text"
                 style={{
@@ -126,6 +143,7 @@ export default function QuizPage({children, questions}) {
                   top: '35rem',
                   left: '15rem',
                 }}
+                onClick={handlePrevClick} //call handle prevclick function on button
               >
                 <Typography
                   variant="body2"
@@ -135,6 +153,7 @@ export default function QuizPage({children, questions}) {
                   ← PREVIOUS
                 </Typography>
               </Button>
+              )}
               </div>
       </LeftBox>
         <RightBox>
@@ -158,6 +177,7 @@ export default function QuizPage({children, questions}) {
                   top: '35rem',
                   left: '17rem',
                 }}
+                onClick={handleNextClick}
               >
                 <Typography
                   variant="body2"
