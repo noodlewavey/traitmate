@@ -13,20 +13,12 @@ code {
   font-family: 'DisplayLightItalic';
 }
 
-.profileContainer {
-  position: relative;  /* Set context for positioning the pseudo-element */
-  display: inline-block;  /* Ensure container fits around ProfileTemplate size */
+.fade-transition {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }
-.profileContainer:before {
-  content: "";  /* Mandatory for pseudo-elements */
-  position: absolute;
-  top: 50%;  /* To vertically center the circle behind the ProfileTemplate */
-  left: 50%;  /* To horizontally center the circle behind the ProfileTemplate */
-  width: 150%;  /* Setting this to more than 100% to ensure the circle covers ProfileTemplate */
-  height: 75%;  /* Half-height to achieve the half-circle effect */
-  background-image: radial-gradient(circle, black 1px, transparent 1px);  /* Dot pattern */
-  background-size: 20px 20px;  /* Size of dots - adjust as needed */
-  border-radius: 50%;  /* To make it circular */
-  transform: translate(-50%, -50%) scale(0.5, 1);  /* To center and make it a half-circle */
-  z-index: -1;  /* To place it behind ProfileTemplate */
+
+.fade-transition.fade-entered {
+  opacity: 1;
 }
+

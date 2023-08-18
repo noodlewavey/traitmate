@@ -8,6 +8,8 @@ import ProfileCreation from './pages/ProfileCreation';
 import styled from '@emotion/styled';
 import MainPage from './pages/MainPage';
 import QuizPage from './pages/QuizPage';
+import { TransitionGroup, CSSTransition } from 'react-transition-group'; 
+import QuizPageWithFade from './pages/QuizPageWithFade';
 import { QuizProvider } from './components/QuizContext';
 
 const theme = createTheme({
@@ -100,7 +102,7 @@ function App() {
           <Route path="/myprofile" element={<MyProfile />} />
           <Route path="/" element={<MainPage />} />
           <Route path="/create" element={<ProfileCreation />} />
-          <Route path="/quiz/:questionId"element={<QuizPage questions={questions} />} />
+          <Route path="/quiz/:questionId" element={<QuizPage questions={questions}/> }  />
           {/* accidentally named questionId as questoinIndex */}
           {/* /this :questionIndex is a dynamic parameter!  */}
           {/* 
