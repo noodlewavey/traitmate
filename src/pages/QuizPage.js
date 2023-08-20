@@ -131,7 +131,7 @@ export default function QuizPage({children, questions}) {
 
         setAnswers(prevAnswers => ({
           ...prevAnswers,
-          [questionId]: selectedValue
+          [questionId]: parseInt(selectedValue, 10)
         }));
       //this code is not what is causing setAnswers to be undefined...
 

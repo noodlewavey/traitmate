@@ -14,6 +14,8 @@ import InputField from '../components/InputFIeld.js';
 import {motion} from 'framer-motion';
 import BarResult from '../components/BarResult.js';
 //problem is not with import..
+import { PersonalityScoreProvider, usePersonality } from '../components/PersonalityScoreProvider.js';
+//need to import usepersonality
 
 const FullPageCenter = styled('div')({
   display: 'flex',
@@ -81,6 +83,8 @@ const CenterContainer = styled(Box)(({ theme }) => ({
 
 
 export default function ResultsQuiz({children}) {
+  const {personalityScore, setPersonalityScore} = usePersonality();
+
   return (
     <motion.div
     initial={{opacity: 0}}
@@ -92,7 +96,7 @@ export default function ResultsQuiz({children}) {
     {/* adding navbar above container so its rendered above containers... */}
     <CenterContainer>
         <Typography variant="h1">Your Big 5 Results!</Typography>
-        <BarResult height={20} width={40}/>  
+        <BarResult height={20} width={40} score={personalityScore}/>  
     </CenterContainer>
     </Wrapper>
     </FullPageCenter>

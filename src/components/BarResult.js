@@ -8,10 +8,11 @@ import {
   Tooltip,
 } from "chart.js";
 import { useTheme } from "@mui/material";
+import { PersonalityScoreProvider } from "./PersonalityScoreProvider";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale);
 
-const BarChart = ({ width, height }) => {
+const BarChart = ({ width, height, personalityScore }) => {
   const theme = useTheme();
 
   const data = {
@@ -25,7 +26,7 @@ const BarChart = ({ width, height }) => {
     datasets: [
       {
         labels: [3, 12, 4, 5, 2],
-        data: [3, 12, 4, 5, 2],
+        data: Object.values(personalityScore),
         backgroundColor: ["red", "green", "blue", "purple", "orange"],
         borderColor: "black",
       },
