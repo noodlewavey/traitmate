@@ -13,7 +13,7 @@ import { useTheme } from '@mui/material';
 import Button from '@mui/material/Button';
 import {useParams, useNavigate} from 'react-router-dom';
 import { useQuiz} from '../components/QuizContext.js';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SelectError from '../components/SelectError.js';
 import {motion} from 'framer-motion';
 
@@ -109,11 +109,10 @@ export default function QuizPage({children, questions}) {
     const currentQuestion = questions[questionIndex];
     //changing this to questions[0] works....
     //mnevermind...variable named improperly....
-    //fuck you rename variables wrong alot 
 
     const [error, setError] = useState(null)
 
-    const {setAnswers} = useQuiz();
+    const {answers, setAnswers} = useQuiz();
     //seems to be import statement causing the problem...
 
     const handleNextClick = () => {
@@ -134,9 +133,15 @@ export default function QuizPage({children, questions}) {
         }));
       //this code is not what is causing setAnswers to be undefined...
 
+        if (questionId===50){
+            navigate(`/resultsquiz`);
+        }
+
 
         //prevAnswers are spread into new object....
         //new answer is added using questionId keywith value selectedValue
+        console.log(answers, "after next");
+        //this console log doesnt log the value just added...
 
         const nextQuestionID = (questionIndex+2) //going to the next question's route...
         //we do +2 since questionIndex is id minus 1...indexing by zero
@@ -149,7 +154,18 @@ export default function QuizPage({children, questions}) {
         
     }
 
+    useEffect(() => {
+        console.log(answers, "after update");
+    }, [answers]);
+
     const handlePrevClick = () => {
+        // Create a new copy of the answers object
+        const updatedAnswers = { ...answers };
+        // Delete the answer 
+        delete updatedAnswers[questionId];
+        // update the answers state
+        setAnswers(updatedAnswers);
+        console.log(answers, "after prev");
         const prevQuestionID = (questionIndex)
         navigate(`/quiz/${prevQuestionID}`);
     }
@@ -234,10 +250,10 @@ export default function QuizPage({children, questions}) {
                 >
                   NEXT →
                 </Typography>
-                {error && (
+              </Button>
+              {error && (
                     <SelectError />
                 )}
-              </Button>
         </RightBox>
     </CenterContainer>
     </Wrapper>
