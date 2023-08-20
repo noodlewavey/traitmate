@@ -117,7 +117,7 @@ export default function QuizPage({children, questions}) {
 
     const {personalityScore,  setPersonalityScore} = usePersonality();
 
-    const handleNextClick = () => {
+    const handleNextClick = async() => {
 
         if (selectedValue === null){
             console.log(selectedValue);
@@ -136,10 +136,14 @@ export default function QuizPage({children, questions}) {
       //this code is not what is causing setAnswers to be undefined...
 
         if (questionId==="50"){
-            submitAnswers(answers);
+            await submitAnswers(answers);
             navigate(`/resultsquiz`);
             return;
+            
         }
+    
+
+        //nevermind...the issue is that user is null, id is in it...
 
 
         //prevAnswers are spread into new object....
@@ -197,10 +201,16 @@ export default function QuizPage({children, questions}) {
           const data = await response.json();
 
           // Now you can use the response data (5 scores, as you mentioned)
+          delete data.id;
+          delete data.user;
           console.log(data);
-          setPersonalityScore(data);
+          await setPersonalityScore(data);//adding this....
+
+        return Promise.resolve();
       } catch (error) {
           console.error('Error submitting answers:', error);
+          // Reject the promise in case of an error
+        return Promise.reject(error);
       }
   }
 

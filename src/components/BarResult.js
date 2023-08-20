@@ -8,12 +8,15 @@ import {
   Tooltip,
 } from "chart.js";
 import { useTheme } from "@mui/material";
-import { PersonalityScoreProvider } from "./PersonalityScoreProvider";
+import { PersonalityScoreProvider, usePersonality } from "./PersonalityScoreProvider";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale);
 
-const BarChart = ({ width, height, personalityScore }) => {
+const BarChart = ({ width, height, personality }) => {
   const theme = useTheme();
+
+  const {personalityScore,  setPersonalityScore} = usePersonality();
+  //didn't add personalityScore here...
 
   const data = {
     labels: [
@@ -67,6 +70,9 @@ const BarChart = ({ width, height, personalityScore }) => {
     maintainAspectRatio: false,
     // according to documentation, we need to set aspectratio to false for barchart to be resized
   };
+
+
+ 
 
   return (
     <div style={{ height: `${height}rem`, width: `${width}rem` }}>
