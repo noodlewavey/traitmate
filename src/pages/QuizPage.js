@@ -16,7 +16,7 @@ import { useQuiz} from '../components/QuizContext.js';
 import { useState, useEffect } from 'react';
 import SelectError from '../components/SelectError.js';
 import {motion} from 'framer-motion';
-
+import { PersonalityScoreProvider, usePersonality } from '../components/PersonalityScoreProvider.js';
 //we use usetheme hook when applying theme-specific styling on components
 //styled takes theme as input if we access it from a styled component declaration
 
@@ -115,6 +115,8 @@ export default function QuizPage({children, questions}) {
     const {answers, setAnswers} = useQuiz();
     //seems to be import statement causing the problem...
 
+    const {personalityScore,  setPersonalityScore} = usePersonality();
+
     const handleNextClick = () => {
 
         if (selectedValue === null){
@@ -133,8 +135,10 @@ export default function QuizPage({children, questions}) {
         }));
       //this code is not what is causing setAnswers to be undefined...
 
-        if (questionId===50){
+        if (questionId==="50"){
+            submitAnswers(answers);
             navigate(`/resultsquiz`);
+            return;
         }
 
 
@@ -178,6 +182,27 @@ export default function QuizPage({children, questions}) {
         setError(false); //this is necessary to give it a value once selected...
         //two setErrors are not redundant... 
     }
+
+
+    const submitAnswers = async () => {
+      try {
+          const response = await fetch('http://localhost:3001/submit-answers', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(answers)
+          });
+
+          const data = await response.json();
+
+          // Now you can use the response data (5 scores, as you mentioned)
+          console.log(data);
+          setPersonalityScore(data);
+      } catch (error) {
+          console.error('Error submitting answers:', error);
+      }
+  }
 
 
   return (

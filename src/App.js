@@ -11,6 +11,7 @@ import QuizPage from './pages/QuizPage';
 import { TransitionGroup, CSSTransition } from 'react-transition-group'; 
 import { QuizProvider } from './components/QuizContext';
 import AppContent from './pages/AppContent';
+import { PersonalityScoreProvider } from './components/PersonalityScoreProvider';
 
 const theme = createTheme({
   palette: {
@@ -61,24 +62,6 @@ const theme = createTheme({
   },
 });
 
-const questions = [
-  {
-    id: 1,
-    text: "I am the life of the party"
-  },
-  {
-    id: 2,
-    text: "I feel little concern for others"
-  },
-  {
-    id: 3,
-    text: "I am always prepared"
-  },
-  {
-    id: 4,
-    text: "I have a high self esteem'"
-  }
-]
 
 const MainContainer = styled(Box)({
   minWidth: '80rem', // or your desired value
@@ -93,6 +76,7 @@ const MainContainer = styled(Box)({
 
 function App() {
   return (
+    <PersonalityScoreProvider>
     <QuizProvider>
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -121,6 +105,7 @@ If you navigate to /quiz/2, then questionIndex will be 2.
       </Router>
     </ThemeProvider>
     </QuizProvider>
+    </PersonalityScoreProvider>
   );
 }
 
