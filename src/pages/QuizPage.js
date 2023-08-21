@@ -287,7 +287,7 @@ export default function QuizPage({children, questions}) {
                 </Typography>
               </Button>
               {error && (
-                    <SelectError />
+                    <SelectError message="You didn't select an answer! Please try again" />
                 )}
         </RightBox>
     </CenterContainer>

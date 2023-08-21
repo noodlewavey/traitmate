@@ -17,6 +17,8 @@ const BarChart = ({ width, height, personality }) => {
 
   const {personalityScore,  setPersonalityScore} = usePersonality();
   //didn't add personalityScore here...
+  //this was my issue for why it was null!!!
+  //remember to initialize all contexts
 
   const data = {
     labels: [
@@ -58,6 +60,8 @@ const BarChart = ({ width, height, personality }) => {
             family: theme.typography.body2.fontFamily,
           },
         },
+        min: 0,
+        max: 50
       },
       y: {
         ticks: {

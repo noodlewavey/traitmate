@@ -5,9 +5,15 @@ import { useTheme } from '@mui/material/styles';
 //import this to use theme from parent
 import { Typography } from '@mui/material';
 
-export default function InputField() {
+export default function InputField({label, color, onChange}) {
 
   const theme = useTheme();
+
+  const handleInputChange = (event) => {
+    if (onChange) {
+      onChange(event.target.value); // Notify parent component about input changes
+    }
+  };
   //initialize theme
   return (
     <Box
@@ -21,10 +27,11 @@ export default function InputField() {
     noValidate
     autoComplete="off"
   >
-<Typography variant="body1" sx={{margin:0, fontSize:'0.85rem'}}> INPUT</Typography>  
+<Typography variant="body1" sx={{margin:0, fontSize:'0.85rem', color: {color}}}> {label}</Typography>  
 <TextField 
     id="outlined-basic" 
     variant="outlined" 
+    onChange={handleInputChange}  //call handler for input changes
     sx={{ 
       width: '25ch',
       margin: 0,

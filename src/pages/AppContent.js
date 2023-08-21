@@ -10,6 +10,7 @@ import '../App.css'
 import { useLocation } from 'react-router-dom';
 import { AnimatePresence} from 'framer-motion';
 import ResultsQuiz from './ResultsQuiz';
+import LoginPage from './LoginPage';
 
 
 function AppContent() {
@@ -84,6 +85,7 @@ function AppContent() {
               <Route path="/create" element={<ProfileCreation />} />
               <Route path="/quiz/:questionId" element={<QuizPage questions={questions}/> }  />
                 <Route path="/resultsquiz" element={<ResultsQuiz />}/>
+                <Route path="/login" element={<LoginPage />} />
             </Routes>
       </MainContainer>
       </AnimatePresence>
