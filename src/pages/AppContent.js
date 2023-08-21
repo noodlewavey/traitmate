@@ -11,10 +11,16 @@ import { useLocation } from 'react-router-dom';
 import { AnimatePresence} from 'framer-motion';
 import ResultsQuiz from './ResultsQuiz';
 import LoginPage from './LoginPage';
+import {useSelector} from 'react-redux';
 
 
 function AppContent() {
     const location = useLocation();
+
+    const { isAuthenticated, user } = useSelector(state => state.auth);
+
+   //Use the isAuthenticated state to conditionally render components based on the user's authentication status.
+
 
     const MainContainer = styled(Box)({
         minWidth: '80rem', // or your desired value

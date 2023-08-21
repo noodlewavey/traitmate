@@ -13,6 +13,8 @@ import { useState } from 'react';
 import SelectError from '../components/SelectError.js';
 import { useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
+import { login, logout } from '../redux/authSlice.js'
+import { useSelector, useDispatch } from 'react-redux';
 
 const FullPageCenter = styled('div')({
   display: 'flex',
@@ -77,21 +79,20 @@ const CenterContainer = styled(Box)(({ theme }) => ({
 
 export default function LoginPage({children}) {
 
-    const [user, setUser ] = useState({});
-    //if we haev a more global state....
-    //use redux?
-    //or use context....
-    //ask about redux...
-    //hmmm
-    //state is usable for this one component...
+    const { isAuthenticated, user } = useSelector(state => state.auth);
+    //useSelector is reading variable from reducer
+    //we want to take these variables from redux state
 
+    //now we need to call redux function with dispathc hook
+
+    const dispatch = useDispatch();
 
     function handleCallbackResponse(response){
         console.log("Encoded JWT ID token: " + response.credential);
         var userObject = jwt_decode(response.credential);
         console.log(userObject);
-        setUser(userObject);
         document.getElementById("signInDiv").hidden=true;
+        dispatch(login(userObject));
     }
   
     useEffect(()=> {
@@ -114,15 +115,11 @@ export default function LoginPage({children}) {
     }, []);
 
     function handleSignOut(event) {
-        setUser({}); //if user wants to sign out, we set user to empty object/...
+        dispatch(logout);
         document.getElementById("signInDiv").hidden = false;
     }
   
-
-
 const theme = useTheme();
-
-
 
 
   return (
