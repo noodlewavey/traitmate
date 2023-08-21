@@ -4,18 +4,15 @@ import styled from '@emotion/styled';
 import RightBox from '../components/RightBox.jsx';
 import CreateNavbar from '../components/CreateNavbar.js';
 import LeftBox from '../components/LeftBox.js'
-// import '../styles.css';
-// import '../index.css';
 import { Typography } from "@mui/material"; 
-// this typography import was necessary to use the font?
-//ask chatgpt
-//apparently its not important?
 import InputField from '../components/InputFIeld.js';
 import {motion} from 'framer-motion';
 import { useTheme } from '@emotion/react';
 import {Button} from '@mui/material';
 import { useState } from 'react';
 import SelectError from '../components/SelectError.js';
+import { useEffect } from 'react';
+import jwt_decode from 'jwt-decode';
 
 const FullPageCenter = styled('div')({
   display: 'flex',
@@ -80,36 +77,50 @@ const CenterContainer = styled(Box)(({ theme }) => ({
 
 export default function LoginPage({children}) {
 
-const [username, setUsername] = useState('');
-const [password, setPassword] = useState('');
+    const [user, setUser ] = useState({});
+    //if we haev a more global state....
+    //use redux?
+    //or use context....
+    //ask about redux...
+    //hmmm
+    //state is usable for this one component...
 
-const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
-  };
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
-
-  const handleLogin = () => {
-    if (username === '' || password===''){
-        setError(true);
-        return;
+    function handleCallbackResponse(response){
+        console.log("Encoded JWT ID token: " + response.credential);
+        var userObject = jwt_decode(response.credential);
+        console.log(userObject);
+        setUser(userObject);
+        document.getElementById("signInDiv").hidden=true;
     }
+  
+    useEffect(()=> {
+    /*global google*/ 
 
-    else{
-        setError(false);
+    //this global google line is necessary
+      //this google object is coming from script in html
+      google.accounts.id.initialize({
+        client_id: "932933342014-p4cq87382tr0jtp898efedto2a74vs1i.apps.googleusercontent.com",
+        callback: handleCallbackResponse
+      });
+  
+      google.accounts.id.renderButton(
+        document.getElementById("signInDiv"),
+        { theme: "outlined", width: '600px', height: '200px'}
+      );
+
+      google.accounts.id.prompt();
+  
+    }, []);
+
+    function handleSignOut(event) {
+        setUser({}); //if user wants to sign out, we set user to empty object/...
+        document.getElementById("signInDiv").hidden = false;
     }
-
-    // Perform authentication logic here using username and password
-    console.log('Logging in with:', username, password);
-    // Example: Send authentication request to server
-  };
+  
 
 
 const theme = useTheme();
-
-const [error, setError] = useState(null)
 
 
 
@@ -128,12 +139,10 @@ const [error, setError] = useState(null)
       <ItalicText style={{marginLeft: '6rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>Log in to your account</ItalicText> 
       </LeftBox>
         <RightBox>
-            <InputField label="USERNAME" color={theme.palette.accent.main} />
-            <InputField label="PASSWORD" color={theme.palette.accent.main}/>
-            <Button variant="outlined" onClick={handleLogin} sx={{color: '#000000', borderColor: '#000000', marginLeft: '1.7rem'}}>SUBMIT</Button>
-            {error && (
-                    <SelectError message="Missing username or password field Try again!" />
-                )}
+            <div id="signInDiv"></div> 
+            { Object.keys(user).length != 0 &&
+            <Button onClick= { (e) => handleSignOut(e)}>SIGN OUT </Button>
+            }
         </RightBox>
     </CenterContainer>
     </Wrapper>

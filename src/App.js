@@ -12,6 +12,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { QuizProvider } from './components/QuizContext';
 import AppContent from './pages/AppContent';
 import { PersonalityScoreProvider } from './components/PersonalityScoreProvider';
+import { useEffect } from 'react';
 
 const theme = createTheme({
   palette: {
@@ -75,6 +76,7 @@ const MainContainer = styled(Box)({
 
 
 function App() {
+
   return (
     <PersonalityScoreProvider>
     <QuizProvider>
