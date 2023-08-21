@@ -91,7 +91,6 @@ export default function LoginPage({children}) {
         console.log("Encoded JWT ID token: " + response.credential);
         var userObject = jwt_decode(response.credential);
         console.log(userObject);
-        document.getElementById("signInDiv").hidden=true;
         dispatch(login(userObject));
     }
   
@@ -109,14 +108,24 @@ export default function LoginPage({children}) {
         document.getElementById("signInDiv"),
         { theme: "outlined", width: '600px', height: '200px'}
       );
-
-      google.accounts.id.prompt();
   
     }, []);
 
+    useEffect(() => 
+    {
+        if (isAuthenticated === true){
+        document.getElementById("signInDiv").hidden = true;
+        }
+        else{
+        
+            document.getElementById("signInDiv").hidden = false;
+        }
+
+    }, [isAuthenticated])
+
+    //this is a better way of hiding the element, but I dont know why useeffect is better...
     function handleSignOut(event) {
         dispatch(logout);
-        document.getElementById("signInDiv").hidden = false;
     }
   
 const theme = useTheme();
@@ -133,11 +142,18 @@ const theme = useTheme();
     {/* adding navbar above container so its rendered above containers... */}
     <CenterContainer>
       <LeftBox>
+    { isAuthenticated == false && 
       <ItalicText style={{marginLeft: '6rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>Log in to your account</ItalicText> 
+    }
+    { isAuthenticated == true && 
+      <ItalicText style={{marginLeft: '6rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>Log out of your account</ItalicText> 
+    }
       </LeftBox>
         <RightBox>
             <div id="signInDiv"></div> 
-            { Object.keys(user).length != 0 &&
+            {/* /add user to ensure object.keys is not null....add conditonal check to make sure
+            user object is valid before accessing keys (typeerror, null) */}
+            { isAuthenticated===true &&
             <Button onClick= { (e) => handleSignOut(e)}>SIGN OUT </Button>
             }
         </RightBox>
