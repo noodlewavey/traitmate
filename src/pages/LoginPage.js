@@ -86,6 +86,9 @@ export default function LoginPage({children}) {
 
     const [ token, setToken ] = useState('');
 
+    const [username, setUsername ] = useState('');
+    const [password, setPassword ] = useState('');
+
     const [ activeButton, setActiveButton ] = useState('LOGIN') //default to log in
 
     const { isAuthenticated, user } = useSelector(state => state.auth);
@@ -96,6 +99,9 @@ const theme = useTheme();
 
 const handleLogin = () => {
     console.log("Logging in");
+    //after implementing controlled inputs and getting values, next step is to register or
+    //authenticate the user...
+    //use fetch towards endpoint !
 }
 
 const handleRegister = () => {
@@ -111,6 +117,15 @@ const handleSubmit = () => {
     }
 }
 
+const handleInputChange = (event, identifier) => {
+    const value = event.target.value;
+    if (identifier==='USERNAME'){
+        setUsername(value);
+    }
+    else if (identifier ==='PASSWORD'){
+        setPassword(value);
+    }
+}
 
   return (
     <motion.div
@@ -127,16 +142,18 @@ const handleSubmit = () => {
       </LeftBox>
         <RightBox>
             <Stack spacing="1rem" >
-            <Box flexDirection="row" style={{ display: 'flex', width: '100%' }} justifyContent="space-between">
+            <Box flexDirection="row" style={{ display: 'flex', width: '100%' }} justifyContent="space-between"> 
+            {/* the space between is inside the parent stack */}
             <LogButton label="LOGIN" width='9rem' onClick={() => setActiveButton('LOGIN')} isActive={activeButton==='LOGIN'}/>
             <LogButton label="REGISTER" width='9rem' onClick={()=> setActiveButton('REGISTER')} isActive={activeButton==='REGISTER'}/>
             {/* i use isActive...boolean, if true then colors it blue */}
             </Box>
-            <Stack spacing="1rem">
-            <InputField label="USERNAME"  />
-            <InputField label="PASSWORD" />
-            <LogButton onClick={handleSubmit} label="submit" color="#000000" style={{flex:1}}/> 
-            </Stack>
+            {/* <Stack spacing="1rem"> don't need this stack */} 
+            <InputField label="USERNAME" onChange={(event) => handleInputChange(event, 'USERNAME')} />
+            <InputField label="PASSWORD" onChange={(event) => handleInputChange(event, 'USERNAME')}/>
+            <LogButton onClick={handleSubmit} label="submit" color="#000000" style={{flex:1}}/>
+             {/*the submit button fills the space in the flex component..the stack component   */}
+            {/* </Stack> */}
             <AuthContent /> 
             </Stack>
         </RightBox>
