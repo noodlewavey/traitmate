@@ -13,7 +13,6 @@ import ResultsQuiz from './ResultsQuiz';
 import LoginPage from './LoginPage';
 import {useSelector} from 'react-redux';
 
-
 function AppContent() {
     const location = useLocation();
 

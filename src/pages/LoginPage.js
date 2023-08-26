@@ -15,6 +15,11 @@ import { useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
 import { login, logout } from '../redux/authSlice.js'
 import { useSelector, useDispatch } from 'react-redux';
+import Cookies from 'js-cookie';
+import AuthContent from '../components/AuthContent.js';
+import LoginForm from '../components/LoginForm.js';
+import Stack from '@mui/material/Stack';
+import LogButton from '../components/LogButton.js';
 
 const FullPageCenter = styled('div')({
   display: 'flex',
@@ -79,56 +84,32 @@ const CenterContainer = styled(Box)(({ theme }) => ({
 
 export default function LoginPage({children}) {
 
+    const [ token, setToken ] = useState('');
+
+    const [ activeButton, setActiveButton ] = useState('LOGIN') //default to log in
+
     const { isAuthenticated, user } = useSelector(state => state.auth);
     //useSelector is reading variable from reducer
     //we want to take these variables from redux state
 
-    //now we need to call redux function with dispathc hook
-
-    const dispatch = useDispatch();
-
-    function handleCallbackResponse(response){
-        console.log("Encoded JWT ID token: " + response.credential);
-        var userObject = jwt_decode(response.credential);
-        console.log(userObject);
-        dispatch(login(userObject));
-    }
-  
-    useEffect(()=> {
-    /*global google*/ 
-
-    //this global google line is necessary
-      //this google object is coming from script in html
-      google.accounts.id.initialize({
-        client_id: "932933342014-p4cq87382tr0jtp898efedto2a74vs1i.apps.googleusercontent.com",
-        callback: handleCallbackResponse
-      });
-  
-      google.accounts.id.renderButton(
-        document.getElementById("signInDiv"),
-        { theme: "outlined", width: '600px', height: '200px'}
-      );
-  
-    }, []);
-
-    useEffect(() => 
-    {
-        if (isAuthenticated === true){
-        document.getElementById("signInDiv").hidden = true;
-        }
-        else{
-        
-            document.getElementById("signInDiv").hidden = false;
-        }
-
-    }, [isAuthenticated])
-
-    //this is a better way of hiding the element, but I dont know why useeffect is better...
-    function handleSignOut(event) {
-        dispatch(logout);
-    }
-  
 const theme = useTheme();
+
+const handleLogin = () => {
+    console.log("Logging in");
+}
+
+const handleRegister = () => {
+    console.log("Registering");
+}
+
+const handleSubmit = () => {
+    if (activeButton=="LOGIN"){
+        handleLogin();
+    }
+    else if (activeButton=="REGISTER"){
+        handleRegister();
+    }
+}
 
 
   return (
@@ -142,20 +123,22 @@ const theme = useTheme();
     {/* adding navbar above container so its rendered above containers... */}
     <CenterContainer>
       <LeftBox>
-    { isAuthenticated == false && 
       <ItalicText style={{marginLeft: '6rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>Log in to your account</ItalicText> 
-    }
-    { isAuthenticated == true && 
-      <ItalicText style={{marginLeft: '6rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>Log out of your account</ItalicText> 
-    }
       </LeftBox>
         <RightBox>
-            <div id="signInDiv"></div> 
-            {/* /add user to ensure object.keys is not null....add conditonal check to make sure
-            user object is valid before accessing keys (typeerror, null) */}
-            { isAuthenticated===true &&
-            <Button onClick= { (e) => handleSignOut(e)}>SIGN OUT </Button>
-            }
+            <Stack spacing="1rem" >
+            <Box flexDirection="row" style={{ display: 'flex', width: '100%' }} justifyContent="space-between">
+            <LogButton label="LOGIN" width='9rem' onClick={() => setActiveButton('LOGIN')} isActive={activeButton==='LOGIN'}/>
+            <LogButton label="REGISTER" width='9rem' onClick={()=> setActiveButton('REGISTER')} isActive={activeButton==='REGISTER'}/>
+            {/* i use isActive...boolean, if true then colors it blue */}
+            </Box>
+            <Stack spacing="1rem">
+            <InputField label="USERNAME"  />
+            <InputField label="PASSWORD" />
+            <LogButton onClick={handleSubmit} label="submit" color="#000000" style={{flex:1}}/> 
+            </Stack>
+            <AuthContent /> 
+            </Stack>
         </RightBox>
     </CenterContainer>
     </Wrapper>

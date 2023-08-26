@@ -16,6 +16,8 @@ const authSlice = createSlice({
       state.user = action.payload;
     },
     //action called login...
+    //acion is a parameter of reducer function....
+    //action object is the userobject
     //we set state to be authenticated
     //action.payload is user data 
     //this is an example of user data....
@@ -31,4 +33,8 @@ const authSlice = createSlice({
 });
 
 export const { login, logout } = authSlice.actions;
+//we need to export all actions to call them in the react app
+//make sure you destructure
+
 export default authSlice.reducer;
+//this returns the reducer
