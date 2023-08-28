@@ -20,6 +20,8 @@ import AuthContent from '../components/AuthContent.js';
 import LoginForm from '../components/LoginForm.js';
 import Stack from '@mui/material/Stack';
 import LogButton from '../components/LogButton.js';
+import axios from 'axios';
+import {request, setAuthToken } from '../axios_helper';
 
 const FullPageCenter = styled('div')({
   display: 'flex',
@@ -97,15 +99,50 @@ export default function LoginPage({children}) {
 
 const theme = useTheme();
 
-const handleLogin = () => {
+const handleLogin = async () => {
+    //figure out theory behind async...
     console.log("Logging in");
-    //after implementing controlled inputs and getting values, next step is to register or
-    //authenticate the user...
-    //use fetch towards endpoint !
+
+    try {
+        const response = await axios.post('/login', {
+            username: username,
+            password: password
+        });
+
+        // Handle the response here, e.g.:
+        if (response.status === 200) {
+            console.log("Successfully logged in:", response.data);
+            setAuthToken(response.data.token);
+            // For example, you might store a received token or navigate to another page
+        } else {
+            console.error("Error logging in:", response.data);
+        }
+    } catch (error) {
+        console.error("There was an error during login:", error);
+    }
 }
 
-const handleRegister = () => {
+
+const handleRegister = async () => {
     console.log("Registering");
+
+    try {
+        const response = await axios.post('/register', {
+            username: username,
+            password: password
+        });
+
+        // Handle the response here, e.g.:
+        if (response.status === 200) {
+            console.log("Successfully registered:", response.data);
+            setAuthToken(response.data.token);
+            // For example, you might store a received token or navigate to another page
+        } else {
+            console.error("Error registering", response.data);
+        }
+    } catch (error) {
+        console.error("There was an error during registration:", error);
+    }
 }
 
 const handleSubmit = () => {
