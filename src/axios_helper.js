@@ -4,7 +4,7 @@ axios.defaults.baseURL = 'http://localhost:8080'
 //misspelled baseurl, needs all caps
 axios.defaults.headers.post["Content-type"] = 'application/json'
 
-export const getAuthToken =() => {
+export const getAuthToken = () => {
     return window.localStorage.getItem("auth_token");
 
 }

@@ -104,16 +104,14 @@ const handleLogin = async () => {
     console.log("Logging in");
 
     try {
-        const response = await axios.post('/login', {
-            username: username,
+        const response = await request('POST', '/login', {
+            login: username,
             password: password
         });
 
-        // Handle the response here, e.g.:
-        if (response.status === 200) {
+        if (response.status >= 200 && response.status < 300)  {
             console.log("Successfully logged in:", response.data);
             setAuthToken(response.data.token);
-            // For example, you might store a received token or navigate to another page
         } else {
             console.error("Error logging in:", response.data);
         }
@@ -125,18 +123,15 @@ const handleLogin = async () => {
 
 const handleRegister = async () => {
     console.log("Registering");
-
     try {
-        const response = await axios.post('/register', {
-            username: username,
+        const response = await request('POST', '/register', {
+            login: username,
             password: password
         });
 
-        // Handle the response here, e.g.:
         if (response.status === 200) {
             console.log("Successfully registered:", response.data);
             setAuthToken(response.data.token);
-            // For example, you might store a received token or navigate to another page
         } else {
             console.error("Error registering", response.data);
         }
@@ -187,11 +182,11 @@ const handleInputChange = (event, identifier) => {
             </Box>
             {/* <Stack spacing="1rem"> don't need this stack */} 
             <InputField label="USERNAME" onChange={(event) => handleInputChange(event, 'USERNAME')} />
-            <InputField label="PASSWORD" onChange={(event) => handleInputChange(event, 'USERNAME')}/>
+            <InputField label="PASSWORD" onChange={(event) => handleInputChange(event, 'PASSWORD')}/>
             <LogButton onClick={handleSubmit} label="submit" color="#000000" style={{flex:1}}/>
              {/*the submit button fills the space in the flex component..the stack component   */}
             {/* </Stack> */}
-            <AuthContent /> 
+            {/* <AuthContent />  */}
             </Stack>
         </RightBox>
     </CenterContainer>
