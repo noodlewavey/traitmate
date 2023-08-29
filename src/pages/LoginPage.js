@@ -151,10 +151,10 @@ const handleSubmit = () => {
 
 const handleInputChange = (event, identifier) => {
     if (identifier==='USERNAME'){
-        setUsername(event.target.value);
+        setUsername(event.value);
     }
     else if (identifier ==='PASSWORD'){
-        setPassword(event.target.value);
+        setPassword(event.value);
     }
 }
 
