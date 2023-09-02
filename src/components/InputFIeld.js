@@ -33,7 +33,7 @@ export default function InputField({label, color, onChange}) {
     variant="outlined" 
     onChange={handleInputChange}  //call handler for input changes
     sx={{ 
-      width: '25ch',
+      width: '300px',
       margin: 0,
         '& .MuiInputBase-input': {
             fontSize: '0.85rem', 

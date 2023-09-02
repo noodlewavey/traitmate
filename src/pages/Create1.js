@@ -12,6 +12,7 @@ import { Typography } from "@mui/material";
 //apparently its not important?
 import InputField from '../components/InputFIeld.js';
 import {motion} from 'framer-motion';
+import Dropdown from '../components/Dropdown.js';
 
 const FullPageCenter = styled('div')({
   display: 'flex',
@@ -92,7 +93,7 @@ export default function Create1({children}) {
         <RightBox>
             <InputField label="FIRST NAME" />
             <InputField label="LAST NAME"/>
-            <InputField label="AGE" /> 
+            <Dropdown />
             {/* add dropdown menu! for age and major  */}
         </RightBox>
     </CenterContainer>
