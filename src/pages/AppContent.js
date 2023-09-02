@@ -12,6 +12,7 @@ import { AnimatePresence} from 'framer-motion';
 import ResultsQuiz from './ResultsQuiz';
 import LoginPage from './LoginPage';
 import {useSelector} from 'react-redux';
+import Create1 from './Create1';
 
 function AppContent() {
     const location = useLocation();
@@ -88,6 +89,7 @@ function AppContent() {
               <Route path="/myprofile" element={<MyProfile />} />
               <Route path="/" element={<MainPage />} />
               <Route path="/create" element={<ProfileCreation />} />
+              <Route path = "/create/1" element ={<Create1 />} />
               <Route path="/quiz/:questionId" element={<QuizPage questions={questions}/> }  />
                 <Route path="/resultsquiz" element={<ResultsQuiz />}/>
                 <Route path="/login" element={<LoginPage />} />

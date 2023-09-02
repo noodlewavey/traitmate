@@ -190,7 +190,7 @@ export default function QuizPage({children, questions}) {
 
     const submitAnswers = async () => {
       try {
-          const response = await fetch('http://localhost:3001/submit-answers', {
+          const response = await fetch('http://localhost:8080/submit-answers', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json'

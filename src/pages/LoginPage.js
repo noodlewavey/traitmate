@@ -141,10 +141,10 @@ const handleRegister = async () => {
 }
 
 const handleSubmit = () => {
-    if (activeButton=="LOGIN"){
+    if (activeButton==="LOGIN"){
         handleLogin();
     }
-    else if (activeButton=="REGISTER"){
+    else if (activeButton==="REGISTER"){
         handleRegister();
     }
 }
