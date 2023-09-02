@@ -13,6 +13,7 @@ import ResultsQuiz from './ResultsQuiz';
 import LoginPage from './LoginPage';
 import {useSelector} from 'react-redux';
 import Create1 from './Create1';
+import Create2 from './Create2';
 
 function AppContent() {
     const location = useLocation();
@@ -90,6 +91,7 @@ function AppContent() {
               <Route path="/" element={<MainPage />} />
               <Route path="/create" element={<ProfileCreation />} />
               <Route path = "/create/1" element ={<Create1 />} />
+              <Route path = "/create/2" element ={<Create2 />} />
               <Route path="/quiz/:questionId" element={<QuizPage questions={questions}/> }  />
                 <Route path="/resultsquiz" element={<ResultsQuiz />}/>
                 <Route path="/login" element={<LoginPage />} />

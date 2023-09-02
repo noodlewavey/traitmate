@@ -20,13 +20,13 @@ const CustomTextField = styled(TextField)(({ theme }) => ({
 const Dropdown = ({ label, menuitems }) => {
   return (
     <div>
+        {/* putting the typography inside the div positions the text above the box... */}
 <Typography variant="body1" sx={{margin:0, fontSize:'0.85rem'}}> {label}</Typography>  
         <CustomTextField
           id="select-something"
           select
-          label="Select"
+          label=""
           defaultValue=""
-          helperText="Select your language"
           SelectProps={{
             MenuProps: {
               anchorOrigin: {

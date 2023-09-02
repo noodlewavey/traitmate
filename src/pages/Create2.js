@@ -88,7 +88,73 @@ const unilist = [
 ]
 
 
-export default function Create1({children}) {
+const majors = [
+    "Accounting",
+    "Aerospace Engineering",
+    "Anthropology",
+    "Architecture",
+    "Art History",
+    "Astronomy",
+    "Biochemistry",
+    "Biology",
+    "Biomedical Engineering",
+    "Business",
+    "Chemical Engineering",
+    "Chemistry",
+    "Civil Engineering",
+    "Communications",
+    "Computer Engineering",
+    "Computer Science",
+    "Crimonology",
+    "East Asian Studies",
+    "Economics",
+    "Electrical Engineering",
+    "Education",
+    "English",
+    "Environmental Science",
+    "Film Studies",
+    "Finance",
+    "Food Science",
+    "Gender Studies",
+    "Geography", 
+    "History",
+    "Industrial Engineering",
+    "Journalism",
+    "Law",
+    "Linguistics",
+    "Marketing",
+    "Materials Science and Engineering",
+    "Mathematics",
+    "Mechanical Engineering",
+    "Mining Engineering",
+    "Music",
+    "Neuroscience",
+    "Nursing",
+    "Organizational Behaviour",
+    "Pharmacology",
+    "Philosophy",
+    "Physics",
+    "Political Science",
+    "Psychology",
+    "Religious Studies",
+    "Sociology",
+    "Statistics",
+    "Urban Studies"
+];
+
+const genderslist = [
+    "Male",
+    "Female",
+    "Male and Female",
+    "Male and Female and Other"
+];
+
+const genders = [
+    "Male",
+    "Female",
+    "Other"
+]
+export default function Create2({children}) {
   return (
     <motion.div
     initial={{opacity: 0}}
@@ -100,14 +166,15 @@ export default function Create1({children}) {
     {/* adding navbar above container so its rendered above containers... */}
     <CenterContainer>
       <LeftBox>
-      <ItalicText style={{marginLeft: '3rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>"Introduce yourself!"</ItalicText> 
+      <ItalicText style={{marginLeft: '3rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>"Wow, tell me more..."</ItalicText> 
       </LeftBox>
         <RightBox>
-            <InputField label="FIRST NAME" />
-            <InputField label="LAST NAME"/>
-            <Dropdown label="AGE" menuitems={validages} />
+            <Dropdown label="MAJOR" menuitems={majors} />
             {/* add dropdown menu! for age and major  */}
-            <Dropdown label="UNIVERSITY" menuitems={unilist} />
+            <Dropdown label="YOUR GENDER" menuitems={genders} />
+            <Dropdown label="ATTRACTED TO" menuitems={genderslist} />
+            <InputField label="YOUR PHONE NUMBER" />
+            <Typography variant="body2" sx={{width:"300px"}}>Your phone number will be shown to those you've matched with!</Typography>
         </RightBox>
     </CenterContainer>
     </Wrapper>
