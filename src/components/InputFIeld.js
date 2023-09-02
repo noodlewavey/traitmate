@@ -16,24 +16,25 @@ export default function InputField({label, color, onChange}) {
   };
   //initialize theme
   return (
-    <Box
-    component="form"
-    sx={{
-      display: "flex",
-      alignItems: "center", //this centers text to be on the same x axis as the textfield
-      gap: "1rem", // This sets the spacing between flex items
-      marginLeft: "5rem",
-    }}
-    noValidate
-    autoComplete="off"
-  >
+  //   <Box
+  //   component="form"
+  //   sx={{
+  //     display: "flex",
+  //     alignItems: "center", //this centers text to be on the same x axis as the textfield
+  //     gap: "1rem", // This sets the spacing between flex items
+  //     marginLeft: "5rem",
+  //   }}
+  //   noValidate
+  //   autoComplete="off"
+  // >
+  <div>
 <Typography variant="body1" sx={{margin:0, fontSize:'0.85rem', color: {color}}}> {label}</Typography>  
 <TextField 
     id="outlined-basic" 
     variant="outlined" 
     onChange={handleInputChange}  //call handler for input changes
     sx={{ 
-      width: '300px',
+      width: '300px',//added this, made the thing consistent 
       margin: 0,
         '& .MuiInputBase-input': {
             fontSize: '0.85rem', 
@@ -44,6 +45,6 @@ export default function InputField({label, color, onChange}) {
     }} 
 />
 {/* setting margins of textfield and typography to 0 then adding gap to Box... */}
-      </Box>
+</div>
   );
 }

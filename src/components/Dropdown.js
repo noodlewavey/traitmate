@@ -2,6 +2,8 @@ import React from 'react';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import { styled } from '@mui/material/styles';
+import { Box } from '@mui/material';
+import { Typography } from '@mui/material';
 
 const CustomTextField = styled(TextField)(({ theme }) => ({
   backgroundColor: 'transparent',
@@ -15,31 +17,33 @@ const CustomTextField = styled(TextField)(({ theme }) => ({
   },
 }));
 
-const Dropdown = ({label}) => {
-
-
+const Dropdown = ({ label, menuitems }) => {
   return (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
-    <span style={{ marginRight: '1rem' }}>Text on the left:</span>
-    <CustomTextField
-      id="select-something"
-      select
-      label="Select"
-      defaultValue=""
-      helperText="Select your language"
-      SelectProps={{
-        MenuProps: {
-          anchorOrigin: {
-            vertical: 'bottom',
-            horizontal: 'center',
-          },
-          getContentAnchorEl: null,
-        },
-      }}
-    >
-      <MenuItem>Hello</MenuItem>
-    </CustomTextField>
-  </div>
+    <div>
+<Typography variant="body1" sx={{margin:0, fontSize:'0.85rem'}}> {label}</Typography>  
+        <CustomTextField
+          id="select-something"
+          select
+          label="Select"
+          defaultValue=""
+          helperText="Select your language"
+          SelectProps={{
+            MenuProps: {
+              anchorOrigin: {
+                vertical: 'bottom',
+                horizontal: 'center',
+              },
+              getContentAnchorEl: null,
+            },
+          }}
+        >
+          {menuitems.map((item) => (
+            <MenuItem key={item} value={item}>
+              {item}
+            </MenuItem>
+          ))}
+        </CustomTextField>
+    </div>
   );
 };
 

@@ -74,6 +74,7 @@ const CenterContainer = styled(Box)(({ theme }) => ({
 
 // you can add styling on top of navbar to position it!
 
+const validages = [17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27];
 
 
 export default function Create1({children}) {
@@ -93,7 +94,7 @@ export default function Create1({children}) {
         <RightBox>
             <InputField label="FIRST NAME" />
             <InputField label="LAST NAME"/>
-            <Dropdown />
+            <Dropdown label="AGE" menuitems={validages} />
             {/* add dropdown menu! for age and major  */}
         </RightBox>
     </CenterContainer>
