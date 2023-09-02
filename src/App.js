@@ -56,6 +56,9 @@ const theme = createTheme({
     h3:{
       fontFamily: 'DisplayLight, serif'
     },
+    h4:{
+      fontFamily: 'DisplayLightItalic, serif'
+    },
     button: {
       fontFamily: 'IBM Plex Mono, monospace',
       fontWeight: 600,
