@@ -98,6 +98,9 @@ export default function LoginPage({children}) {
 
 const theme = useTheme();
 
+const usernameRef = React.useRef(null);
+const passwordRef = React.useRef(null);
+
 const handleRegister = async () => {
     // Logic for registration
     try {
@@ -107,7 +110,6 @@ const handleRegister = async () => {
         // Include other registration data fields here
       };
 
-      console.log("this is the raw password: ", password);
   
       const config = {
         headers: {
@@ -163,23 +165,25 @@ const handleRegister = async () => {
   //if spring security session management exists in java backend, dont need to make front end handle sessions
   
 
-const handleSubmit = () => {
-    if (activeButton==="LOGIN"){
+const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(document.getElementById("submission"));  // Use event.currentTarget
+    const inputUsername = formData.get("username");
+    const inputPassword = formData.get("password");
+
+    setUsername(inputUsername);
+    setPassword(inputPassword);
+
+    if (activeButton === "LOGIN") {
         handleLogin();
-    }
-    else if (activeButton==="REGISTER"){
+    } else if (activeButton === "REGISTER") {
         handleRegister();
     }
-}
+};
 
-const handleInputChange = (event, identifier) => {
-    if (identifier==='USERNAME'){
-        setUsername(event.value);
-    }
-    else if (identifier ==='PASSWORD'){
-        setPassword(event.value);
-    }
-}
+
+
 
   return (
     <motion.div
@@ -203,9 +207,11 @@ const handleInputChange = (event, identifier) => {
             {/* i use isActive...boolean, if true then colors it blue */}
             </Box>
             {/* <Stack spacing="1rem"> don't need this stack */} 
-            <InputField label="USERNAME" onChange={(event) => handleInputChange(event, 'USERNAME')} />
-            <InputField label="PASSWORD" onChange={(event) => handleInputChange(event, 'PASSWORD')}/>
+            <form onSubmit={handleSubmit} id="submission">
+            <InputField name="username" label="USERNAME" />
+            <InputField name="password" label="PASSWORD" />
             <LogButton onClick={handleSubmit} label="submit" color="#000000" style={{flex:1}}/>
+            </form>
              {/*the submit button fills the space in the flex component..the stack component   */}
             {/* </Stack> */}
             {/* <AuthContent />  */}
