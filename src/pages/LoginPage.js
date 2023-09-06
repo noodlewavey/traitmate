@@ -16,12 +16,11 @@ import jwt_decode from 'jwt-decode';
 import { login, logout } from '../redux/authSlice.js'
 import { useSelector, useDispatch } from 'react-redux';
 import Cookies from 'js-cookie';
-import AuthContent from '../components/AuthContent.js';
 import LoginForm from '../components/LoginForm.js';
 import Stack from '@mui/material/Stack';
 import LogButton from '../components/LogButton.js';
 import axios from 'axios';
-import {request, setAuthToken } from '../axios_helper';
+
 
 const FullPageCenter = styled('div')({
   display: 'flex',
@@ -99,46 +98,70 @@ export default function LoginPage({children}) {
 
 const theme = useTheme();
 
-const handleLogin = async () => {
-    //figure out theory behind async...
-    console.log("Logging in");
-
-    try {
-        const response = await request('POST', '/login', {
-            login: username,
-            password: password
-        });
-
-        if (response.status >= 200 && response.status < 300)  {
-            console.log("Successfully logged in:", response.data);
-            setAuthToken(response.data.token);
-        } else {
-            console.error("Error logging in:", response.data);
-        }
-    } catch (error) {
-        console.error("There was an error during login:", error);
-    }
-}
-
-
 const handleRegister = async () => {
-    console.log("Registering");
+    // Logic for registration
     try {
-        const response = await request('POST', '/register', {
-            login: username,
-            password: password
-        });
+      const registrationDto = {
+        username: username,
+        password: password,
+        // Include other registration data fields here
+      };
 
-        if (response.status === 200) {
-            console.log("Successfully registered:", response.data);
-            setAuthToken(response.data.token);
-        } else {
-            console.error("Error registering", response.data);
-        }
+      console.log("this is the raw password: ", password);
+  
+      const config = {
+        headers: {
+          'Content-Type': 'application/json', // Set the request header to JSON
+        },
+      };
+  
+      const response = await axios.post('http://localhost:8080/auth/register', registrationDto, config);
+  
+      if (response.status === 200) {
+        // Successful registration
+        console.log('Registration successful!');
+      } else {
+        // Handle registration failure
+        console.error('Registration failed.');
+      }
     } catch (error) {
-        console.error("There was an error during registration:", error);
+      // Handle other errors
+      console.error('Error during registration:', error);
     }
-}
+  };
+  
+  
+
+
+  const handleLogin = async () => {
+    try {
+      const loginData = new URLSearchParams();
+      loginData.append('username', username);
+      loginData.append('password', password);
+  
+      const config = {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      };
+  
+      const response = await axios.post('http://localhost:8080/auth/login', loginData, config);
+  
+      if (response.status === 200) {
+        // Successful login
+        console.log('Login successful!');
+      } else {
+        // Handle login failure
+        console.error('Login failed.');
+      }
+    } catch (error) {
+      // Handle other errors
+      console.error('Error during login:', error);
+    }
+  };
+
+  //if spring security session management exists in java backend, dont need to make front end handle sessions
+  
 
 const handleSubmit = () => {
     if (activeButton==="LOGIN"){
