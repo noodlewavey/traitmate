@@ -5,7 +5,7 @@ import { useTheme } from '@mui/material/styles';
 //import this to use theme from parent
 import { Typography } from '@mui/material';
 
-export default function InputField({label, color, onChange}) {
+export default function InputField({label, color, onChange, name}) {
 
   const theme = useTheme();
 
@@ -32,6 +32,7 @@ export default function InputField({label, color, onChange}) {
 <TextField 
     id="outlined-basic" 
     variant="outlined" 
+    name={name}
     onChange={handleInputChange}  //call handler for input changes
     sx={{ 
       width: '300px',//added this, made the thing consistent 

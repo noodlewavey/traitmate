@@ -98,8 +98,6 @@ export default function LoginPage({children}) {
 
 const theme = useTheme();
 
-const usernameRef = React.useRef(null);
-const passwordRef = React.useRef(null);
 
 const handleRegister = async () => {
     // Logic for registration
@@ -171,11 +169,12 @@ const handleSubmit = (event) => {
     const formData = new FormData(document.getElementById("submission"));  // Use event.currentTarget
     const inputUsername = formData.get("username");
     const inputPassword = formData.get("password");
+    console.log("this is the formdata's username:" , inputUsername)
+    console.log("formdata", Object.fromEntries(formData));
 
     setUsername(inputUsername);
     setPassword(inputPassword);
 
-    console.log(username);
 
     if (activeButton === "LOGIN") {
         handleLogin();
