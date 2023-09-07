@@ -175,6 +175,8 @@ const handleSubmit = (event) => {
     setUsername(inputUsername);
     setPassword(inputPassword);
 
+    console.log(username);
+
     if (activeButton === "LOGIN") {
         handleLogin();
     } else if (activeButton === "REGISTER") {
