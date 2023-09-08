@@ -135,9 +135,12 @@ const handleRegister = async () => {
 
   const handleLogin = async () => {
     try {
-      const loginData = new URLSearchParams();
-      loginData.append('username', username);
-      loginData.append('password', password);
+        const loginDto = {
+          username: username,
+          password: password,
+          // Include other registration data fields here
+        };
+      
   
       const config = {
         headers: {
@@ -145,7 +148,7 @@ const handleRegister = async () => {
         },
       };
   
-      const response = await axios.post('http://localhost:8080/auth/login', loginData, config);
+      const response = await axios.post('http://localhost:8080/auth/login', loginDto, config);
   
       if (response.status === 200) {
         // Successful login
