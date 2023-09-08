@@ -141,7 +141,6 @@ const handleRegister = async () => {
           // Include other registration data fields here
         };
       
-  
       const config = {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
