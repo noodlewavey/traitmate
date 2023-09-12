@@ -98,37 +98,6 @@ export default function LoginPage({children}) {
 
 const theme = useTheme();
 
-
-const handleRegister = async () => {
-    // Logic for registration
-    try {
-      const registrationDto = {
-        username: username,
-        password: password,
-        // Include other registration data fields here
-      };
-
-  
-      const config = {
-        headers: {
-          'Content-Type': 'application/json', // Set the request header to JSON
-        },
-      };
-  
-      const response = await axios.post('http://localhost:8080/auth/register', registrationDto, config);
-  
-      if (response.status === 200) {
-        // Successful registration
-        console.log('Registration successful!');
-      } else {
-        // Handle registration failure
-        console.error('Registration failed.');
-      }
-    } catch (error) {
-      // Handle other errors
-      console.error('Error during registration:', error);
-    }
-  };
   
   
 
@@ -140,6 +109,7 @@ const handleRegister = async () => {
           password: password,
           // Include other registration data fields here
         };
+
       
       const config = {
         headers: {
@@ -183,6 +153,40 @@ const handleSubmit = (event) => {
     } else if (activeButton === "REGISTER") {
         handleRegister();
     }
+};
+
+const handleRegister = async () => {
+  // Logic for registration
+  try {
+    const registrationDto = {
+      username: username,
+      password: password,
+      // Include other registration data fields here
+    };
+
+    
+
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json', // Set the request header to JSON
+      },
+    };
+
+    const response = await axios.post('http://localhost:8080/auth/register', registrationDto, config);
+
+    if (response.status === 200) {
+      // Successful registration
+      console.log('Registration successful!');
+    } else {
+      // Handle registration failure
+      console.error('Registration failed.');
+    }
+  } catch (error) {
+    console.log(username);
+    // Handle other errors
+    console.error('Error during registration:', error);
+  }
 };
 
 
