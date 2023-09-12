@@ -90,17 +90,18 @@ const unilist = [
 
 
 
+export default function Create1() {
 
-export default function Create1({children}) {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [age, setAge] = useState(0);
-  const [university, setUniversity] = useState('');
+const [firstName, setFirstName] = useState('');
+const [lastName, setLastName] = useState('');
+const [age, setAge] = useState(0);
+const [university, setUniversity] = useState('');
 
-  const handleFirstNameChange = (e) => setFirstName(e.target.value);
-  const handleLastNameChange = (e) => setLastName(e.target.value);
-  const handleAgeChange = (newValue) => setAge(newValue); // Adjust based on Dropdown component
-  const handleUniversityChange = (newValue) => setUniversity(newValue); // Adjust based on Dropdown 
+const handleFirstNameChange = (value) => setFirstName(value);
+const handleLastNameChange = (value) => setLastName(value);
+const handleAgeChange = (newValue) => setAge(newValue); // Adjust based on Dropdown component
+const handleUniversityChange = (newValue) => setUniversity(newValue); // Adjust based on Dropdown 
+
 
   const handleSubmit = async () => {
     const payload = {
@@ -150,8 +151,8 @@ export default function Create1({children}) {
       <ItalicText style={{marginLeft: '3rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>"Introduce yourself!"</ItalicText> 
       </LeftBox>
         <RightBox>
-            <InputField label="FIRST NAME" value={firstName} onChange={handleFirstNameChange}/>
-            <InputField label="LAST NAME" value={lastName} onChange={handleLastNameChange}/>
+            <InputField label="FIRST NAME"  value={firstName} onChange={handleFirstNameChange} />
+            <InputField label="LAST NAME" value={lastName} onChange={handleLastNameChange} />
             <Dropdown label="AGE" menuitems={validages} value={age} onChange={handleAgeChange}/>
             {/* add dropdown menu! for age and major  */}
             <Dropdown label="UNIVERSITY" menuitems={unilist} value={university} onChange={handleUniversityChange} />

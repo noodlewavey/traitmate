@@ -11,7 +11,9 @@ export default function InputField({label, color, onChange, name, value}) {
 
   const handleInputChange = (event) => {
     if (onChange) {
-      onChange(event.target.value); // Notify parent component about input changes
+      onChange(event.target.value);
+      //calls onchange
+      // Notify parent component about input changes
     }
   };
 
