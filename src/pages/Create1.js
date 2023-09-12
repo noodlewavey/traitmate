@@ -13,6 +13,7 @@ import { Typography } from "@mui/material";
 import InputField from '../components/InputFIeld.js';
 import {motion} from 'framer-motion';
 import Dropdown from '../components/Dropdown.js';
+import { useState } from 'react';
 
 const FullPageCenter = styled('div')({
   display: 'flex',
@@ -88,7 +89,53 @@ const unilist = [
 ]
 
 
+
+
 export default function Create1({children}) {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [age, setAge] = useState(0);
+  const [university, setUniversity] = useState('');
+
+  const handleFirstNameChange = (e) => setFirstName(e.target.value);
+  const handleLastNameChange = (e) => setLastName(e.target.value);
+  const handleAgeChange = (newValue) => setAge(newValue); // Adjust based on Dropdown component
+  const handleUniversityChange = (newValue) => setUniversity(newValue); // Adjust based on Dropdown 
+
+  const handleSubmit = async () => {
+    const payload = {
+      firstName,
+      lastName,
+      age,
+      university
+    };
+  
+    console.log(payload); // Just for debugging
+  
+    try {
+      const response = await fetch('http://localhost:8080/auth/update1', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+  
+      if (!response.ok) {
+        // Handle any response that's not a 2xx success status
+        const responseData = await response.json();
+        console.error('Failed to submit data:', responseData);
+      } else {
+        console.log('Successfully submitted data!');
+        // Handle successful submission (e.g., redirect to another page, show a success message, etc.)
+      }
+    } catch (error) {
+      // Handle any errors that might occur during the fetch
+      console.error('There was a problem with the fetch operation:', error.message);
+    }
+  };
+  
+
   return (
     <motion.div
     initial={{opacity: 0}}
@@ -103,11 +150,12 @@ export default function Create1({children}) {
       <ItalicText style={{marginLeft: '3rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>"Introduce yourself!"</ItalicText> 
       </LeftBox>
         <RightBox>
-            <InputField label="FIRST NAME" />
-            <InputField label="LAST NAME"/>
-            <Dropdown label="AGE" menuitems={validages} />
+            <InputField label="FIRST NAME" value={firstName} onChange={handleFirstNameChange}/>
+            <InputField label="LAST NAME" value={lastName} onChange={handleLastNameChange}/>
+            <Dropdown label="AGE" menuitems={validages} value={age} onChange={handleAgeChange}/>
             {/* add dropdown menu! for age and major  */}
-            <Dropdown label="UNIVERSITY" menuitems={unilist} />
+            <Dropdown label="UNIVERSITY" menuitems={unilist} value={university} onChange={handleUniversityChange} />
+            <button onClick={handleSubmit}>Submit</button> {/* Add this Submit button */}
         </RightBox>
     </CenterContainer>
     </Wrapper>

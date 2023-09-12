@@ -5,7 +5,7 @@ import { useTheme } from '@mui/material/styles';
 //import this to use theme from parent
 import { Typography } from '@mui/material';
 
-export default function InputField({label, color, onChange, name}) {
+export default function InputField({label, color, onChange, name, value}) {
 
   const theme = useTheme();
 
@@ -14,6 +14,8 @@ export default function InputField({label, color, onChange, name}) {
       onChange(event.target.value); // Notify parent component about input changes
     }
   };
+
+  //above is a callback handler that calls the onchange passed down by parent
   //initialize theme
   return (
   //   <Box
@@ -33,6 +35,7 @@ export default function InputField({label, color, onChange, name}) {
     id="outlined-basic" 
     variant="outlined" 
     name={name}
+    value={value}
     onChange={handleInputChange}  //call handler for input changes
     sx={{ 
       width: '300px',//added this, made the thing consistent 
