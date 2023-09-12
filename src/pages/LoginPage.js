@@ -87,9 +87,6 @@ export default function LoginPage({children}) {
 
     const [ token, setToken ] = useState('');
 
-    const [username, setUsername ] = useState('');
-    const [password, setPassword ] = useState('');
-
     const [ activeButton, setActiveButton ] = useState('LOGIN') //default to log in
 
     const { isAuthenticated, user } = useSelector(state => state.auth);
@@ -102,11 +99,11 @@ const theme = useTheme();
   
 
 
-  const handleLogin = async () => {
+  const handleLogin = async (inputUsername, inputPassword) => {
     try {
         const loginDto = {
-          username: username,
-          password: password,
+          username: inputUsername,
+          password: inputPassword,
           // Include other registration data fields here
         };
 
@@ -144,23 +141,21 @@ const handleSubmit = (event) => {
     console.log("this is the formdata's username:" , inputUsername)
     console.log("formdata", Object.fromEntries(formData));
 
-    setUsername(inputUsername);
-    setPassword(inputPassword);
 
 
     if (activeButton === "LOGIN") {
-        handleLogin();
+        handleLogin(inputUsername, inputPassword);
     } else if (activeButton === "REGISTER") {
-        handleRegister();
+        handleRegister(inputUsername, inputPassword);
     }
 };
 
-const handleRegister = async () => {
+const handleRegister = async (inputUsername, inputPassword) => {
   // Logic for registration
   try {
     const registrationDto = {
-      username: username,
-      password: password,
+      username: inputUsername,
+      password: inputPassword,
       // Include other registration data fields here
     };
 
@@ -183,7 +178,6 @@ const handleRegister = async () => {
       console.error('Registration failed.');
     }
   } catch (error) {
-    console.log(username);
     // Handle other errors
     console.error('Error during registration:', error);
   }
