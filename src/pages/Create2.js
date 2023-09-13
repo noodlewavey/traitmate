@@ -13,6 +13,8 @@ import { Typography } from "@mui/material";
 import InputField from '../components/InputFIeld.js';
 import {motion} from 'framer-motion';
 import Dropdown from '../components/Dropdown.js';
+import { useState, useRef } from 'react';
+import axios from 'axios';
 
 const FullPageCenter = styled('div')({
   display: 'flex',
@@ -155,6 +157,74 @@ const genders = [
     "Other"
 ]
 export default function Create2({children}) {
+
+  const [major, setMajor] = useState('');
+  const [gender, setGender ] = useState('');
+  const [attractedTo, setAttractedTo] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const formRef = useRef(null);
+
+  const handleMajorChange = (selectedMajor) => {
+    setMajor(selectedMajor);
+  }
+
+  const handleGenderChange = (selectedGender) => {
+    setGender(selectedGender);
+  }
+
+  const handleAttractedTo = (selectedAttract) => {
+    setAttractedTo(selectedAttract);
+  }
+
+
+const handleSubmit = async (event) => {
+  event.preventDefault();
+
+  // Use the formRef to access the form
+  const formData = new FormData(document.getElementById("submission"));
+
+  // Extract the data from formData
+  const updatedMajor = formData.get("major");
+  const updatedGender = formData.get("gender");
+  const updatedAttractedTo = formData.get("attractedTo");
+  const updatedPhoneNumber = formData.get("phoneNumber");
+
+  // Use the extracted data as needed
+  console.log("Updated major:", updatedMajor);
+  console.log("Updated gender:", updatedGender);
+  console.log("Updated attractecto:", updatedAttractedTo );
+  console.log("Updated phone number", updatedPhoneNumber);
+
+  const payload = {
+    major: updatedMajor,
+    gender: updatedGender,
+    attractedTo: updatedAttractedTo,
+    phoneNumber: updatedPhoneNumber,
+  };
+
+  console.log(payload); // Just for debugging
+
+  try {
+    const response = await axios.post('http://localhost:8080/auth/update2', payload, {
+      withCredentials: true, // Set withCredentials to true
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+
+    if (response.status !== 200) {
+      // Handle any response that's not a 2xx success status
+      console.error('Failed to submit data:', response.data);
+    } else {
+      console.log('Successfully submitted data!');
+      // Handle successful submission (e.g., redirect to another page, show a success message, etc.)
+    }
+  } catch (error) {
+    // Handle any errors that might occur during the Axios request
+    console.error('There was a problem with the Axios request:', error.message);
+  }
+};
+
   return (
     <motion.div
     initial={{opacity: 0}}
@@ -169,12 +239,18 @@ export default function Create2({children}) {
       <ItalicText style={{marginLeft: '3rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>"Wow, tell me more..."</ItalicText> 
       </LeftBox>
         <RightBox>
-            <Dropdown label="MAJOR" menuitems={majors} />
+        <form ref={formRef} onSubmit={handleSubmit} id="submission">
+            <Dropdown label="MAJOR" menuitems={majors} value={major} onChange={handleMajorChange} />
+            <input type="hidden" name="major" value={major} />
             {/* add dropdown menu! for age and major  */}
-            <Dropdown label="YOUR GENDER" menuitems={genders} />
-            <Dropdown label="ATTRACTED TO" menuitems={genderslist} />
-            <InputField label="YOUR PHONE NUMBER" />
+            <Dropdown label="YOUR GENDER" menuitems={genders} value={gender} onChange={handleGenderChange} />
+            <input type="hidden" name="gender" value={gender} />
+            <Dropdown label="ATTRACTED TO" menuitems={genderslist} value={attractedTo} onChange={handleAttractedTo}/>
+            <input type="hidden" name="attractedTo" value={attractedTo} />
+            <InputField name="phoneNumber" label="YOUR PHONE NUMBER" />
             <Typography variant="body2" sx={{width:"300px"}}>Your phone number will be shown to those you've matched with!</Typography>
+            <button type="submit" >Submit</button> 
+            </form>
         </RightBox>
     </CenterContainer>
     </Wrapper>
