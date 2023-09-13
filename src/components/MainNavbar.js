@@ -2,9 +2,11 @@ import React from "react";
 import { AppBar, Toolbar, CssBaseline, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
+import { useAuth } from "./AuthContext";
+import { useProfile } from "./ProfileContext";
 
 const NavbarWrapper = styled('div')({
-  width: '80rem',
+  width: '100vw',//adding this centers the navbar
   height: '4rem', // Set the height to 4rem 
   // Add any other styling you need for the navbar
   position: 'fixed',
@@ -19,17 +21,19 @@ const NavbarAppBar = styled(AppBar)`
 
 const NavbarToolbar = styled(Toolbar)`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 `;
 
 
 const NavbarNavlinks = styled.div`
 display: flex;
+align-items: center;
 flex: 1;
 justify-content: space-between; /* Spread items evenly */
 align-items: center;
 margin: 10rem 10rem;
+gap: 9rem;
 `;
 
 const NavbarLink = styled(Link)(({ theme }) => ({
@@ -37,7 +41,6 @@ const NavbarLink = styled(Link)(({ theme }) => ({
   fontWeight: 300,
   textDecoration: 'none',
   color: 'black',
-  marginLeft: '7.8rem',
   '&:hover': {
       color: 'blue',
       borderBottom: '1px solid blue'
@@ -46,6 +49,8 @@ const NavbarLink = styled(Link)(({ theme }) => ({
 
 function MainNavbar() {
 
+  const {isLoggedIn}=useAuth();
+  const {isProfileCreated}=useProfile();
 
   // in styled, for font weight, remove the brackets
   
@@ -55,11 +60,13 @@ function MainNavbar() {
       {/* the sx prop has a higher specificity...easier to override styles */}
       <CssBaseline/>
       <NavbarToolbar>
+      { isLoggedIn===false && isProfileCreated===false &&
         <NavbarNavlinks>
-          <NavbarLink to="/"><b>LOG OUT</b></NavbarLink>
-          <NavbarLink to="/">BACK TO <b>MAIN</b></NavbarLink>
-          <NavbarLink to="/"><b>ABOUT</b></NavbarLink>
+          <NavbarLink to="/login"><b>LOG IN</b></NavbarLink>
+          <NavbarLink to="/"> <b>MAIN</b></NavbarLink>
+          <a href="http://jasminenoodlewavey.vercel.app" style={{ textDecoration: 'none', color: 'black'}}>ABOUT THE CREATOR</a>
         </NavbarNavlinks>
+        }
       </NavbarToolbar>
     </NavbarAppBar>
     </NavbarWrapper>

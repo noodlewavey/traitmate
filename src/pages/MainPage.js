@@ -3,6 +3,7 @@ import MainHeader from "../components/MainHeader";
 import Box from '@mui/material/Box';
 import styled from '@emotion/styled';
 import {motion} from 'framer-motion';
+import MainNavbar from "../components/MainNavbar";
 
 
 const FullPageCenter = styled('div')({
@@ -61,6 +62,7 @@ function MainPage() {
     <FullPageCenter>
     <Wrapper> 
     <CenterContainer>
+    <MainNavbar></MainNavbar>
     <MainHeader />
     </CenterContainer>
     </Wrapper> 
