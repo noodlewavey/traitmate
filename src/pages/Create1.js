@@ -14,6 +14,7 @@ import InputField2 from '../components/InputField2.js';
 import {motion} from 'framer-motion';
 import Dropdown from '../components/Dropdown.js';
 import { useState, useRef } from 'react';
+import axios from 'axios';
 
 const FullPageCenter = styled('div')({
   display: 'flex',
@@ -106,59 +107,53 @@ const handleUniversityChange = (selectedUni) => {
   setUniversity(selectedUni);
 };
 
-  const handleSubmit = async (event) => {
+const handleSubmit = async (event) => {
+  event.preventDefault();
 
-    event.preventDefault();
+  // Use the formRef to access the form
+  const formData = new FormData(document.getElementById("submission"));
 
-    // Use the formRef to access the form
-    const formData = new FormData(document.getElementById("submission")); 
+  // Extract the data from formData
+  const updatedFirstName = formData.get("firstName");
+  const updatedLastName = formData.get("lastName");
+  const updatedAge = formData.get("age");
+  const updatedUniversity = formData.get("university");
 
-    // Extract the data from formData
-    const updatedFirstName = formData.get("firstName");
-    const updatedLastName = formData.get("lastName");
-    const updatedAge = formData.get("age");
-    const updatedUniversity = formData.get("university");
-  
+  // Use the extracted data as needed
+  console.log("Updated First Name:", updatedFirstName);
+  console.log("Updated Last Name:", updatedLastName);
+  console.log("Updated Age:", age);
+  console.log("Updated University:", university);
 
-    // Use the extracted data as needed
-    console.log("Updated First Name:", updatedFirstName);
-    console.log("Updated Last Name:", updatedLastName);
-    console.log("Updated Age:", age);
-    console.log("Updated University:", university);
+  const payload = {
+    firstName: updatedFirstName,
+    lastName: updatedLastName,
+    age: updatedAge,
+    university: updatedUniversity,
+  };
 
+  console.log(payload); // Just for debugging
 
-    const payload = {
-      firstName: updatedFirstName,
-      lastName: updatedLastName,
-      age: updatedAge,
-      university: updatedUniversity,
-    };
-  
-    console.log(payload); // Just for debugging
-  
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-      myHeaders.append("Cookie", "JSESSIONID=A3E06BECD4AFCCF749C1CC1EA8ED2255");
+  try {
+    const response = await axios.post('http://localhost:8080/auth/update1', payload, {
+      withCredentials: true, // Set withCredentials to true
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-var raw = JSON.stringify({
-  "firstName": "Art",
-  "lastName": "male",
-  "age": 19,
-  "university": "323-333-3333"
-});
-
-var requestOptions = {
-  method: 'PUT',
-  headers: myHeaders,
-  body: raw,
-  redirect: 'follow'
+    if (response.status !== 200) {
+      // Handle any response that's not a 2xx success status
+      console.error('Failed to submit data:', response.data);
+    } else {
+      console.log('Successfully submitted data!');
+      // Handle successful submission (e.g., redirect to another page, show a success message, etc.)
+    }
+  } catch (error) {
+    // Handle any errors that might occur during the Axios request
+    console.error('There was a problem with the Axios request:', error.message);
+  }
 };
-
-fetch("http://localhost:8080/auth/update1", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
-}
 
   
 
