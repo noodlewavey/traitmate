@@ -4,14 +4,16 @@ import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import { useAuth } from "./AuthContext";
 import { useProfile } from "./ProfileContext";
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const NavbarWrapper = styled('div')({
   width: '100vw',//adding this centers the navbar
   height: '4rem', // Set the height to 4rem 
   // Add any other styling you need for the navbar
   position: 'fixed',
-  overflow: 'hidden',
-  zIndex: '1000', //set this to high value to make text hoverable in MyProfile.js
+  overflow: 'visible',
+  zIndex: '1000',
+  pointerEvents: 'auto', //set this to high value to make text hoverable in MyProfile.js
   // i think this overflow auto is what causes it to be fixed size
 });
 
@@ -34,12 +36,15 @@ justify-content: space-between; /* Spread items evenly */
 align-items: center;
 margin: 10rem 10rem;
 gap: 9rem;
+pointer-events: 'auto';
 `;
 
 const NavbarLink = styled(Link)(({ theme }) => ({
   fontFamily: theme.typography.body2.fontFamily,
   fontWeight: 300,
+  pointerEvents: 'auto',
   textDecoration: 'none',
+  zIndex: 9999,
   color: 'black',
   '&:hover': {
       color: 'blue',

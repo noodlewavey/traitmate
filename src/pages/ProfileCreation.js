@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import styled from '@emotion/styled';
 import RightBox from '../components/RightBox.js';
-import CreateNavbar from '../components/CreateNavbar.js';
+import MainNavbar from '../components/MainNavbar.js';
 import LeftBox from '../components/LeftBox.js'
 // import '../styles.css';
 // import '../index.css';
@@ -83,7 +83,7 @@ export default function ProfileCreation({children}) {
     exit={{opacity: 0, transition: {duration: 0.4}}}>
     <FullPageCenter>
     <Wrapper>
-    <CreateNavbar />
+    <MainNavbar />
     {/* adding navbar above container so its rendered above containers... */}
     <CenterContainer>
       <LeftBox>

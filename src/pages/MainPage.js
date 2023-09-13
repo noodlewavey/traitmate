@@ -21,7 +21,7 @@ const FullPageCenter = styled('div')({
       alignItems: 'center',
       height: '45rem',
       width: '100%',
-      overflowX: 'hidden',
+      overflowX: 'scroll',
       overflowY: 'scroll',
       marginBottom: '4rem',
       position: 'relative',
@@ -45,10 +45,10 @@ const FullPageCenter = styled('div')({
       height: '98%',
       margin: 'auto',
       marginTop: '2rem',
-      overflowX: 'hidden',
+      overflowX: 'scroll',
       border: '1px solid black',
-      zIndex: 2,
-      overflowY: 'hidden',
+      zIndex: -1,
+      overflowY: 'scroll',
       //if there isnt enough space, parent container forces horizonal scroll
     }));
   
@@ -61,13 +61,13 @@ function MainPage() {
     exit={{opacity: 0, transition: {duration: 0.4}}}>
     <FullPageCenter>
     <Wrapper> 
-    <CenterContainer>
-    <MainNavbar></MainNavbar>
+    <CenterContainer> 
     <MainHeader />
+    <MainNavbar sx={{zIndex: 3000}} />
     </CenterContainer>
     </Wrapper> 
     </FullPageCenter> 
-    </motion.div>
+   </motion.div>
   );
 }
 
