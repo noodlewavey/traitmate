@@ -10,7 +10,7 @@ const NavbarWrapper = styled('div')({
   height: '4rem', // Set the height to 4rem 
   // Add any other styling you need for the navbar
   position: 'fixed',
-  overflow: 'auto',
+  overflow: 'hidden',
   zIndex: '1000', //set this to high value to make text hoverable in MyProfile.js
   // i think this overflow auto is what causes it to be fixed size
 });
@@ -64,6 +64,21 @@ function MainNavbar() {
         <NavbarNavlinks>
           <NavbarLink to="/login"><b>LOG IN</b></NavbarLink>
           <NavbarLink to="/"> <b>MAIN</b></NavbarLink>
+          <a href="http://jasminenoodlewavey.vercel.app" style={{ textDecoration: 'none', color: 'black'}}>ABOUT THE CREATOR</a>
+        </NavbarNavlinks>
+        }
+        { isLoggedIn===true && isProfileCreated===false &&
+        <NavbarNavlinks>
+          <NavbarLink to="/logout"><b>LOG OUT</b></NavbarLink>
+          <NavbarLink to="/create/1"> <b>CREATE PROFILE</b></NavbarLink>
+          <a href="http://jasminenoodlewavey.vercel.app" style={{ textDecoration: 'none', color: 'black'}}>ABOUT THE CREATOR</a>
+        </NavbarNavlinks>
+        }
+        { isLoggedIn===true && isProfileCreated===true &&
+        <NavbarNavlinks>
+          <NavbarLink to="/logout"><b>LOG OUT</b></NavbarLink>
+          <NavbarLink to="/myprofile"> <b>MY PROFILE</b></NavbarLink>
+          <NavbarLink to="/match"> <b>FIND YOUR MATCH</b></NavbarLink>
           <a href="http://jasminenoodlewavey.vercel.app" style={{ textDecoration: 'none', color: 'black'}}>ABOUT THE CREATOR</a>
         </NavbarNavlinks>
         }
