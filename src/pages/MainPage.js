@@ -11,7 +11,6 @@ const FullPageCenter = styled('div')({
     justifyContent: 'center',
     alignItems: 'center',
     minHeight: '100vh', // Set the minimum height to 100% of the viewport height
-    zIndex: 1,
     //position: 'relative', //ensure relative positioning for stacking context
   });
   
@@ -43,12 +42,8 @@ const FullPageCenter = styled('div')({
       display: 'flex', //this ensures marginLeft: auto on right box pushes to right
       minHeight: '98%',
       height: '98%',
-      margin: 'auto',
       marginTop: '2rem',
-      overflowX: 'scroll',
       border: '1px solid black',
-      zIndex: -1,
-      overflowY: 'scroll',
       //if there isnt enough space, parent container forces horizonal scroll
     }));
   
@@ -61,9 +56,9 @@ function MainPage() {
     exit={{opacity: 0, transition: {duration: 0.4}}}>
     <FullPageCenter>
     <Wrapper> 
-    <CenterContainer> 
-    <MainHeader />
-    <MainNavbar sx={{zIndex: 3000}} />
+     <CenterContainer> 
+    <MainNavbar sx={{zIndex: 9999 }} />
+    <MainHeader sx={{zIndex:-1}}/> 
     </CenterContainer>
     </Wrapper> 
     </FullPageCenter> 
