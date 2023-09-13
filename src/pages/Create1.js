@@ -98,19 +98,27 @@ const [age, setAge] = useState(0);
 const [university, setUniversity] = useState('');
 const formRef = useRef(null);
 
-const handleAgeChange = (newValue) => setAge(newValue); // Adjust based on Dropdown component
-const handleUniversityChange = (newValue) => setUniversity(newValue); // Adjust based on Dropdown 
+const handleAgeChange = (selectedAge) => {
+  setAge(selectedAge);
+};
+
+const handleUniversityChange = (selectedUni) => {
+  setUniversity(selectedUni);
+};
 
   const handleSubmit = async (event) => {
 
     event.preventDefault();
 
     // Use the formRef to access the form
-    const formData = new FormData(formRef.current);
+    const formData = new FormData(document.getElementById("submission")); 
 
     // Extract the data from formData
     const updatedFirstName = formData.get("firstName");
     const updatedLastName = formData.get("lastName");
+    const updatedAge = formData.get("age");
+    const updatedUniversity = formData.get("university");
+  
 
     // Use the extracted data as needed
     console.log("Updated First Name:", updatedFirstName);
@@ -166,13 +174,15 @@ const handleUniversityChange = (newValue) => setUniversity(newValue); // Adjust 
       <ItalicText style={{marginLeft: '3rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>'Introduce yourself!'</ItalicText> 
       </LeftBox>
         <RightBox>
-        <form ref={formRef} onSubmit={handleSubmit}>
+        <form ref={formRef} onSubmit={handleSubmit} id="submission">
+        <Dropdown label="AGE" menuitems={validages} value={age} onChange={handleAgeChange}></Dropdown>
+            <input type="hidden" name="age" value={age} />
+            {/* add dropdown menu! for age and major  */}
+            <Dropdown label="UNIVERSITY" menuitems={unilist} value={university} onChange={handleUniversityChange}></Dropdown>
+            <input type="hidden" name="university" value={university} />
         <InputField2 name="firstName" label="FIRST NAME" />
             <InputField2 name="lastName" label="LAST NAME" />
-            <Dropdown label="AGE" menuitems={validages} value={age} onChange={handleAgeChange}/>
-            {/* add dropdown menu! for age and major  */}
-            <Dropdown label="UNIVERSITY" menuitems={unilist} value={university} onChange={handleUniversityChange} />
-            <button type="submit">Submit</button> {/* Add this Submit button */}
+            <button type="submit" >Submit</button> {/* Add this Submit button */}
             </form>
         </RightBox>
     </CenterContainer>
