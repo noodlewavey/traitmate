@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useAuth } from 'react';
 import { Button, Container, Input, Typography } from '@mui/material';
 import axios from 'axios';
+import { useImageUpload } from './ImageUploadContext';
+import { useProfile } from './ProfileContext';
 
 const UploadPhoto = () => {
   const [selectedFile, setSelectedFile] = useState(null);
+  const {isImageUploaded, setIsImageUploaded } = useImageUpload();
+  const {isProfileCreated, setIsProfileCreated } = useProfile();
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
-
 
   //form data is js object used to construct data to be sent in http requests
   //commonly used for sending data in POST requests 
@@ -25,8 +28,10 @@ const UploadPhoto = () => {
       try {
         // Replace 'YOUR_BACKEND_API_ENDPOINT' with your actual API endpoint
         const response = await axios.post('http://localhost:8080/auth/update3', formData, {withCredentials: true});
-
+        setIsImageUploaded(true);
+        setIsProfileCreated(true);
         console.log('Photo uploaded:', response.data);
+        
       } catch (error) {
         console.error('Error uploading file:', error);
       }

@@ -20,6 +20,7 @@ import LoginForm from '../components/LoginForm.js';
 import Stack from '@mui/material/Stack';
 import LogButton from '../components/LogButton.js';
 import axios from 'axios';
+import { useAuth } from '../components/AuthContext.js';
 
 
 const FullPageCenter = styled('div')({
@@ -95,7 +96,7 @@ export default function LoginPage({children}) {
 
 const theme = useTheme();
 
-  
+  const {isLoggedIn, setIsLoggedIn} = useAuth();
   
 
 
@@ -119,13 +120,16 @@ const theme = useTheme();
   
       if (response.status === 200) {
         // Successful login
+        setIsLoggedIn(true);
         console.log('Login successful!');
       } else {
         // Handle login failure
+        setIsLoggedIn(false);
         console.error('Login failed.');
       }
     } catch (error) {
       // Handle other errors
+      setIsLoggedIn(false);
       console.error('Error during login:', error);
     }
   };
@@ -152,6 +156,11 @@ const handleSubmit = (event) => {
 };
 
 const handleRegister = async (inputUsername, inputPassword) => {
+  if (isLoggedIn === true ){
+    console.log("Need to log out");
+    return;
+  }
+
   // Logic for registration
   try {
     const registrationDto = {
@@ -159,8 +168,6 @@ const handleRegister = async (inputUsername, inputPassword) => {
       password: inputPassword,
       // Include other registration data fields here
     };
-
-    
 
 
     const config = {

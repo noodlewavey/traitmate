@@ -15,6 +15,9 @@ import {useSelector} from 'react-redux';
 import Create1 from './Create1';
 import Create2 from './Create2';
 import Create3 from './Create3';
+import { AuthProvider } from '../components/AuthContext';
+import { ProfileProvider } from '../components/ProfileContext';
+import { ImageUploadProvider } from '../components/ImageUploadContext';
 
 function AppContent() {
     const location = useLocation();
@@ -87,6 +90,9 @@ function AppContent() {
     return (
     <AnimatePresence>
       <MainContainer>
+      <AuthProvider>
+      <ImageUploadProvider>
+        <ProfileProvider>
             <Routes location={location} key={location.pathname}>
               <Route path="/myprofile" element={<MyProfile />} />
               <Route path="/" element={<MainPage />} />
@@ -98,6 +104,9 @@ function AppContent() {
                 <Route path="/resultsquiz" element={<ResultsQuiz />}/>
                 <Route path="/login" element={<LoginPage />} />
             </Routes>
+            </ProfileProvider>
+            </ImageUploadProvider>
+            </AuthProvider>
       </MainContainer>
       </AnimatePresence>
     );
