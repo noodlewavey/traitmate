@@ -16,6 +16,7 @@ import Dropdown from '../components/Dropdown.js';
 import { useState, useRef } from 'react';
 import axios from 'axios';
 import { Navigate, useNavigate}  from 'react-router-dom';
+import SelectError from '../components/SelectError.js';
 
 const FullPageCenter = styled('div')({
   display: 'flex',
@@ -113,6 +114,8 @@ const [age, setAge] = useState(0);
 const [university, setUniversity] = useState('');
 const formRef = useRef(null);
 const navigate = useNavigate();
+const [error, setError] = useState(false);
+
 
 const handleAgeChange = (selectedAge) => {
   setAge(selectedAge);
@@ -133,6 +136,11 @@ const handleSubmit = async (event) => {
   const updatedLastName = formData.get("lastName");
   const updatedAge = formData.get("age");
   const updatedUniversity = formData.get("university");
+
+  if (!updatedFirstName || !updatedLastName || !updatedAge || !updatedUniversity) {
+    setError(true);
+    return; // stop the function here
+  }
 
   // Use the extracted data as needed
   console.log("Updated First Name:", updatedFirstName);
@@ -196,6 +204,10 @@ const handleSubmit = async (event) => {
         <InputField2 name="firstName" label="FIRST NAME" />
             <InputField2 name="lastName" label="LAST NAME" />
             <SubmitButton type="submit">&#8594;</SubmitButton>
+            {
+              error && 
+              <SelectError message="You didn't fill out all fields!"></SelectError>
+            }
 {/* Add this Submit button */}
             </form>
         </RightBox>

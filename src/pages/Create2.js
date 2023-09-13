@@ -16,6 +16,7 @@ import Dropdown from '../components/Dropdown.js';
 import { useState, useRef } from 'react';
 import axios from 'axios';
 import { Navigate, useNavigate}  from 'react-router-dom';
+import SelectError from '../components/SelectError.js';
 
 const FullPageCenter = styled('div')({
   display: 'flex',
@@ -179,6 +180,7 @@ export default function Create2({children}) {
   const [phoneNumber, setPhoneNumber] = useState('');
   const formRef = useRef(null);
   const navigate = useNavigate();
+  const [error, setError] = useState(false);
 
   const handleMajorChange = (selectedMajor) => {
     setMajor(selectedMajor);
@@ -204,6 +206,11 @@ const handleSubmit = async (event) => {
   const updatedGender = formData.get("gender");
   const updatedAttractedTo = formData.get("attractedTo");
   const updatedPhoneNumber = formData.get("phoneNumber");
+
+  if (!updatedMajor || !updatedGender || !updatedAttractedTo || !updatedPhoneNumber) {
+    setError(true);
+    return; // stop the function here
+  }
 
   // Use the extracted data as needed
   console.log("Updated major:", updatedMajor);
@@ -266,6 +273,10 @@ const handleSubmit = async (event) => {
             <InputField name="phoneNumber" label="YOUR PHONE NUMBER" />
             <Typography variant="body2" sx={{width:"300px"}}>Your phone number will be shown to those you've matched with!</Typography>
             <SubmitButton type="submit">&#8594;</SubmitButton>
+            {
+              error &&
+              <SelectError message="You didn't fill out all fields!"></SelectError>
+            }
             </form>
         </RightBox>
     </CenterContainer>
