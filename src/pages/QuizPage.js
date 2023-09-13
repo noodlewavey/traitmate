@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import styled from '@emotion/styled';
-import RightBox from '../components/RightBox.jsx';
+import RightBox from '../components/RightBox.js';
 import CreateNavbar from '../components/CreateNavbar.js';
 import LeftBox from '../components/LeftBox.js'
 import Radio from '@mui/material/Radio';

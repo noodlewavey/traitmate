@@ -5,17 +5,9 @@ import { useTheme } from '@mui/material/styles';
 //import this to use theme from parent
 import { Typography } from '@mui/material';
 
-const InputField = ({label, color, onChange, name, value}) => {
+const InputField2 = ({label, color, onChange, name, value}) => {
 
   const theme = useTheme();
-
-  const handleInputChange = (event) => {
-    if (onChange) {
-      onChange(event.target.value);
-      //calls onchange
-      // Notify parent component about input changes
-    }
-  };
 
   //above is a callback handler that calls the onchange passed down by parent
   //initialize theme
@@ -38,7 +30,7 @@ const InputField = ({label, color, onChange, name, value}) => {
     variant="outlined" 
     name={name}
     value={value}
-    onChange={handleInputChange}  //call handler for input changes
+    onChange={onChange}  //call handler for input changes
     sx={{ 
       width: '300px',//added this, made the thing consistent 
       margin: 0,
@@ -55,4 +47,4 @@ const InputField = ({label, color, onChange, name, value}) => {
   );
 }
 
-export default InputField;
+export default InputField2;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import styled from '@emotion/styled';
-import RightBox from '../components/RightBox.jsx';
+import RightBox from '../components/RightBox.js';
 import CreateNavbar from '../components/CreateNavbar.js';
 import LeftBox from '../components/LeftBox.js'
 // import '../styles.css';
@@ -10,10 +10,10 @@ import { Typography } from "@mui/material";
 // this typography import was necessary to use the font?
 //ask chatgpt
 //apparently its not important?
-import InputField from '../components/InputFIeld.js';
+import InputField2 from '../components/InputField2.js';
 import {motion} from 'framer-motion';
 import Dropdown from '../components/Dropdown.js';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 const FullPageCenter = styled('div')({
   display: 'flex',
@@ -96,17 +96,32 @@ const [firstName, setFirstName] = useState('');
 const [lastName, setLastName] = useState('');
 const [age, setAge] = useState(0);
 const [university, setUniversity] = useState('');
+const formRef = useRef(null);
 
-const handleFirstNameChange = (value) => setFirstName(value);
-const handleLastNameChange = (value) => setLastName(value);
 const handleAgeChange = (newValue) => setAge(newValue); // Adjust based on Dropdown component
 const handleUniversityChange = (newValue) => setUniversity(newValue); // Adjust based on Dropdown 
 
+  const handleSubmit = async (event) => {
 
-  const handleSubmit = async () => {
+    event.preventDefault();
+
+    // Use the formRef to access the form
+    const formData = new FormData(formRef.current);
+
+    // Extract the data from formData
+    const updatedFirstName = formData.get("firstName");
+    const updatedLastName = formData.get("lastName");
+
+    // Use the extracted data as needed
+    console.log("Updated First Name:", updatedFirstName);
+    console.log("Updated Last Name:", updatedLastName);
+    console.log("Updated Age:", age);
+    console.log("Updated University:", university);
+
+
     const payload = {
-      firstName,
-      lastName,
+      firstName: updatedFirstName,
+      lastName: updatedLastName,
       age,
       university
     };
@@ -148,15 +163,17 @@ const handleUniversityChange = (newValue) => setUniversity(newValue); // Adjust 
     {/* adding navbar above container so its rendered above containers... */}
     <CenterContainer>
       <LeftBox>
-      <ItalicText style={{marginLeft: '3rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>"Introduce yourself!"</ItalicText> 
+      <ItalicText style={{marginLeft: '3rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>'Introduce yourself!'</ItalicText> 
       </LeftBox>
         <RightBox>
-            <InputField label="FIRST NAME"  value={firstName} onChange={handleFirstNameChange} />
-            <InputField label="LAST NAME" value={lastName} onChange={handleLastNameChange} />
+        <form ref={formRef} onSubmit={handleSubmit}>
+        <InputField2 name="firstName" label="FIRST NAME" />
+            <InputField2 name="lastName" label="LAST NAME" />
             <Dropdown label="AGE" menuitems={validages} value={age} onChange={handleAgeChange}/>
             {/* add dropdown menu! for age and major  */}
             <Dropdown label="UNIVERSITY" menuitems={unilist} value={university} onChange={handleUniversityChange} />
-            <button onClick={handleSubmit}>Submit</button> {/* Add this Submit button */}
+            <button type="submit">Submit</button> {/* Add this Submit button */}
+            </form>
         </RightBox>
     </CenterContainer>
     </Wrapper>
