@@ -130,34 +130,36 @@ const handleUniversityChange = (selectedUni) => {
     const payload = {
       firstName: updatedFirstName,
       lastName: updatedLastName,
-      age,
-      university
+      age: updatedAge,
+      university: updatedUniversity,
     };
   
     console.log(payload); // Just for debugging
   
-    try {
-      const response = await fetch('http://localhost:8080/auth/update1', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      });
-  
-      if (!response.ok) {
-        // Handle any response that's not a 2xx success status
-        const responseData = await response.json();
-        console.error('Failed to submit data:', responseData);
-      } else {
-        console.log('Successfully submitted data!');
-        // Handle successful submission (e.g., redirect to another page, show a success message, etc.)
-      }
-    } catch (error) {
-      // Handle any errors that might occur during the fetch
-      console.error('There was a problem with the fetch operation:', error.message);
-    }
-  };
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+      myHeaders.append("Cookie", "JSESSIONID=A3E06BECD4AFCCF749C1CC1EA8ED2255");
+
+var raw = JSON.stringify({
+  "firstName": "Art",
+  "lastName": "male",
+  "age": 19,
+  "university": "323-333-3333"
+});
+
+var requestOptions = {
+  method: 'PUT',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("http://localhost:8080/auth/update1", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+}
+
   
 
   return (
