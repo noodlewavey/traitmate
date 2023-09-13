@@ -139,7 +139,7 @@ const handleSubmit = async (event) => {
       withCredentials: true, // Set withCredentials to true
       headers: {
         'Content-Type': 'application/json',
-      },
+      }
     });
 
     if (response.status !== 200) {
@@ -154,6 +154,7 @@ const handleSubmit = async (event) => {
     console.error('There was a problem with the Axios request:', error.message);
   }
 };
+
 
   
 

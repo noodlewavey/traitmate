@@ -112,6 +112,7 @@ const theme = useTheme();
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
+        withCredentials: true,
       };
   
       const response = await axios.post('http://localhost:8080/auth/login', loginDto, config);
