@@ -75,7 +75,6 @@ const CenterContainer = styled(Box)(({ theme }) => ({
     margin: 'auto',
     marginTop: '4rem',
     overflowX: 'hidden',
-    border: '1px solid black',
     overflowY: 'hidden',
     //if there isnt enough space, parent container forces horizonal scroll
   }));

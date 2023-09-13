@@ -15,6 +15,7 @@ import {motion} from 'framer-motion';
 import Dropdown from '../components/Dropdown.js';
 import { useState, useRef } from 'react';
 import axios from 'axios';
+import { Navigate, useNavigate}  from 'react-router-dom';
 
 const FullPageCenter = styled('div')({
   display: 'flex',
@@ -63,7 +64,6 @@ const CenterContainer = styled(Box)(({ theme }) => ({
     margin: 'auto',
     marginTop: '4rem',
     overflowX: 'hidden',
-    border: '1px solid black',
     overflowY: 'hidden',
     //if there isnt enough space, parent container forces horizonal scroll
   }));
@@ -89,6 +89,20 @@ const unilist = [
   "Waterloo Univeristy"
 ]
 
+const SubmitButton = styled.button({
+  backgroundColor: 'transparent',   // Makes the button background transparent
+  border: 'none',                   // Removes the default button border
+  cursor: 'pointer',                // Changes the cursor to a hand when hovering over the button
+  fontSize: '8rem',                 // Increases the font size
+  marginBottom: '2rem',             // Shifts the button down by adding margin at the bottom
+  '&:hover': {
+    opacity: 0.4                    // Makes the button slightly transparent when hovered
+  },
+  '&:focus': {
+    outline: 'none'                 // Removes the blue outline when the button is focused
+  }
+});
+
 
 
 export default function Create1() {
@@ -98,6 +112,7 @@ const [lastName, setLastName] = useState('');
 const [age, setAge] = useState(0);
 const [university, setUniversity] = useState('');
 const formRef = useRef(null);
+const navigate = useNavigate();
 
 const handleAgeChange = (selectedAge) => {
   setAge(selectedAge);
@@ -147,6 +162,7 @@ const handleSubmit = async (event) => {
       console.error('Failed to submit data:', response.data);
     } else {
       console.log('Successfully submitted data!');
+      navigate('/create/2');
       // Handle successful submission (e.g., redirect to another page, show a success message, etc.)
     }
   } catch (error) {
@@ -165,7 +181,6 @@ const handleSubmit = async (event) => {
     exit={{opacity: 0, transition: {duration: 0.4}}}>
     <FullPageCenter>
     <Wrapper>
-    <CreateNavbar />
     {/* adding navbar above container so its rendered above containers... */}
     <CenterContainer>
       <LeftBox>
@@ -180,7 +195,8 @@ const handleSubmit = async (event) => {
             <input type="hidden" name="university" value={university} />
         <InputField2 name="firstName" label="FIRST NAME" />
             <InputField2 name="lastName" label="LAST NAME" />
-            <button type="submit" >Submit</button> {/* Add this Submit button */}
+            <SubmitButton type="submit">&#8594;</SubmitButton>
+{/* Add this Submit button */}
             </form>
         </RightBox>
     </CenterContainer>

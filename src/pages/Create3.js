@@ -62,7 +62,6 @@ const CenterContainer = styled(Box)(({ theme }) => ({
     margin: 'auto',
     marginTop: '4rem',
     overflowX: 'hidden',
-    border: '1px solid black',
     overflowY: 'hidden',
     //if there isnt enough space, parent container forces horizonal scroll
   }));
@@ -71,7 +70,20 @@ const CenterContainer = styled(Box)(({ theme }) => ({
   //relative makes container point of ref to absolutely positioned children
   //overflowX: 'scroll' and overflowY: 'scroll': These styles force both horizontal and vertical scrollbars to appear if the content inside CenterContainer exceeds its boundaries.
   
-
+  const SubmitButton = styled.button({
+    backgroundColor: 'transparent',   // Makes the button background transparent
+    border: 'none',                   // Removes the default button border
+    cursor: 'pointer',                // Changes the cursor to a hand when hovering over the button
+    fontSize: '8rem',                 // Increases the font size
+    marginBottom: '2rem',             // Shifts the button down by adding margin at the bottom
+    '&:hover': {
+      opacity: 0.4                    // Makes the button slightly transparent when hovered
+    },
+    '&:focus': {
+      outline: 'none'                 // Removes the blue outline when the button is focused
+    }
+  });
+  
 
 // you can add styling on top of navbar to position it!
 
@@ -83,7 +95,6 @@ export default function Create3({children}) {
     exit={{opacity: 0, transition: {duration: 0.4}}}>
     <FullPageCenter>
     <Wrapper>
-    <CreateNavbar />
     {/* adding navbar above container so its rendered above containers... */}
     <CenterContainer>
       <LeftBox>
@@ -91,7 +102,6 @@ export default function Create3({children}) {
       </LeftBox>
         <RightBox>
             <UploadPhoto />
-            <Typography variant="body2" sx={{width:"300px"}}>Choose a photo that is well-lit and shows your face clearly. The photo will be cropped automatically in a circular frame and displayed above your profile </Typography>
         </RightBox>
     </CenterContainer>
     </Wrapper>

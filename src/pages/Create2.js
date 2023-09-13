@@ -15,6 +15,7 @@ import {motion} from 'framer-motion';
 import Dropdown from '../components/Dropdown.js';
 import { useState, useRef } from 'react';
 import axios from 'axios';
+import { Navigate, useNavigate}  from 'react-router-dom';
 
 const FullPageCenter = styled('div')({
   display: 'flex',
@@ -63,7 +64,6 @@ const CenterContainer = styled(Box)(({ theme }) => ({
     margin: 'auto',
     marginTop: '4rem',
     overflowX: 'hidden',
-    border: '1px solid black',
     overflowY: 'hidden',
     //if there isnt enough space, parent container forces horizonal scroll
   }));
@@ -156,6 +156,21 @@ const genders = [
     "Female",
     "Other"
 ]
+
+const SubmitButton = styled.button({
+  backgroundColor: 'transparent',   // Makes the button background transparent
+  border: 'none',                   // Removes the default button border
+  cursor: 'pointer',                // Changes the cursor to a hand when hovering over the button
+  fontSize: '8rem',                 // Increases the font size
+  marginBottom: '2rem',             // Shifts the button down by adding margin at the bottom
+  '&:hover': {
+    opacity: 0.4                    // Makes the button slightly transparent when hovered
+  },
+  '&:focus': {
+    outline: 'none'                 // Removes the blue outline when the button is focused
+  }
+});
+
 export default function Create2({children}) {
 
   const [major, setMajor] = useState('');
@@ -163,6 +178,7 @@ export default function Create2({children}) {
   const [attractedTo, setAttractedTo] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const formRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleMajorChange = (selectedMajor) => {
     setMajor(selectedMajor);
@@ -217,6 +233,7 @@ const handleSubmit = async (event) => {
       console.error('Failed to submit data:', response.data);
     } else {
       console.log('Successfully submitted data!');
+      navigate('/create/3');
       // Handle successful submission (e.g., redirect to another page, show a success message, etc.)
     }
   } catch (error) {
@@ -232,7 +249,6 @@ const handleSubmit = async (event) => {
     exit={{opacity: 0, transition: {duration: 0.4}}}>
     <FullPageCenter>
     <Wrapper>
-    <CreateNavbar />
     {/* adding navbar above container so its rendered above containers... */}
     <CenterContainer>
       <LeftBox>
@@ -249,7 +265,7 @@ const handleSubmit = async (event) => {
             <input type="hidden" name="attractedTo" value={attractedTo} />
             <InputField name="phoneNumber" label="YOUR PHONE NUMBER" />
             <Typography variant="body2" sx={{width:"300px"}}>Your phone number will be shown to those you've matched with!</Typography>
-            <button type="submit" >Submit</button> 
+            <SubmitButton type="submit">&#8594;</SubmitButton>
             </form>
         </RightBox>
     </CenterContainer>

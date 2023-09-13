@@ -10,7 +10,6 @@ function LeftBox({ children }) {
       marginRight: 'auto',
       //This is a nifty trick when you're working with flex or grid containers. When used in a flex container with flex-direction: row, it pushes the item (in this case, RightBox) to the far right side of the container. If the parent is a regular block container, this won't have any effect.
       height: '100%',
-      border: '1px solid black',
       display: 'flex', // Add display flex to center children
       justifyContent: 'center', // Center horizontally, this affects children
       alignItems: 'center', // Center vertically

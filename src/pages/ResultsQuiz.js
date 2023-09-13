@@ -16,6 +16,7 @@ import BarResult from '../components/BarResult.js';
 //problem is not with import..
 import { PersonalityScoreProvider, usePersonality } from '../components/PersonalityScoreProvider.js';
 //need to import usepersonality
+import MainNavbar from '../components/MainNavbar.js';
 
 const FullPageCenter = styled('div')({
   display: 'flex',
@@ -64,7 +65,6 @@ const CenterContainer = styled(Box)(({ theme }) => ({
     margin: 'auto',
     marginTop: '4rem',
     overflowX: 'scroll',
-    border: '1px solid black',
     overflowY: 'scroll',
     justifyContent:'center', //add this to center content 
     alignItems: 'center', //add this to center content
@@ -92,7 +92,7 @@ export default function ResultsQuiz({children}) {
     exit={{opacity: 0, transition: {duration: 0.4}}}>
     <FullPageCenter>
     <Wrapper>
-    <CreateNavbar />
+    <MainNavbar></MainNavbar>
     {/* adding navbar above container so its rendered above containers... */}
     <CenterContainer>
         <Typography variant="h1">Your Big 5 Results!</Typography>
