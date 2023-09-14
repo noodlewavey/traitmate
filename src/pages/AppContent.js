@@ -18,6 +18,7 @@ import Create3 from './Create3';
 import { AuthProvider } from '../components/AuthContext';
 import { ProfileProvider } from '../components/ProfileContext';
 import { ImageUploadProvider } from '../components/ImageUploadContext';
+import LogoutPage from './LogoutPage';
 
 function AppContent() {
     const location = useLocation();
@@ -103,6 +104,7 @@ function AppContent() {
               <Route path="/quiz/:questionId" element={<QuizPage questions={questions}/> }  />
                 <Route path="/resultsquiz" element={<ResultsQuiz />}/>
                 <Route path="/login" element={<LoginPage />} />
+                <Route path="/logout" element={<LogoutPage />} />
             </Routes>
             </ProfileProvider>
             </ImageUploadProvider>

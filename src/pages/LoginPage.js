@@ -21,6 +21,9 @@ import Stack from '@mui/material/Stack';
 import LogButton from '../components/LogButton.js';
 import axios from 'axios';
 import { useAuth } from '../components/AuthContext.js';
+import SelectSuccess from '../components/SelectSuccess.js';
+import { Navigate, useNavigate } from 'react-router-dom';
+import MainNavbar from '../components/MainNavbar.js';
 
 
 const FullPageCenter = styled('div')({
@@ -70,7 +73,6 @@ const CenterContainer = styled(Box)(({ theme }) => ({
     margin: 'auto',
     marginTop: '4rem',
     overflowX: 'hidden',
-    border: '1px solid black',
     overflowY: 'hidden',
     //if there isnt enough space, parent container forces horizonal scroll
   }));
@@ -97,8 +99,13 @@ export default function LoginPage({children}) {
 const theme = useTheme();
 
   const {isLoggedIn, setIsLoggedIn} = useAuth();
+
+  const [ success, setSuccess ] = useState(false);
+
+  const [error, setError ] = useState(false);
   
 
+  const navigate = useNavigate();
 
   const handleLogin = async (inputUsername, inputPassword) => {
     try {
@@ -121,15 +128,18 @@ const theme = useTheme();
       if (response.status === 200) {
         // Successful login
         setIsLoggedIn(true);
+        navigate('/');
         console.log('Login successful!');
       } else {
         // Handle login failure
         setIsLoggedIn(false);
+        setError(true);
         console.error('Login failed.');
       }
     } catch (error) {
       // Handle other errors
       setIsLoggedIn(false);
+      setError(true);
       console.error('Error during login:', error);
     }
   };
@@ -181,6 +191,7 @@ const handleRegister = async (inputUsername, inputPassword) => {
     if (response.status === 200) {
       // Successful registration
       console.log('Registration successful!');
+      setSuccess(true);
     } else {
       // Handle registration failure
       console.error('Registration failed.');
@@ -201,13 +212,24 @@ const handleRegister = async (inputUsername, inputPassword) => {
     exit={{opacity: 0, transition: {duration: 0.4}}}>
     <FullPageCenter>
     <Wrapper>
-    <CreateNavbar />
+    <MainNavbar />
     {/* adding navbar above container so its rendered above containers... */}
     <CenterContainer>
       <LeftBox>
+      { isLoggedIn===true &&
+    <div sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100v' }}>
+      <ItalicText style={{wordWrap:"break-word", overflowWrap: "break-word"}}>You are logged in!</ItalicText> 
+      </div>
+        }
+        {
+          isLoggedIn===false &&
       <ItalicText style={{marginLeft: '6rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>Log in to your account</ItalicText> 
+        }
+         
       </LeftBox>
         <RightBox>
+          {
+            isLoggedIn===false &&
             <Stack spacing="1rem" >
             <Box flexDirection="row" style={{ display: 'flex', width: '100%' }} justifyContent="space-between"> 
             {/* the space between is inside the parent stack */}
@@ -224,7 +246,22 @@ const handleRegister = async (inputUsername, inputPassword) => {
              {/*the submit button fills the space in the flex component..the stack component   */}
             {/* </Stack> */}
             {/* <AuthContent />  */}
+            
             </Stack>
+}
+
+{ isLoggedIn===true &&
+
+<p>Time to go find your traitmate!</p>
+
+}
+            {error && 
+            <SelectError message="Wrong login credentials. Try again?"></SelectError>
+            }
+            { 
+            success &&
+            <SelectSuccess message="Successfully registered! Now log in."></SelectSuccess>
+}
         </RightBox>
     </CenterContainer>
     </Wrapper>
