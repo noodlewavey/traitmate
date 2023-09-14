@@ -18,6 +18,9 @@ import { PersonalityScoreProvider, usePersonality } from '../components/Personal
 //need to import usepersonality
 import MainNavbar from '../components/MainNavbar.js';
 import { useTheme } from '@emotion/react';
+import { useAuth } from '../components/AuthContext.js';
+import axios from 'axios';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const FullPageCenter = styled('div')({
   display: 'flex',
@@ -102,9 +105,50 @@ const SubmitButton = styled.button(({ theme }) => ({
 //im too lazy!!!!
 
 
+
+
 export default function LogoutPage() {
 
+const {isLoggedIn, setIsLoggedIn} = useAuth();
+
 const theme = useTheme();
+
+const navigate = useNavigate();
+
+const handleLogout = async () => {
+  if (isLoggedIn === false){
+    console.log("Need to log out");
+    return;
+  }
+
+  // Logic for registration
+  try {
+    const emptyRequest = {
+      //sending no body
+    };
+
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json', // Set the request header to JSON
+      },
+    };
+
+    const response = await axios.post('http://localhost:8080/auth/logout', emptyRequest, config);
+
+    if (response.status === 200) {
+      // Successful registration
+      console.log('Logged out successfully!');
+      navigate('/');
+    } else {
+      // Handle registration failure
+      console.error('Logout failed');
+    }
+  } catch (error) {
+    // Handle other errors
+    console.error('Error during logout', error);
+  }
+};
 
   return (
     <motion.div
@@ -115,7 +159,7 @@ const theme = useTheme();
     <Wrapper>
     <MainNavbar></MainNavbar>
     <CenterContainer>
-        <SubmitButton>LOG OUT HERE</SubmitButton>
+        <SubmitButton onClick={handleLogout}>LOG OUT HERE</SubmitButton>
     </CenterContainer>
     </Wrapper>
     </FullPageCenter>
