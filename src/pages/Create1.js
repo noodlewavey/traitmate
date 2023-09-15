@@ -17,6 +17,7 @@ import { useState, useRef } from 'react';
 import axios from 'axios';
 import { Navigate, useNavigate}  from 'react-router-dom';
 import SelectError from '../components/SelectError.js';
+import { ConnectingAirportsOutlined } from '@mui/icons-material';
 
 const FullPageCenter = styled('div')({
   display: 'flex',
@@ -126,10 +127,11 @@ const handleUniversityChange = (selectedUni) => {
 };
 
 const handleSubmit = async (event) => {
+  console.log("handlesubmit triggered");
   event.preventDefault();
 
   // Use the formRef to access the form
-  const formData = new FormData(document.getElementById("submission"));
+  const formData = new FormData(document.getElementById("update1"));
 
   // Extract the data from formData
   const updatedFirstName = formData.get("firstName");
@@ -161,8 +163,9 @@ const handleSubmit = async (event) => {
     const response = await axios.post('http://localhost:8080/auth/update1', payload, {
       withCredentials: true, // Set withCredentials to true
       headers: {
+        'Accept': 'application/json',
         'Content-Type': 'application/json',
-      }
+      },
     });
 
     if (response.status !== 200) {
@@ -195,14 +198,16 @@ const handleSubmit = async (event) => {
       <ItalicText style={{marginLeft: '3rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>'Introduce yourself!'</ItalicText> 
       </LeftBox>
         <RightBox>
-        <form ref={formRef} onSubmit={handleSubmit} id="submission">
+        <form ref={formRef} onSubmit={handleSubmit} id="update1">
         <Dropdown label="AGE" menuitems={validages} value={age} onChange={handleAgeChange}></Dropdown>
             <input type="hidden" name="age" value={age} />
             {/* add dropdown menu! for age and major  */}
             <Dropdown label="UNIVERSITY" menuitems={unilist} value={university} onChange={handleUniversityChange}></Dropdown>
             <input type="hidden" name="university" value={university} />
         <InputField2 name="firstName" label="FIRST NAME" />
+        <input type="hidden" name="firstName" value={firstName} />
             <InputField2 name="lastName" label="LAST NAME" />
+            <input type="hidden" name="lastName" value={lastName} />
             <SubmitButton type="submit">&#8594;</SubmitButton>
             {
               error && 

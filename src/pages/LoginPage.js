@@ -103,6 +103,8 @@ const theme = useTheme();
   const [ success, setSuccess ] = useState(false);
 
   const [error, setError ] = useState(false);
+
+  const [taken, setTaken] = useState(false);
   
 
   const navigate = useNavigate();
@@ -195,6 +197,7 @@ const handleRegister = async (inputUsername, inputPassword) => {
     } else {
       // Handle registration failure
       console.error('Registration failed.');
+      setTaken(true);
     }
   } catch (error) {
     // Handle other errors
@@ -261,6 +264,10 @@ const handleRegister = async (inputUsername, inputPassword) => {
             { 
             success &&
             <SelectSuccess message="Successfully registered! Now log in."></SelectSuccess>
+}
+{
+  taken &&
+  <SelectError message="The username is already taken! Try another"></SelectError>
 }
         </RightBox>
     </CenterContainer>

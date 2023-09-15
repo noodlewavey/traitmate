@@ -139,6 +139,7 @@ const handleLogout = async () => {
     if (response.status === 200) {
       // Successful registration
       console.log('Logged out successfully!');
+      setIsLoggedIn(false);
       navigate('/');
     } else {
       // Handle registration failure
