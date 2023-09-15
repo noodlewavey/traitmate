@@ -24,6 +24,7 @@ import { useAuth } from '../components/AuthContext.js';
 import SelectSuccess from '../components/SelectSuccess.js';
 import { Navigate, useNavigate } from 'react-router-dom';
 import MainNavbar from '../components/MainNavbar.js';
+import PasswordInputField from '../components/PasswordInputField.js';
 
 
 const FullPageCenter = styled('div')({
@@ -243,7 +244,7 @@ const handleRegister = async (inputUsername, inputPassword) => {
             {/* <Stack spacing="1rem"> don't need this stack */} 
             <form onSubmit={handleSubmit} id="submission">
             <InputField name="username" label="USERNAME" />
-            <InputField name="password" label="PASSWORD" />
+            <PasswordInputField name="password" label="PASSWORD" />
             <LogButton onClick={handleSubmit} label="submit" color="#000000" style={{flex:1}}/>
             </form>
              {/*the submit button fills the space in the flex component..the stack component   */}
