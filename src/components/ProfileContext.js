@@ -33,7 +33,7 @@ export const ProfileProvider = ({ children }) => {
           setIsProfileCreated(false);
         }
       });
-  }, [isLoggedIn]);
+  }, [isLoggedIn, isImageUploaded, isProfileCreated]);
 
   return (
     <ProfileContext.Provider value={{ isProfileCreated, setIsProfileCreated }}>
