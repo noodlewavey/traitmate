@@ -32,11 +32,23 @@ const ProfileTemplate = ({data}) => {
         ...theme.typography.body2,
       }));
 
+      const universityLocations = {
+        "University of Toronto": "Toronto, ON",
+        "University of British Columbia": "Vancouver, BC",
+        "McGill University": "Montreal, QC",
+        "McMaster University": "Hamilton, ON",
+        "University of Montreal": "Montreal, QC",
+        "Concordia University": "Montreal, QC",
+        "Ryerson University": "Toronto, ON",
+        "Waterloo University": "Waterloo, ON"
+    }
+    
+
     return (
         <CenteredBox>
-            <CircularFrame imageUrl="https://st3.depositphotos.com/1017228/18861/i/450/depositphotos_188618952-stock-photo-portrait-of-asian-lovely-woman.jpg"/>
+            <CircularFrame imageUrl={`data:image/jpeg;base64,${data.profileImage}`}/>
               <Typography variant="h1" style={{justifyContent: 'center', fontSize: '2rem' }}>
-  {data.firstName}{data.lastName}</Typography>
+  {data.firstName}</Typography>
             <MyStack>
                 <Root>
                 <Box display="flex" justifyContent="space-between">
@@ -46,7 +58,7 @@ const ProfileTemplate = ({data}) => {
             <Divider/>
                  <Box display="flex" justifyContent="space-between">
                 <StyledText>{data.university}</StyledText>
-                <StyledText>MONTREAL, QC</StyledText> 
+                <StyledText>{universityLocations[data.university]}</StyledText> 
                 {/* ADD FEATURE WHERE I HAVE CITIES CORRESPONDING TO UNIVERSITY */}
                 </Box>
                 </Root>
