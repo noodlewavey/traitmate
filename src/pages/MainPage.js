@@ -12,6 +12,11 @@ const FullPageCenter = styled('div')({
     alignItems: 'center',
     minHeight: '100vh', // Set the minimum height to 100% of the viewport height
     //position: 'relative', //ensure relative positioning for stacking context
+    backgroundImage: 'url("/MOONASSI_16_UNTITLED.png")', // <-- add this line
+    backgroundSize: '800px',  // cover ensures the image fills the container without stretching
+    backgroundPosition: 'bottom',  // center the image
+    backgroundRepeat: 'no-repeat',  // don't repeat the image
+    position: 'relative',
   });
   
   
@@ -54,11 +59,11 @@ function MainPage() {
     initial={{opacity: 0}}
     animate={{opacity: 1}}
     exit={{opacity: 0, transition: {duration: 0.4}}}>
-    <FullPageCenter>
+    <FullPageCenter sx={{zIndex: -1000}}>
     <Wrapper> 
      <CenterContainer> 
     <MainNavbar sx={{zIndex: 9999 }} />
-    <MainHeader sx={{zIndex:-1}}/> 
+    <MainHeader/> 
     </CenterContainer>
     </Wrapper> 
     </FullPageCenter> 

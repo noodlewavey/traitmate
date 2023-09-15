@@ -18,7 +18,7 @@ const NavbarWrapper = styled('div')(({ theme }) => ({
     //look up when to use display flex
     justifyContent: 'center', // horizontal centering in flexbox
     alignItems: 'center', // vertical centering in flexbox
-    zIndex: -1, // set this to a high value to make text hoverable in MyProfile.js
+    zIndex: 0, // set this to a high value to make text hoverable in MyProfile.js
     // i think this overflow auto is what causes it to be fixed size
 }));
 
