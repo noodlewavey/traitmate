@@ -17,7 +17,7 @@ import styled from "@emotion/styled";
 import Box from "@mui/material/Box";
 import { useEffect } from "react";
 import { useRef } from "react";
-const ProfileTemplate = () => {
+const ProfileTemplate = ({data}) => {
 
 
     const Root = styled('div')(({ theme }) => ({
@@ -36,17 +36,18 @@ const ProfileTemplate = () => {
         <CenteredBox>
             <CircularFrame imageUrl="https://st3.depositphotos.com/1017228/18861/i/450/depositphotos_188618952-stock-photo-portrait-of-asian-lovely-woman.jpg"/>
               <Typography variant="h1" style={{justifyContent: 'center', fontSize: '2rem' }}>
-  Jasmine Wang</Typography>
+  {data.firstName}{data.lastName}</Typography>
             <MyStack>
                 <Root>
                 <Box display="flex" justifyContent="space-between">
-                <StyledText>AGE: 21</StyledText>
-                <StyledText>GENDER: FEMALE</StyledText>
+                <StyledText>AGE: {data.age}</StyledText>
+                <StyledText>GENDER: {data.gender}</StyledText>
                 </Box>
             <Divider/>
                  <Box display="flex" justifyContent="space-between">
-                <StyledText>MCGILL UNIVERSITY</StyledText>
-                <StyledText>MONTREAL, QC</StyledText>
+                <StyledText>{data.university}</StyledText>
+                <StyledText>MONTREAL, QC</StyledText> 
+                {/* ADD FEATURE WHERE I HAVE CITIES CORRESPONDING TO UNIVERSITY */}
                 </Box>
                 </Root>
             </MyStack>
@@ -56,7 +57,7 @@ const ProfileTemplate = () => {
             </MyStack>
             <MyStack>
                 <AutoStoriesIcon />
-                <b>MAJOR</b>: Computer Science
+                <b>MAJOR</b>: {data.major}
                
             </MyStack>
             <BigFive />

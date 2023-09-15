@@ -17,7 +17,7 @@ import {motion} from 'framer-motion';
 import { usePersonality } from '../components/PersonalityScoreProvider';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import CircularProgress from '@mui/material';
+import {CircularProgress} from '@mui/material';
 
 function MyPersonalProfile() {
 
@@ -29,17 +29,17 @@ function MyPersonalProfile() {
 
   
   useEffect(() => {
-    axios.get('http://localhost:8080/auth/myprofile')
+    axios.get('http://localhost:8080/auth/myprofile', { withCredentials: true })
         .then(response => {
             setProfileData(response.data);
+            console.log("success");
             setIsLoading(false);
         })
         .catch(err => {
             setError(err.message);
             setIsLoading(false);
         });
-}, []);  // Empty dependency array ensures this useEffect runs once when component mounts
-
+}, []);
 
   return (
     <motion.div
@@ -61,10 +61,9 @@ function MyPersonalProfile() {
         isLoading &&
         <CircularProgress />
       }
-        {
-          isLoading===false&&
-        <ProfileTemplate />
-}
+      {  profileData&&
+        <ProfileTemplate data={profileData} /> 
+      }
         {/* <IconButton 
           aria-label="dislike" 
           sx={{ 

@@ -19,6 +19,7 @@ import { AuthProvider } from '../components/AuthContext';
 import { ProfileProvider } from '../components/ProfileContext';
 import { ImageUploadProvider } from '../components/ImageUploadContext';
 import LogoutPage from './LogoutPage';
+import MyPersonalProfile from './MyPersonalProfile';
 
 function AppContent() {
     const location = useLocation();
@@ -95,7 +96,7 @@ function AppContent() {
       <ImageUploadProvider>
         <ProfileProvider>
             <Routes location={location} key={location.pathname}>
-              <Route path="/myprofile" element={<MyProfile />} />
+              <Route path="/myprofile" element={<MyPersonalProfile />} />
               <Route path="/" element={<MainPage />} />
               <Route path="/create" element={<ProfileCreation />} />
               <Route path = "/create/1" element ={<Create1 />} />
