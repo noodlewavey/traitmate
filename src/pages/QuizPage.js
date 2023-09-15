@@ -252,7 +252,7 @@ export default function QuizPage({children, questions}) {
               )}
               </div>
       </LeftBox>
-        <RightBox>
+        <RightBox justify="yes">
         <FormControl>
                 <RadioGroup
                     aria-labelledby="demo-radio-buttons-group-label"

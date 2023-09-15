@@ -17,12 +17,13 @@ import { useState, useRef } from 'react';
 import axios from 'axios';
 import { Navigate, useNavigate}  from 'react-router-dom';
 import SelectError from '../components/SelectError.js';
+import Singleselect from '../components/Singleselect.js';
 
 const FullPageCenter = styled('div')({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  minHeight: '100vh', // Set the minimum height to 100% of the viewport height
+  minHeight: '100vh', // Set the minimum height to 100% of the viewport height]
 });
 
 //this is to center the content
@@ -42,8 +43,6 @@ const Wrapper = styled('div')({
     alignItems: 'center',
     height: '45rem',
     width: '80rem',
-    overflowX: 'hidden',
-    overflowY: 'scroll',
     marginBottom: '4rem',
     position: 'relative', // This is important for the absolute positioning of the child.
 });
@@ -64,8 +63,8 @@ const CenterContainer = styled(Box)(({ theme }) => ({
     height: '98%',
     margin: 'auto',
     marginTop: '4rem',
-    overflowX: 'hidden',
-    overflowY: 'hidden',
+    overflowX: 'scroll',
+    overflowY: 'scroll',
     //if there isnt enough space, parent container forces horizonal scroll
   }));
 
@@ -181,6 +180,7 @@ export default function Create2({children}) {
   const formRef = useRef(null);
   const navigate = useNavigate();
   const [error, setError] = useState(false);
+  const [publicize, setPublicize] = useState('');
 
   const handleMajorChange = (selectedMajor) => {
     setMajor(selectedMajor);
@@ -206,8 +206,9 @@ const handleSubmit = async (event) => {
   const updatedGender = formData.get("gender");
   const updatedAttractedTo = formData.get("attractedTo");
   const updatedPhoneNumber = formData.get("phoneNumber");
+  const updatedInstagram = formData.get("instagram");
 
-  if (!updatedMajor || !updatedGender || !updatedAttractedTo || !updatedPhoneNumber) {
+  if (!updatedMajor || !updatedGender || !updatedAttractedTo || !updatedInstagram) {
     setError(true);
     return; // stop the function here
   }
@@ -217,12 +218,16 @@ const handleSubmit = async (event) => {
   console.log("Updated gender:", updatedGender);
   console.log("Updated attractecto:", updatedAttractedTo );
   console.log("Updated phone number", updatedPhoneNumber);
+  console.log("preference to display quiz results", publicize);
+  console.log("instagram username", updatedInstagram);
 
   const payload = {
     major: updatedMajor,
     gender: updatedGender,
     attractedTo: updatedAttractedTo,
     phoneNumber: updatedPhoneNumber,
+    displayQuiz: publicize,
+    instagram: updatedInstagram,
   };
 
   console.log(payload); // Just for debugging
@@ -270,8 +275,18 @@ const handleSubmit = async (event) => {
             <input type="hidden" name="gender" value={gender} />
             <Dropdown label="ATTRACTED TO" menuitems={genderslist} value={attractedTo} onChange={handleAttractedTo}/>
             <input type="hidden" name="attractedTo" value={attractedTo} />
-            <InputField name="phoneNumber" label="YOUR PHONE NUMBER" />
-            <Typography variant="body2" sx={{width:"300px"}}>Your phone number will be shown to those you've matched with!</Typography>
+            <Singleselect
+   value={publicize}
+   setValue={setPublicize}
+   option1="Yes"
+   option2="No"
+   label="Do you want your personality quiz results to public on your profile?"
+/>
+<input type="hidden" name="publicize" value={publicize} />
+            <InputField name="phoneNumber" label="YOUR PHONE NUMBER (optional)" />
+            <InputField name="instagram" label="YOUR INSTAGRAM USERNAME" />
+            <Typography variant="body2" sx={{width:"300px"}}>Your instagram handle will be shown to those you've matched with!</Typography>
+            <br></br>
             <SubmitButton type="submit">&#8594;</SubmitButton>
             {
               error &&

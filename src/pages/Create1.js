@@ -197,7 +197,7 @@ const handleSubmit = async (event) => {
       <LeftBox>
       <ItalicText style={{marginLeft: '3rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>'Introduce yourself!'</ItalicText> 
       </LeftBox>
-        <RightBox>
+        <RightBox justify="yes">
         <form ref={formRef} onSubmit={handleSubmit} id="update1">
         <Dropdown label="AGE" menuitems={validages} value={age} onChange={handleAgeChange}></Dropdown>
             <input type="hidden" name="age" value={age} />

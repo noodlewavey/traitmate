@@ -100,7 +100,7 @@ export default function Create3({children}) {
       <LeftBox>
       <ItalicText style={{marginLeft: '3rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>"Smile for us!"</ItalicText> 
       </LeftBox>
-        <RightBox>
+        <RightBox justify="yes">
             <UploadPhoto />
         </RightBox>
     </CenterContainer>

@@ -230,7 +230,7 @@ const handleRegister = async (inputUsername, inputPassword) => {
         }
          
       </LeftBox>
-        <RightBox>
+        <RightBox justify="yes">
           {
             isLoggedIn===false &&
             <Stack spacing="1rem" >
