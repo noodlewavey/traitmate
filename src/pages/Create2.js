@@ -245,7 +245,7 @@ const handleSubmit = async (event) => {
       console.error('Failed to submit data:', response.data);
     } else {
       console.log('Successfully submitted data!');
-      navigate('/create/3');
+      navigate('/quiz/1');
       // Handle successful submission (e.g., redirect to another page, show a success message, etc.)
     }
   } catch (error) {

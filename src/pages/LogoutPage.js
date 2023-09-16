@@ -121,7 +121,7 @@ const handleLogout = async () => {
     return;
   }
 
-  // Logic for registration
+  // Logic for login
   try {
     const emptyRequest = {
       //sending no body
@@ -137,13 +137,14 @@ const handleLogout = async () => {
     const response = await axios.post('http://localhost:8080/auth/logout', emptyRequest, config);
 
     if (response.status === 200) {
-      // Successful registration
+      // Successful logout
       console.log('Logged out successfully!');
       setIsLoggedIn(false);
       navigate('/');
     } else {
-      // Handle registration failure
+      // Handle logout
       console.error('Logout failed');
+    
     }
   } catch (error) {
     // Handle other errors

@@ -8,7 +8,6 @@ import { Navigate, useNavigate } from 'react-router-dom';
 
 const UploadPhoto = () => {
   const [selectedFile, setSelectedFile] = useState(null);
-  const {isImageUploaded, setIsImageUploaded } = useImageUpload();
   const {isProfileCreated, setIsProfileCreated } = useProfile();
   const [success, setSuccess] = useState(false);
 
@@ -31,8 +30,6 @@ const UploadPhoto = () => {
       try {
         // Replace 'YOUR_BACKEND_API_ENDPOINT' with your actual API endpoint
         const response = await axios.post('http://localhost:8080/auth/update3', formData, {withCredentials: true});
-        setIsImageUploaded(true);
-        setIsProfileCreated(true);
         console.log('Photo uploaded:', response.data);
         setSuccess(true);
         
@@ -46,7 +43,7 @@ const UploadPhoto = () => {
   const navigate = useNavigate(); // instantiate the navigate function
 
   const handleSubmit = () => {
-    navigate('/quiz/1'); // change '/quiz' to the desired route
+    navigate('/myprofile'); // change '/quiz' to the desired route
   };
 
 

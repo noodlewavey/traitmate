@@ -93,7 +93,6 @@ function AppContent() {
     <AnimatePresence>
       <MainContainer>
       <AuthProvider>
-      <ImageUploadProvider>
         <ProfileProvider>
             <Routes location={location} key={location.pathname}>
               <Route path="/myprofile" element={<MyPersonalProfile />} />
@@ -108,7 +107,6 @@ function AppContent() {
                 <Route path="/logout" element={<LogoutPage />} />
             </Routes>
             </ProfileProvider>
-            </ImageUploadProvider>
             </AuthProvider>
       </MainContainer>
       </AnimatePresence>

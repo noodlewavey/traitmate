@@ -4,7 +4,9 @@ import Box from '@mui/material/Box';
 import styled from '@emotion/styled';
 import {motion} from 'framer-motion';
 import MainNavbar from "../components/MainNavbar";
-
+import { useAuth } from "../components/AuthContext";
+import { useProfile } from "../components/ProfileContext";
+import { useEffect } from "react";
 
 const FullPageCenter = styled('div')({
     display: 'flex',
@@ -51,9 +53,23 @@ const FullPageCenter = styled('div')({
       border: '1px solid black',
       //if there isnt enough space, parent container forces horizonal scroll
     }));
+
+
+  
   
 
 function MainPage() {
+
+  const authData = useAuth();
+  const profileData = useProfile();
+  const isLoggedIn = authData.isLoggedIn; // Replace with the actual property name from useAuth
+  const isProfileCreated = profileData.isProfileCreated; 
+  useEffect(() => { 
+
+    console.log(isLoggedIn, "am i logged in");
+    console.log(isProfileCreated, "do i have a profile created")
+      
+  }, []);
   return (
     <motion.div
     initial={{opacity: 0}}

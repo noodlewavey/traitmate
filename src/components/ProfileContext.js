@@ -7,8 +7,7 @@ const ProfileContext = createContext();
 
 export const ProfileProvider = ({ children }) => {
   const [isProfileCreated, setIsProfileCreated] = useState(false);
-  const { isLoggedIn } = useAuth();
-  const {isImageUploaded, setIsImageUploaded} = useImageUpload();
+  const  {isLoggedIn}  = useAuth();
 
   useEffect(() => {
     // Send a request to the /update1 
@@ -33,7 +32,7 @@ export const ProfileProvider = ({ children }) => {
           setIsProfileCreated(false);
         }
       });
-  }, [isLoggedIn, isImageUploaded, isProfileCreated]);
+  }, [isLoggedIn]);
 
   return (
     <ProfileContext.Provider value={{ isProfileCreated, setIsProfileCreated }}>

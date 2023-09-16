@@ -17,6 +17,8 @@ import BarResult from '../components/BarResult.js';
 import { PersonalityScoreProvider, usePersonality } from '../components/PersonalityScoreProvider.js';
 //need to import usepersonality
 import MainNavbar from '../components/MainNavbar.js';
+import Button from '@mui/material/Button';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const FullPageCenter = styled('div')({
   display: 'flex',
@@ -84,6 +86,12 @@ const CenterContainer = styled(Box)(({ theme }) => ({
 
 export default function ResultsQuiz({children}) {
   const {personalityScore, setPersonalityScore} = usePersonality();
+  const navigate = useNavigate();
+
+  const handleNextClick = () => {
+    navigate("/create/3");
+
+  }
 
   return (
     <motion.div
@@ -99,6 +107,23 @@ export default function ResultsQuiz({children}) {
         {personalityScore && (
     <BarResult height={20} width={40} personality={personalityScore}/>
 )}
+ <Button
+                variant="text"
+                style={{
+                position: "absolute",
+                  top: '35rem',
+                  left: '17rem',
+                }}
+                onClick={handleNextClick}
+              >
+                <Typography
+                  variant="body2"
+                  fontSize="1rem"
+                  color="#000000"
+                >
+                  NEXT →
+                </Typography>
+              </Button>
     </CenterContainer>
     </Wrapper>
     </FullPageCenter>

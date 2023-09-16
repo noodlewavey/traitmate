@@ -25,6 +25,7 @@ import SelectSuccess from '../components/SelectSuccess.js';
 import { Navigate, useNavigate } from 'react-router-dom';
 import MainNavbar from '../components/MainNavbar.js';
 import PasswordInputField from '../components/PasswordInputField.js';
+import { useProfile } from '../components/ProfileContext.js';
 
 
 const FullPageCenter = styled('div')({
@@ -99,7 +100,8 @@ export default function LoginPage({children}) {
 
 const theme = useTheme();
 
-  const {isLoggedIn, setIsLoggedIn} = useAuth();
+  const {isLoggedIn, setIsLoggedIn}= useAuth();
+  const {isProfileCreated} = useProfile();
 
   const [ success, setSuccess ] = useState(false);
 
@@ -131,7 +133,6 @@ const theme = useTheme();
       if (response.status === 200) {
         // Successful login
         setIsLoggedIn(true);
-        navigate('/');
         console.log('Login successful!');
       } else {
         // Handle login failure
@@ -146,6 +147,12 @@ const theme = useTheme();
       console.error('Error during login:', error);
     }
   };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/'); // Redirect to the desired route when isLoggedIn is true
+    }
+  }, [isLoggedIn, navigate]);
 
   //if spring security session management exists in java backend, dont need to make front end handle sessions
   
@@ -207,6 +214,12 @@ const handleRegister = async (inputUsername, inputPassword) => {
 };
 
 
+useEffect(() => { 
+
+  console.log(isLoggedIn, "am i logged in");
+  console.log(isProfileCreated, "do i have a profile created")
+    
+}, []);
 
 
   return (
@@ -216,7 +229,7 @@ const handleRegister = async (inputUsername, inputPassword) => {
     exit={{opacity: 0, transition: {duration: 0.4}}}>
     <FullPageCenter>
     <Wrapper>
-    <MainNavbar />
+    {/* <MainNavbar /> */}
     {/* adding navbar above container so its rendered above containers... */}
     <CenterContainer>
       <LeftBox>
@@ -226,14 +239,14 @@ const handleRegister = async (inputUsername, inputPassword) => {
       </div>
         }
         {
-          isLoggedIn===false &&
+        (isLoggedIn !== true) &&
       <ItalicText style={{marginLeft: '6rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>Log in to your account</ItalicText> 
         }
          
       </LeftBox>
         <RightBox justify="yes">
           {
-            isLoggedIn===false &&
+            isLoggedIn!==true &&
             <Stack spacing="1rem" >
             <Box flexDirection="row" style={{ display: 'flex', width: '100%' }} justifyContent="space-between"> 
             {/* the space between is inside the parent stack */}
