@@ -20,11 +20,14 @@ import { ProfileProvider } from '../components/ProfileContext';
 import { ImageUploadProvider } from '../components/ImageUploadContext';
 import LogoutPage from './LogoutPage';
 import MyPersonalProfile from './MyPersonalProfile';
+import { useAuth } from '../components/AuthContext';
+import MainNavbar from '../components/MainNavbar';
 
 function AppContent() {
     const location = useLocation();
 
     const { isAuthenticated, user } = useSelector(state => state.auth);
+
 
    //Use the isAuthenticated state to conditionally render components based on the user's authentication status.
 
@@ -92,8 +95,6 @@ function AppContent() {
     return (
     <AnimatePresence>
       <MainContainer>
-      <AuthProvider>
-        <ProfileProvider>
             <Routes location={location} key={location.pathname}>
               <Route path="/myprofile" element={<MyPersonalProfile />} />
               <Route path="/" element={<MainPage />} />
@@ -105,9 +106,8 @@ function AppContent() {
                 <Route path="/resultsquiz" element={<ResultsQuiz />}/>
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/logout" element={<LogoutPage />} />
+                <Route path="/nav" element ={<MainNavbar />} />
             </Routes>
-            </ProfileProvider>
-            </AuthProvider>
       </MainContainer>
       </AnimatePresence>
     );
