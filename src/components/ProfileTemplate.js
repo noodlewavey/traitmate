@@ -72,8 +72,8 @@ const ProfileTemplate = ({data}) => {
                 <b>MAJOR</b>: {data.major}
                
             </MyStack>
-            <BigFive />
-            <Lyrics />
+            <BigFive setting={data.displayQuizResults}/>
+            <Lyrics content={data.about} />
         </CenteredBox>
     );
   };
