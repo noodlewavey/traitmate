@@ -17,6 +17,8 @@ import styled from "@emotion/styled";
 import Box from "@mui/material/Box";
 import { useEffect } from "react";
 import { useRef } from "react";
+import {Link} from "react-router-dom";
+
 const ProfileTemplate = ({data}) => {
 
 
@@ -42,6 +44,21 @@ const ProfileTemplate = ({data}) => {
         "Ryerson University": "Toronto, ON",
         "Waterloo University": "Waterloo, ON"
     }
+
+    const HoverStyledText = styled(StyledText)`
+    &:hover {
+        color: blue;
+    }
+`;
+
+const StyledLink = styled(Link)`
+    color: grey;
+    text-decoration: underline;
+
+    &:hover {
+        color: blue;
+    }
+`;
     
 
     return (
@@ -49,6 +66,10 @@ const ProfileTemplate = ({data}) => {
             <CircularFrame imageUrl={`data:image/jpeg;base64,${data.profileImage}`}/>
               <Typography variant="h1" style={{justifyContent: 'center', fontSize: '2rem' }}>
   {data.firstName}</Typography>
+  <Box sx={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
+    <StyledLink to="/create/1" sx={{ color: 'grey' , textDecoration: 'underline' }}>⁕EDIT MY PROFILE</StyledLink>
+    <StyledLink to="/quiz/1" sx={{ color: 'grey',  textDecoration: 'underline' }}>⁕RETAKE THE QUIZ</StyledLink>
+</Box>
             <MyStack>
                 <Root>
                 <Box display="flex" justifyContent="space-between">
