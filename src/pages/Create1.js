@@ -17,7 +17,7 @@ import { useState, useRef } from 'react';
 import axios from 'axios';
 import { Navigate, useNavigate}  from 'react-router-dom';
 import SelectError from '../components/SelectError.js';
-import { ConnectingAirportsOutlined } from '@mui/icons-material';
+import InputField3 from '../components/InputField3.js';
 
 const FullPageCenter = styled('div')({
   display: 'flex',
@@ -116,6 +116,7 @@ const [university, setUniversity] = useState('');
 const formRef = useRef(null);
 const navigate = useNavigate();
 const [error, setError] = useState(false);
+const [about, setAbout] = useState('');
 
 
 const handleAgeChange = (selectedAge) => {
@@ -138,6 +139,7 @@ const handleSubmit = async (event) => {
   const updatedLastName = formData.get("lastName");
   const updatedAge = formData.get("age");
   const updatedUniversity = formData.get("university");
+  const updatedAbout = formData.get("about");
 
   if (!updatedFirstName || !updatedLastName || !updatedAge || !updatedUniversity) {
     setError(true);
@@ -149,12 +151,14 @@ const handleSubmit = async (event) => {
   console.log("Updated Last Name:", updatedLastName);
   console.log("Updated Age:", age);
   console.log("Updated University:", university);
+  console.log("Updated about: ", updatedAbout );
 
   const payload = {
     firstName: updatedFirstName,
     lastName: updatedLastName,
     age: updatedAge,
     university: updatedUniversity,
+    about: updatedAbout,
   };
 
   console.log(payload); // Just for debugging
@@ -208,6 +212,8 @@ const handleSubmit = async (event) => {
         <input type="hidden" name="firstName" value={firstName} />
             <InputField2 name="lastName" label="LAST NAME" />
             <input type="hidden" name="lastName" value={lastName} />
+            <InputField3 name="about" label="A SENTENCE ABOUT YOU" />
+            <input type="hidden" name="about" value={about} />
             <SubmitButton type="submit">&#8594;</SubmitButton>
             {
               error && 
