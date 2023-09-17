@@ -25,7 +25,6 @@ import SelectSuccess from '../components/SelectSuccess.js';
 import { Navigate, useNavigate } from 'react-router-dom';
 import MainNavbar from '../components/MainNavbar.js';
 import PasswordInputField from '../components/PasswordInputField.js';
-import { useProfile } from '../components/ProfileContext.js';
 
 
 const FullPageCenter = styled('div')({
@@ -100,8 +99,7 @@ export default function LoginPage({children}) {
 
 const theme = useTheme();
 
-  const {isLoggedIn, setIsLoggedIn}= useAuth();
-  const {isProfileCreated} = useProfile();
+const { isLoggedIn, setIsLoggedIn, isProfileCreated, setIsProfileCreated } = useAuth();
 
   const [ success, setSuccess ] = useState(false);
 

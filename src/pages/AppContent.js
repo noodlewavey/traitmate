@@ -16,7 +16,6 @@ import Create1 from './Create1';
 import Create2 from './Create2';
 import Create3 from './Create3';
 import { AuthProvider } from '../components/AuthContext';
-import { ProfileProvider } from '../components/ProfileContext';
 import { ImageUploadProvider } from '../components/ImageUploadContext';
 import LogoutPage from './LogoutPage';
 import MyPersonalProfile from './MyPersonalProfile';
@@ -90,6 +89,10 @@ function AppContent() {
         { id: 49, text: "I often feel blue." },
         { id: 50, text: "I am full of ideas." }
     ];
+
+
+  const {isLoggedIn, setIsLoggedIn, isProfileCreated, setIsProfileCreated } = useAuth();
+
     
 
     return (

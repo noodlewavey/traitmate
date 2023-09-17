@@ -13,8 +13,8 @@ import { QuizProvider } from './components/QuizContext';
 import AppContent from './pages/AppContent';
 import { PersonalityScoreProvider } from './components/PersonalityScoreProvider';
 import { useEffect } from 'react';
-import { AuthProvider } from './components/AuthContext';
-import { ProfileProvider } from './components/ProfileContext';
+import { AuthProvider, useAuth } from './components/AuthContext';
+import axios from 'axios';
 
 const theme = createTheme({
   palette: {
@@ -84,7 +84,6 @@ function App() {
 
   return (
     <AuthProvider>
-    <ProfileProvider>
     <PersonalityScoreProvider>
     <QuizProvider>
     <ThemeProvider theme={theme}>
@@ -115,7 +114,6 @@ If you navigate to /quiz/2, then questionIndex will be 2.
     </ThemeProvider>
     </QuizProvider>
     </PersonalityScoreProvider>
-    </ProfileProvider>
     </AuthProvider>
   );
 }

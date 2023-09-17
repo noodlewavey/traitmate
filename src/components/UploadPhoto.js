@@ -1,14 +1,13 @@
-import React, { useState, useAuth } from 'react';
+import React, { useState } from 'react';
 import { Button, Container, Input, Typography } from '@mui/material';
 import axios from 'axios';
-import { useImageUpload } from './ImageUploadContext';
-import { useProfile } from './ProfileContext';
 import styled from '@emotion/styled';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 
 const UploadPhoto = () => {
   const [selectedFile, setSelectedFile] = useState(null);
-  const {isProfileCreated, setIsProfileCreated } = useProfile();
+ const {isProfileCreated, setIsProfileCreated } = useAuth();
   const [success, setSuccess] = useState(false);
 
   const handleFileChange = (event) => {
@@ -32,6 +31,7 @@ const UploadPhoto = () => {
         const response = await axios.post('http://localhost:8080/auth/update3', formData, {withCredentials: true});
         console.log('Photo uploaded:', response.data);
         setSuccess(true);
+        setIsProfileCreated(true);
         
       } catch (error) {
         console.error('Error uploading file:', error);

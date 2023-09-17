@@ -5,7 +5,6 @@ import styled from '@emotion/styled';
 import {motion} from 'framer-motion';
 import MainNavbar from "../components/MainNavbar";
 import { useAuth } from "../components/AuthContext";
-import { useProfile } from "../components/ProfileContext";
 import { useEffect } from "react";
 
 const FullPageCenter = styled('div')({
@@ -60,10 +59,8 @@ const FullPageCenter = styled('div')({
 
 function MainPage() {
 
-  const authData = useAuth();
-  const profileData = useProfile();
-  const isLoggedIn = authData.isLoggedIn; // Replace with the actual property name from useAuth
-  const isProfileCreated = profileData.isProfileCreated; 
+  const { isLoggedIn, setIsLoggedIn, isProfileCreated, setIsProfileCreated } = useAuth();
+
   useEffect(() => { 
 
     console.log(isLoggedIn, "am i logged in");

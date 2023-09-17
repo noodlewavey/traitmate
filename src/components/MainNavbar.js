@@ -3,11 +3,9 @@ import { AppBar, Toolbar, CssBaseline, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import { useAuth } from "./AuthContext";
-import { useProfile } from "./ProfileContext";
 import { BrowserRouter as Router } from 'react-router-dom';
 import { useEffect } from "react";
 import { AuthProvider } from "./AuthContext";
-import { ProfileProvider } from "./ProfileContext";
 
 const NavbarWrapper = styled('div')({
   width: '100vw',//adding this centers the navbar
@@ -56,8 +54,7 @@ const NavbarLink = styled(Link)(({ theme }) => ({
 }));
 
 function MainNavbar() {
-  const {isLoggedIn} = useAuth();
-  const {isProfileCreated} =useProfile();
+  const { isLoggedIn, setIsLoggedIn, isProfileCreated, setIsProfileCreated } = useAuth();
 
  useEffect(() => {
 
@@ -67,6 +64,7 @@ console.log(isLoggedIn, "am i logged in from navbar?");
 
   useEffect(() => {
     console.log('MainNavbar re-rendered with isLoggedIn value:', isLoggedIn);
+    console.log('main navbar re-rendered with isProfileCreated value;', isProfileCreated)
 });
 
 
@@ -76,7 +74,6 @@ console.log(isLoggedIn, "am i logged in from navbar?");
   
   return (
     <AuthProvider>
-      <ProfileProvider>
     <NavbarWrapper>
     <NavbarAppBar position="static" elevation={0} sx={{background: '#dfd3bc', maxHeight:'4rem',}}>
       {/* the sx prop has a higher specificity...easier to override styles */}
@@ -107,7 +104,6 @@ console.log(isLoggedIn, "am i logged in from navbar?");
       </NavbarToolbar>
     </NavbarAppBar>
     </NavbarWrapper>
-    </ProfileProvider>
     </AuthProvider>
   );
 }
