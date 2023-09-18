@@ -188,20 +188,20 @@ export default function QuizPage({children, questions}) {
 
 
     const submitAnswers = async () => {
+      console.log(answers);
       try {
           const response = await fetch('http://localhost:8080/submit-answers', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json'
               },
-              body: JSON.stringify(answers)
+              body: JSON.stringify(answers),
+              credentials: 'include'
           });
 
           const data = await response.json();
 
           // Now you can use the response data (5 scores, as you mentioned)
-          delete data.id;
-          delete data.user;
           console.log(data);
           await setPersonalityScore(data);//adding this....
 

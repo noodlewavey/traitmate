@@ -106,6 +106,8 @@ const { isLoggedIn, setIsLoggedIn, isProfileCreated, setIsProfileCreated } = use
   const [error, setError ] = useState(false);
 
   const [taken, setTaken] = useState(false);
+
+  const [noPass, setNoPass ] = useState(false);
   
 
   const navigate = useNavigate();
@@ -177,6 +179,16 @@ const handleRegister = async (inputUsername, inputPassword) => {
   if (isLoggedIn === true ){
     console.log("Need to log out");
     return;
+  }
+
+  if (inputPassword===''){
+    setNoPass(true);
+    return;
+    
+  }
+
+  if (inputPassword!==''){
+    setNoPass(false);
   }
 
   // Logic for registration
@@ -280,6 +292,10 @@ useEffect(() => {
 {
   taken &&
   <SelectError message="The username is already taken! Try another"></SelectError>
+}
+{
+  noPass &&
+  <SelectError message="You didn't enter a password!"></SelectError>
 }
         </RightBox>
     </CenterContainer>
