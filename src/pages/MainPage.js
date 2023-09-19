@@ -76,6 +76,7 @@ function MainPage() {
 
   const typewriterStyle = {
     fontFamily: theme.typography.body2.fontFamily,
+    fontWeight: 300,
     fontSize: theme.typography.body2.fontSize,
     color: theme.typography.body2.color,
     position: "absolute",
@@ -102,7 +103,7 @@ function MainPage() {
     <div style={typewriterStyle}>
     <TypewriterComponent
     options={{
-      delay: 50,  
+      delay: 50,
     }}
   onInit={(typewriter) => {
     typewriter.typeString('Take our Big Five personality quiz, and we will show you people who have similar traits. We go beyond looks. Dive into the Big Five!')

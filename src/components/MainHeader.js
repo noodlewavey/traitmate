@@ -2,6 +2,7 @@ import React from "react";
 import { AppBar, Toolbar, CssBaseline, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
+import TypewriterComponent from "typewriter-effect";
 
 
 const NavbarWrapper = styled('div')(({ theme }) => ({
@@ -20,6 +21,7 @@ const NavbarWrapper = styled('div')(({ theme }) => ({
     alignItems: 'center', // vertical centering in flexbox
     zIndex: 0, // set this to a high value to make text hoverable in MyProfile.js
     // i think this overflow auto is what causes it to be fixed size
+    gap: '10rem'
 }));
 
 const OppositesText = styled.span`
@@ -32,9 +34,57 @@ function MainHeader() {
     
     return (
       <NavbarWrapper>
-        <OppositesText>TRAITMATE</OppositesText>
-        <OppositesText>TRAITMATE</OppositesText>
-        <OppositesText>TRAITMATE</OppositesText>
+        
+        <TypewriterComponent
+    options={{
+      delay: 50,
+    }}
+  onInit={(typewriter) => {
+    typewriter.typeString('TRAITMATE')
+      .callFunction(() => {
+        console.log('String typed out!');
+      })
+      .pauseFor(2500)
+      .callFunction(() => {
+        console.log('All strings were deleted');
+      })
+      .start();
+  }}
+/>
+
+<TypewriterComponent
+    options={{
+      delay: 50,
+    }}
+  onInit={(typewriter) => {
+    typewriter.typeString('TRAITMATE')
+      .callFunction(() => {
+        console.log('String typed out!');
+      })
+      .pauseFor(2500)
+      .callFunction(() => {
+        console.log('All strings were deleted');
+      })
+      .start();
+  }}
+/>
+  
+<TypewriterComponent
+    options={{
+      delay: 50,
+    }}
+  onInit={(typewriter) => {
+    typewriter.typeString('TRAITMATE')
+      .callFunction(() => {
+        console.log('String typed out!');
+      })
+      .pauseFor(2500)
+      .callFunction(() => {
+        console.log('All strings were deleted');
+      })
+      .start();
+  }}
+/>
       </NavbarWrapper>
     );
   };
