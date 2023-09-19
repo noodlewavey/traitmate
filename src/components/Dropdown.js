@@ -17,34 +17,36 @@ const CustomTextField = styled(TextField)(({ theme }) => ({
   },
 }));
 
-const Dropdown = ({ label, menuitems }) => {
+const Dropdown = React.forwardRef((props, ref) => {
+  const { label, menuitems } = props;
+
   return (
     <div>
-        {/* putting the typography inside the div positions the text above the box... */}
-<Typography variant="body1" sx={{margin:0, fontSize:'0.85rem'}}> {label}</Typography>  
-        <CustomTextField
-          id="select-something"
-          select
-          label=""
-          defaultValue=""
-          SelectProps={{
-            MenuProps: {
-              anchorOrigin: {
-                vertical: 'bottom',
-                horizontal: 'center',
-              },
-              getContentAnchorEl: null,
+      <Typography variant="body1" sx={{margin:0, fontSize:'0.85rem'}}> {label}</Typography>  
+      <CustomTextField
+        ref={ref}  // Pass the ref here
+        id="select-something"
+        select
+        label=""
+        defaultValue=""
+        SelectProps={{
+          MenuProps: {
+            anchorOrigin: {
+              vertical: 'bottom',
+              horizontal: 'center',
             },
-          }}
-        >
-          {menuitems.map((item) => (
-            <MenuItem key={item} value={item}>
-              {item}
-            </MenuItem>
-          ))}
-        </CustomTextField>
+            getContentAnchorEl: null,
+          },
+        }}
+      >
+        {menuitems.map((item) => (
+          <MenuItem key={item} value={item}>
+            {item}
+          </MenuItem>
+        ))}
+      </CustomTextField>
     </div>
   );
-};
+});
 
 export default Dropdown;

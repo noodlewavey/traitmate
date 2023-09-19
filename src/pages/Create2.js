@@ -21,6 +21,7 @@ import Singleselect from '../components/Singleselect.js';
 import AnimatedTextWord from '../components/AnimatedTextWord.js';
 import TypewriterComponent from 'typewriter-effect';
 
+
 const FullPageCenter = styled('div')({
   display: 'flex',
   justifyContent: 'center',
@@ -199,18 +200,10 @@ export default function Create2({children}) {
   const [error, setError] = useState(false);
   const [publicize, setPublicize] = useState('');
 
-  const handleMajorChange = (selectedMajor) => {
-    setMajor(selectedMajor);
-  }
-
-  const handleGenderChange = (selectedGender) => {
-    setGender(selectedGender);
-  }
-
-  const handleAttractedTo = (selectedAttract) => {
-    setAttractedTo(selectedAttract);
-  }
-
+  const majorRef = useRef(null);
+  const genderRef = useRef(null);
+  const attractedToRef = useRef(null);
+  
 
 const handleSubmit = async (event) => {
   event.preventDefault();
@@ -219,9 +212,9 @@ const handleSubmit = async (event) => {
   const formData = new FormData(document.getElementById("submission"));
 
   // Extract the data from formData
-  const updatedMajor = formData.get("major");
-  const updatedGender = formData.get("gender");
-  const updatedAttractedTo = formData.get("attractedTo");
+  const updatedMajor = majorRef.current.querySelector('input').value;
+  const updatedGender = genderRef.current.querySelector('input').value;
+  const updatedAttractedTo = attractedToRef.current.querySelector('input').value;
   const updatedPhoneNumber = formData.get("phoneNumber");
   const updatedInstagram = formData.get("instagram");
 
@@ -317,14 +310,7 @@ const HeaderWrapper = styled('div')(({ theme }) => ({
       </LeftBox>
         <RightBox>
         <form ref={formRef} onSubmit={handleSubmit} id="submission">
-            <Dropdown label="MAJOR" menuitems={majors} value={major} onChange={handleMajorChange} />
-            <input type="hidden" name="major" value={major} />
-            {/* add dropdown menu! for age and major  */}
-            <Dropdown label="YOUR GENDER" menuitems={genders} value={gender} onChange={handleGenderChange} />
-            <input type="hidden" name="gender" value={gender} />
-            <Dropdown label="ATTRACTED TO" menuitems={genderslist} value={attractedTo} onChange={handleAttractedTo}/>
-            <input type="hidden" name="attractedTo" value={attractedTo} />
-            <Singleselect
+        <Singleselect
    value={publicize}
    setValue={setPublicize}
    option1="Yes"
@@ -332,6 +318,11 @@ const HeaderWrapper = styled('div')(({ theme }) => ({
    label="Do you want your personality quiz results to public on your profile?"
 />
 <input type="hidden" name="publicize" value={publicize} />
+            <Dropdown label="MAJOR" menuitems={majors} ref={majorRef}/>
+            {/* add dropdown menu! for age and major  */}
+            <Dropdown label="YOUR GENDER" menuitems={genders} ref={genderRef} />
+            <Dropdown label="ATTRACTED TO" menuitems={genderslist} ref={attractedToRef}/>
+          
             <InputField name="phoneNumber" label="YOUR PHONE NUMBER (optional)" />
             <InputField name="instagram" label="YOUR INSTAGRAM USERNAME" />
             <Typography variant="body2" sx={{width:"300px"}}>Your instagram handle will be shown to those you've matched with!</Typography>

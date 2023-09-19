@@ -110,20 +110,6 @@ const SubmitButton = styled.button({
 });
 
 
-const slideVariants = {
-  hidden: {
-    y: '-100%',  // starting from a position above the initial position
-    opacity: 0
-  },
-  visible: {
-    y: '0%',    // end at the initial position
-    opacity: 1,
-    transition: {
-      duration: 0.8
-    }
-  }
-}
-
 
 export default function Create1() {
 
@@ -137,6 +123,9 @@ const [error, setError] = useState(false);
 const [about, setAbout] = useState('');
 const [ hasAnimated, setHasAnimated ] = useState(false);
 
+const universityRef = useRef(null);
+const ageRef = useRef(null);
+
 
 const handleSubmit = async (event) => {
   console.log("handlesubmit triggered");
@@ -148,11 +137,19 @@ const handleSubmit = async (event) => {
   // Extract the data from formData
   const updatedFirstName = formData.get("firstName");
   const updatedLastName = formData.get("lastName");
-  const updatedAge = formData.get("age");
-  const updatedUniversity = formData.get("university");
+  const updatedAge = ageRef.current.querySelector('input').value;
+  const updatedUniversity = universityRef.current.querySelector('input').value;
   const updatedAbout = formData.get("about");
 
+  console.log("Updated First Name:", updatedFirstName);
+  console.log("Updated Last Name:", updatedLastName);
+  console.log("Updated Age:", updatedAge);
+  console.log("Updated University:", updatedUniversity);
+  console.log("Updated about: ", updatedAbout );
+
+
   if (!updatedFirstName || !updatedLastName || !updatedAge || !updatedUniversity) {
+    console.log("hi0:");
     setError(true);
     return; // stop the function here
   }
@@ -236,7 +233,6 @@ const Typewriter = React.memo(() => {
 });
 
 
-  
 
   return (
     <motion.div
@@ -258,10 +254,10 @@ const Typewriter = React.memo(() => {
         <RightBox justify="yes">
         <form ref={formRef} onSubmit={handleSubmit} id="update1">
             {/* add dropdown menu! for age and major  */}
-            <Dropdown label="UNIVERSITY" menuitems={unilist}></Dropdown>
-            <input type="hidden" name="university" value={university} />
-            <Dropdown label="AGE" menuitems={validages}></Dropdown>
-            <input type="hidden" name="age" value={age} />
+            <Dropdown label="UNIVERSITY" menuitems={unilist} ref={universityRef}></Dropdown>
+            {/* <input type="hidden" name="university" value={university} /> */}
+            <Dropdown label="AGE" menuitems={validages} ref={ageRef}></Dropdown>
+            {/* <input type="hidden" name="age" value={age} /> */}
         <InputField2 name="firstName" label="FIRST NAME" />
         <input type="hidden" name="firstName" value={firstName} />
             <InputField2 name="lastName" label="LAST NAME" />
