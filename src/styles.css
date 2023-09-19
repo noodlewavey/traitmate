@@ -40,6 +40,14 @@
 } 
 
 
+.close-button-wrapper {
+  position: absolute;
+  top: 35px; /* Adjust the top value to change the vertical position */
+  right: 35px; /* Adjust the right value to change the horizontal position */
+}
+
+
+
 
 
 /*this is adding styling to the pre preserved html stuff*/

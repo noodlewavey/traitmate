@@ -21,6 +21,7 @@ import InputField3 from '../components/InputField3.js';
 import AnimatedTextWord from '../components/AnimatedTextWord.js';
 import { useEffect } from 'react';
 import TypewriterComponent from 'typewriter-effect';
+import CloseButton from '../components/CloseButton.js';
 
 const FullPageCenter = styled('div')({
   display: 'flex',
@@ -227,6 +228,7 @@ const HeaderWrapper = styled('div')(({ theme }) => ({
     exit={{opacity: 0, transition: {duration: 0.4}}}>
 
     <FullPageCenter>
+      <CloseButton></CloseButton>
     <Wrapper>
     {/* adding navbar above container so its rendered above containers... */}
     <CenterContainer>
