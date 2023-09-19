@@ -37,7 +37,7 @@ function MainHeader() {
         
         <TypewriterComponent
     options={{
-      delay: 50,
+      delay: 85,
     }}
   onInit={(typewriter) => {
     typewriter.typeString('TRAITMATE')
@@ -54,7 +54,7 @@ function MainHeader() {
 
 <TypewriterComponent
     options={{
-      delay: 50,
+      delay: 85,
     }}
   onInit={(typewriter) => {
     typewriter.typeString('TRAITMATE')
@@ -71,7 +71,7 @@ function MainHeader() {
   
 <TypewriterComponent
     options={{
-      delay: 50,
+      delay: 85,
     }}
   onInit={(typewriter) => {
     typewriter.typeString('TRAITMATE')
