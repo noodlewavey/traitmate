@@ -138,14 +138,6 @@ const [about, setAbout] = useState('');
 const [ hasAnimated, setHasAnimated ] = useState(false);
 
 
-const handleAgeChange = (selectedAge) => {
-  setAge(selectedAge);
-};
-
-const handleUniversityChange = (selectedUni) => {
-  setUniversity(selectedUni);
-};
-
 const handleSubmit = async (event) => {
   console.log("handlesubmit triggered");
   event.preventDefault();
@@ -165,11 +157,12 @@ const handleSubmit = async (event) => {
     return; // stop the function here
   }
 
+
   // Use the extracted data as needed
   console.log("Updated First Name:", updatedFirstName);
   console.log("Updated Last Name:", updatedLastName);
-  console.log("Updated Age:", age);
-  console.log("Updated University:", university);
+  console.log("Updated Age:", updatedAge);
+  console.log("Updated University:", updatedUniversity);
   console.log("Updated about: ", updatedAbout );
 
   const payload = {
@@ -219,6 +212,30 @@ const HeaderWrapper = styled('div')(({ theme }) => ({
    marginTop: '0.7rem'
 }));
 
+
+const Typewriter = React.memo(() => {
+  return (
+    <TypewriterComponent
+      options={{
+        delay: 50,
+      }}
+      onInit={(typewriter) => {
+        typewriter
+          .typeString('Introduce yourself!')
+          .callFunction(() => {
+            console.log('String typed out!');
+          })
+          .pauseFor(2500)
+          .callFunction(() => {
+            console.log('All strings were deleted');
+          })
+          .start();
+      }}
+    />
+  );
+});
+
+
   
 
   return (
@@ -234,31 +251,16 @@ const HeaderWrapper = styled('div')(({ theme }) => ({
     <CenterContainer>
       <LeftBox>
         <HeaderWrapper>
-        <TypewriterComponent
-      options={{
-        delay: 50,
-      }}
-    onInit={(typewriter) => {
-      typewriter.typeString('Introduce yourself!')
-        .callFunction(() => {
-          console.log('String typed out!');
-        })
-        .pauseFor(2500)
-        .callFunction(() => {
-          console.log('All strings were deleted');
-        })
-        .start();
-    }}
-  /> 
+      <Typewriter />
         </HeaderWrapper>
  {/* <ItalicText style={{marginLeft: '3rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>'Introduce yourself!'</ItalicText>    */}
       </LeftBox>
         <RightBox justify="yes">
         <form ref={formRef} onSubmit={handleSubmit} id="update1">
             {/* add dropdown menu! for age and major  */}
-            <Dropdown label="UNIVERSITY" menuitems={unilist} value={university} onChange={handleUniversityChange}></Dropdown>
+            <Dropdown label="UNIVERSITY" menuitems={unilist}></Dropdown>
             <input type="hidden" name="university" value={university} />
-            <Dropdown label="AGE" menuitems={validages} value={age} onChange={handleAgeChange}></Dropdown>
+            <Dropdown label="AGE" menuitems={validages}></Dropdown>
             <input type="hidden" name="age" value={age} />
         <InputField2 name="firstName" label="FIRST NAME" />
         <input type="hidden" name="firstName" value={firstName} />

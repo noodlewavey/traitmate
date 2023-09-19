@@ -17,7 +17,7 @@ const CustomTextField = styled(TextField)(({ theme }) => ({
   },
 }));
 
-const Dropdown = ({ label, menuitems, value, onChange }) => {
+const Dropdown = ({ label, menuitems }) => {
   return (
     <div>
         {/* putting the typography inside the div positions the text above the box... */}
@@ -27,8 +27,6 @@ const Dropdown = ({ label, menuitems, value, onChange }) => {
           select
           label=""
           defaultValue=""
-          value={value} //giving it a value
-          onChange={(e) => onChange(e.target.value)} //this gives changes to parent 
           SelectProps={{
             MenuProps: {
               anchorOrigin: {
