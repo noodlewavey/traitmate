@@ -25,6 +25,7 @@ import SelectSuccess from '../components/SelectSuccess.js';
 import { Navigate, useNavigate } from 'react-router-dom';
 import MainNavbar from '../components/MainNavbar.js';
 import PasswordInputField from '../components/PasswordInputField.js';
+import TypewriterComponent from 'typewriter-effect';
 
 
 const FullPageCenter = styled('div')({
@@ -44,6 +45,7 @@ const ItalicText = styled('div')(({ theme }) => ({
   // other styles for your component
   lineHeight: '0.9',
 }));
+
 
 
 const Wrapper = styled('div')({
@@ -83,6 +85,14 @@ const CenterContainer = styled(Box)(({ theme }) => ({
   //overflowX: 'scroll' and overflowY: 'scroll': These styles force both horizontal and vertical scrollbars to appear if the content inside CenterContainer exceeds its boundaries.
   
 
+  const HeaderWrapper = styled('div')(({ theme }) => ({
+    fontFamily: theme.typography.h1.fontFamily,
+    fontStyle: 'italic',
+    fontSize: '8rem',
+    color: theme.palette.accent.main,  // Accessing the accent.main color
+  // other styles for your component
+    lineHeight: '0.9',
+}));
 
 // you can add styling on top of navbar to position it!
 
@@ -108,6 +118,7 @@ const { isLoggedIn, setIsLoggedIn, isProfileCreated, setIsProfileCreated } = use
   const [taken, setTaken] = useState(false);
 
   const [noPass, setNoPass ] = useState(false);
+
   
 
   const navigate = useNavigate();
@@ -232,6 +243,7 @@ useEffect(() => {
 }, []);
 
 
+
   return (
     <motion.div
     initial={{opacity: 0}}
@@ -244,13 +256,45 @@ useEffect(() => {
     <CenterContainer>
       <LeftBox>
       { isLoggedIn===true &&
-    <div sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100v' }}>
-      <ItalicText style={{wordWrap:"break-word", overflowWrap: "break-word"}}>You are logged in!</ItalicText> 
-      </div>
+   <HeaderWrapper>
+   <TypewriterComponent
+   options={{
+     delay: 50,
+   }}
+ onInit={(typewriter) => {
+   typewriter.typeString('You are logged in!')
+     .callFunction(() => {
+       console.log('String typed out!');
+     })
+     .pauseFor(2500)
+     .callFunction(() => {
+       console.log('All strings were deleted');
+     })
+     .start();
+ }}
+/> 
+</HeaderWrapper>
         }
         {
         (isLoggedIn !== true) &&
-      <ItalicText style={{marginLeft: '6rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>Log in to your account</ItalicText> 
+        <HeaderWrapper>
+      <TypewriterComponent
+      options={{
+        delay: 50,
+      }}
+    onInit={(typewriter) => {
+      typewriter.typeString('Log in to your account')
+        .callFunction(() => {
+          console.log('String typed out!');
+        })
+        .pauseFor(2500)
+        .callFunction(() => {
+          console.log('All strings were deleted');
+        })
+        .start();
+    }}
+  /> 
+  </HeaderWrapper>
         }
          
       </LeftBox>
