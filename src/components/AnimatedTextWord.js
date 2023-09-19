@@ -2,6 +2,10 @@ import React from "react";
 import { motion } from "framer-motion";
 import styled from "@emotion/styled";
 import { useTheme } from '@mui/material/styles';
+import {memo} from 'react';
+import { useEffect } from "react";
+import { useState } from "react";
+
 
 const ItalicText = styled(motion.div)(({ theme }) => ({
   fontFamily: theme.typography.h1.fontFamily,
@@ -28,49 +32,49 @@ const AnimatedWord = styled(motion.span)(({ theme }) => ({
   overflowWrap: "break-word",
 }));
 
-const AnimatedTextWord = ({ text }) => {
+const AnimatedTextWord = ({ text, hasAnimated }) => {
   const words = text.split(" ");
 
   const container = {
     hidden: { opacity: 0 },
-    visible: (i = 1) => ({
-      opacity: 1,
-      transition: { staggerChildren: 0.2, delayChildren: 0.08 * i },
-    }),
+    visible: hasAnimated
+      ? { opacity: 1 }
+      : (i = 1) => ({
+          opacity: 1,
+          transition: { staggerChildren: 0.2, delayChildren: 0.08 * i },
+        }),
   };
 
-  const child = {
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 100,
-      },
-    },
-    hidden: {
-      opacity: 0,
-      x: 20,
-      transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 100,
-      },
-    },
-  };
+  const child = hasAnimated
+    ? {
+        visible: { opacity: 1, x: 0 },
+        hidden: { opacity: 1, x: 0 },
+      }
+    : {
+        visible: {
+          opacity: 1,
+          x: 0,
+          transition: {
+            type: "spring",
+            damping: 12,
+            stiffness: 100,
+          },
+        },
+        hidden: {
+          opacity: 0,
+          x: 20,
+          transition: {
+            type: "spring",
+            damping: 12,
+            stiffness: 100,
+          },
+        },
+      };
 
   return (
-    <ItalicText
-      variants={container}
-      initial="hidden"
-      animate="visible"
-    >
+    <ItalicText variants={container} initial="hidden" animate="visible">
       {words.map((word, index) => (
-        <AnimatedWord
-          variants={child}
-          key={index}
-        >
+        <AnimatedWord variants={child} key={index}>
           {word}
         </AnimatedWord>
       ))}
@@ -79,3 +83,7 @@ const AnimatedTextWord = ({ text }) => {
 };
 
 export default AnimatedTextWord;
+
+//By default, if your component wrapped in memo renders the same result given the same props, it will reuse the last rendered result, helping to avoid unnecessary renders. This means that as long as the text prop doesn't change, the component won't re-render.
+
+

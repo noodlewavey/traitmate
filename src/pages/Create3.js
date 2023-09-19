@@ -86,21 +86,36 @@ const CenterContainer = styled(Box)(({ theme }) => ({
   });
   
 
+  const slideVariants = {
+    hidden: {
+      y: '-100%',  // starting from a position above the initial position
+      opacity: 0
+    },
+    visible: {
+      y: '0%',    // end at the initial position
+      opacity: 1,
+      transition: {
+        duration: 0.8
+      }
+    }
+  }
+
 // you can add styling on top of navbar to position it!
 
 export default function Create3({children}) {
   return (
     <motion.div
-    initial={{opacity: 0}}
-    animate={{opacity: 1}}
-    exit={{opacity: 0, transition: {duration: 0.4}}}>
+    initial="hidden"
+    animate="visible"
+    variants={slideVariants}
+  >
     <FullPageCenter>
     <Wrapper>
     {/* adding navbar above container so its rendered above containers... */}
     <CenterContainer>
       <LeftBox>
-      {/* <ItalicText style={{marginLeft: '3rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>"Smile for us!"</ItalicText>  */}
-      <AnimatedTextWord text="Smile for the camera!" />
+      <ItalicText style={{marginLeft: '3rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>"Smile for us!"</ItalicText>  
+
       </LeftBox>
         <RightBox justify="yes">
             <UploadPhoto />

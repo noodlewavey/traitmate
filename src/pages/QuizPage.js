@@ -88,7 +88,19 @@ const CenterContainer = styled(Box)(({ theme }) => ({
 
 // you can add styling on top of navbar to position it!
 
-
+const slideVariants = {
+  hidden: {
+    y: '-100%',  // starting from a position above the initial position
+    opacity: 0
+  },
+  visible: {
+    y: '0%',    // end at the initial position
+    opacity: 1,
+    transition: {
+      duration: 0.8
+    }
+  }
+}
 
 export default function QuizPage({children, questions}) {
     const theme = useTheme();
@@ -217,9 +229,10 @@ export default function QuizPage({children, questions}) {
 
   return (
     <motion.div
-    initial={{opacity: 0}}
-    animate={{opacity: 1}}
-    exit={{opacity: 0, transition: {duration: 0.4}}}>
+    initial="hidden"
+    animate="visible"
+    variants={slideVariants}
+  >
     <FullPageCenter>
     <Wrapper>
     {/* <CreateNavbar /> */}
@@ -228,10 +241,9 @@ export default function QuizPage({children, questions}) {
       <LeftBox>
         <div>
         {currentQuestion.text && (
-                // <ItalicText style={{ wordWrap: "break-word", overflowWrap: "break-word", marginBottom: '5rem', marginTop: '0.7rem' }}>
-                //   "{currentQuestion.text}"
-                // </ItalicText>
-                <AnimatedTextWord text={currentQuestion.text} />
+                <ItalicText style={{ wordWrap: "break-word", overflowWrap: "break-word", marginBottom: '5rem', marginTop: '0.7rem' }}>
+                  "{currentQuestion.text}"
+                </ItalicText>
               )}
               {questionIndex > 0 && (
 <Button

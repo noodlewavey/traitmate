@@ -19,6 +19,7 @@ import { Navigate, useNavigate}  from 'react-router-dom';
 import SelectError from '../components/SelectError.js';
 import InputField3 from '../components/InputField3.js';
 import AnimatedTextWord from '../components/AnimatedTextWord.js';
+import { useEffect } from 'react';
 
 const FullPageCenter = styled('div')({
   display: 'flex',
@@ -107,6 +108,20 @@ const SubmitButton = styled.button({
 });
 
 
+const slideVariants = {
+  hidden: {
+    y: '-100%',  // starting from a position above the initial position
+    opacity: 0
+  },
+  visible: {
+    y: '0%',    // end at the initial position
+    opacity: 1,
+    transition: {
+      duration: 0.8
+    }
+  }
+}
+
 
 export default function Create1() {
 
@@ -118,6 +133,7 @@ const formRef = useRef(null);
 const navigate = useNavigate();
 const [error, setError] = useState(false);
 const [about, setAbout] = useState('');
+const [ hasAnimated, setHasAnimated ] = useState(false);
 
 
 const handleAgeChange = (selectedAge) => {
@@ -191,25 +207,29 @@ const handleSubmit = async (event) => {
   
 
   return (
-    <motion.div
-    initial={{opacity: 0}}
-    animate={{opacity: 1}}
-    exit={{opacity: 0, transition: {duration: 0.4}}}>
+    // <motion.div
+    // initial={{opacity: 0}}
+    // animate={{opacity: 1}}
+    // exit={{opacity: 0, transition: {duration: 0.4}}}>
+        <motion.div
+  initial="hidden"
+  animate="visible"
+  variants={slideVariants}
+>
     <FullPageCenter>
     <Wrapper>
     {/* adding navbar above container so its rendered above containers... */}
     <CenterContainer>
       <LeftBox>
-      {/* <ItalicText style={{marginLeft: '3rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>'Introduce yourself!'</ItalicText>  */}
-      <AnimatedTextWord text="Introduce yourself!" />
+ <ItalicText style={{marginLeft: '3rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>'Introduce yourself!'</ItalicText>   
       </LeftBox>
         <RightBox justify="yes">
         <form ref={formRef} onSubmit={handleSubmit} id="update1">
-        <Dropdown label="AGE" menuitems={validages} value={age} onChange={handleAgeChange}></Dropdown>
-            <input type="hidden" name="age" value={age} />
             {/* add dropdown menu! for age and major  */}
             <Dropdown label="UNIVERSITY" menuitems={unilist} value={university} onChange={handleUniversityChange}></Dropdown>
             <input type="hidden" name="university" value={university} />
+            <Dropdown label="AGE" menuitems={validages} value={age} onChange={handleAgeChange}></Dropdown>
+            <input type="hidden" name="age" value={age} />
         <InputField2 name="firstName" label="FIRST NAME" />
         <input type="hidden" name="firstName" value={firstName} />
             <InputField2 name="lastName" label="LAST NAME" />
