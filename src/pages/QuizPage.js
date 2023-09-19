@@ -20,6 +20,7 @@ import { PersonalityScoreProvider, usePersonality } from '../components/Personal
 //we use usetheme hook when applying theme-specific styling on components
 //styled takes theme as input if we access it from a styled component declaration
 import AnimatedTextWord from '../components/AnimatedTextWord.js';
+import CloseButton from '../components/CloseButton.js';
 
 
 import { Typography } from "@mui/material"; 
@@ -237,6 +238,7 @@ export default function QuizPage({children, questions}) {
     {/* <CreateNavbar /> */}
     {/* adding navbar above container so its rendered above containers... */}
     <CenterContainer>
+      <CloseButton />
       <LeftBox>
         <div>
         {currentQuestion.text && (

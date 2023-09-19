@@ -20,6 +20,7 @@ import SelectError from '../components/SelectError.js';
 import Singleselect from '../components/Singleselect.js';
 import AnimatedTextWord from '../components/AnimatedTextWord.js';
 import TypewriterComponent from 'typewriter-effect';
+import CloseButton from '../components/CloseButton.js';
 
 
 const FullPageCenter = styled('div')({
@@ -287,6 +288,7 @@ const HeaderWrapper = styled('div')(({ theme }) => ({
     <Wrapper>
     {/* adding navbar above container so its rendered above containers... */}
     <CenterContainer>
+      <CloseButton />
       <LeftBox>
       {/* <ItalicText style={{marginLeft: '3rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>"Wow, tell me more..."</ItalicText>  */}
       <HeaderWrapper>

@@ -16,6 +16,8 @@ import Dropdown from '../components/Dropdown.js';
 import UploadPhoto from '../components/UploadPhoto.js';
 import AnimatedTextWord from '../components/AnimatedTextWord.js';
 import TypewriterComponent from 'typewriter-effect';
+import CloseButton from '../components/CloseButton.js';
+
 
 const FullPageCenter = styled('div')({
   display: 'flex',
@@ -127,6 +129,7 @@ export default function Create3({children}) {
     <Wrapper>
     {/* adding navbar above container so its rendered above containers... */}
     <CenterContainer>
+    <CloseButton />
       <LeftBox>
       <HeaderWrapper>
         <TypewriterComponent

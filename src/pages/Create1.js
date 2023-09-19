@@ -138,7 +138,7 @@ const handleSubmit = async (event) => {
   const updatedFirstName = formData.get("firstName");
   const updatedLastName = formData.get("lastName");
   const updatedAge = ageRef.current.querySelector('input').value;
-  const updatedUniversity = universityRef.current.querySelector('input').value;
+  const updatedUniversity =universityRef.current.querySelector('input').value;
   const updatedAbout = formData.get("about");
 
   console.log("Updated First Name:", updatedFirstName);
@@ -241,10 +241,11 @@ const Typewriter = React.memo(() => {
     exit={{opacity: 0, transition: {duration: 0.4}}}>
 
     <FullPageCenter>
-      <CloseButton></CloseButton>
+      
     <Wrapper>
     {/* adding navbar above container so its rendered above containers... */}
     <CenterContainer>
+    <CloseButton></CloseButton>
       <LeftBox>
         <HeaderWrapper>
       <Typewriter />
