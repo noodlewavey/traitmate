@@ -14,6 +14,7 @@ import InputField from '../components/InputFIeld.js';
 import {motion} from 'framer-motion';
 import Dropdown from '../components/Dropdown.js';
 import UploadPhoto from '../components/UploadPhoto.js';
+import AnimatedTextWord from '../components/AnimatedTextWord.js';
 
 const FullPageCenter = styled('div')({
   display: 'flex',
@@ -98,7 +99,8 @@ export default function Create3({children}) {
     {/* adding navbar above container so its rendered above containers... */}
     <CenterContainer>
       <LeftBox>
-      <ItalicText style={{marginLeft: '3rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>"Smile for us!"</ItalicText> 
+      {/* <ItalicText style={{marginLeft: '3rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>"Smile for us!"</ItalicText>  */}
+      <AnimatedTextWord text="Smile for the camera!" />
       </LeftBox>
         <RightBox justify="yes">
             <UploadPhoto />

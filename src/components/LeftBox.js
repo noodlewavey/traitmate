@@ -13,6 +13,7 @@ function LeftBox({ children }) {
       display: 'flex', // Add display flex to center children
       justifyContent: 'center', // Center horizontally, this affects children
       alignItems: 'center', // Center vertically
+      overflow: 'hidden', //just added to deal wiht animatedtextword overflowing
     }));
 
   return (

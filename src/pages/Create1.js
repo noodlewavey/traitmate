@@ -18,6 +18,7 @@ import axios from 'axios';
 import { Navigate, useNavigate}  from 'react-router-dom';
 import SelectError from '../components/SelectError.js';
 import InputField3 from '../components/InputField3.js';
+import AnimatedTextWord from '../components/AnimatedTextWord.js';
 
 const FullPageCenter = styled('div')({
   display: 'flex',
@@ -199,7 +200,8 @@ const handleSubmit = async (event) => {
     {/* adding navbar above container so its rendered above containers... */}
     <CenterContainer>
       <LeftBox>
-      <ItalicText style={{marginLeft: '3rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>'Introduce yourself!'</ItalicText> 
+      {/* <ItalicText style={{marginLeft: '3rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>'Introduce yourself!'</ItalicText>  */}
+      <AnimatedTextWord text="Introduce yourself!" />
       </LeftBox>
         <RightBox justify="yes">
         <form ref={formRef} onSubmit={handleSubmit} id="update1">

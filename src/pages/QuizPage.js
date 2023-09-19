@@ -19,6 +19,7 @@ import {motion} from 'framer-motion';
 import { PersonalityScoreProvider, usePersonality } from '../components/PersonalityScoreProvider.js';
 //we use usetheme hook when applying theme-specific styling on components
 //styled takes theme as input if we access it from a styled component declaration
+import AnimatedTextWord from '../components/AnimatedTextWord.js';
 
 
 import { Typography } from "@mui/material"; 
@@ -227,9 +228,10 @@ export default function QuizPage({children, questions}) {
       <LeftBox>
         <div>
         {currentQuestion.text && (
-                <ItalicText style={{ wordWrap: "break-word", overflowWrap: "break-word", marginBottom: '5rem', marginTop: '0.7rem' }}>
-                  "{currentQuestion.text}"
-                </ItalicText>
+                // <ItalicText style={{ wordWrap: "break-word", overflowWrap: "break-word", marginBottom: '5rem', marginTop: '0.7rem' }}>
+                //   "{currentQuestion.text}"
+                // </ItalicText>
+                <AnimatedTextWord text={currentQuestion.text} />
               )}
               {questionIndex > 0 && (
 <Button
