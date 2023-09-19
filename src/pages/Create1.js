@@ -20,6 +20,7 @@ import SelectError from '../components/SelectError.js';
 import InputField3 from '../components/InputField3.js';
 import AnimatedTextWord from '../components/AnimatedTextWord.js';
 import { useEffect } from 'react';
+import TypewriterComponent from 'typewriter-effect';
 
 const FullPageCenter = styled('div')({
   display: 'flex',
@@ -203,25 +204,52 @@ const handleSubmit = async (event) => {
   }
 };
 
+const HeaderWrapper = styled('div')(({ theme }) => ({
+  fontFamily: theme.typography.h1.fontFamily,
+  fontStyle: 'italic',
+  fontSize: '8rem',
+  color: theme.palette.accent.main,  // Accessing the accent.main color
+// other styles for your component
+  lineHeight: '0.9',
+  marginLeft: '3rem', 
+  wordWrap:"break-word", 
+  overflowWrap: "break-word",
+   marginBottom: '5rem',
+   marginTop: '0.7rem'
+}));
 
   
 
   return (
-    // <motion.div
-    // initial={{opacity: 0}}
-    // animate={{opacity: 1}}
-    // exit={{opacity: 0, transition: {duration: 0.4}}}>
-        <motion.div
-  initial="hidden"
-  animate="visible"
-  variants={slideVariants}
->
+    <motion.div
+    initial={{opacity: 0}}
+    animate={{opacity: 1}}
+    exit={{opacity: 0, transition: {duration: 0.4}}}>
+
     <FullPageCenter>
     <Wrapper>
     {/* adding navbar above container so its rendered above containers... */}
     <CenterContainer>
       <LeftBox>
- <ItalicText style={{marginLeft: '3rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>'Introduce yourself!'</ItalicText>   
+        <HeaderWrapper>
+        <TypewriterComponent
+      options={{
+        delay: 50,
+      }}
+    onInit={(typewriter) => {
+      typewriter.typeString('Introduce yourself!')
+        .callFunction(() => {
+          console.log('String typed out!');
+        })
+        .pauseFor(2500)
+        .callFunction(() => {
+          console.log('All strings were deleted');
+        })
+        .start();
+    }}
+  /> 
+        </HeaderWrapper>
+ {/* <ItalicText style={{marginLeft: '3rem', wordWrap:"break-word", overflowWrap: "break-word", marginBottom: '5rem',marginTop: '0.7rem'}}>'Introduce yourself!'</ItalicText>    */}
       </LeftBox>
         <RightBox justify="yes">
         <form ref={formRef} onSubmit={handleSubmit} id="update1">
