@@ -97,7 +97,7 @@ const slideVariants = {
     y: '0%',    // end at the initial position
     opacity: 1,
     transition: {
-      duration: 0.8
+      duration: 0.4
     }
   }
 }
@@ -229,10 +229,9 @@ export default function QuizPage({children, questions}) {
 
   return (
     <motion.div
-    initial="hidden"
-    animate="visible"
-    variants={slideVariants}
-  >
+    initial={{opacity: 0}}
+    animate={{opacity: 1}}
+    exit={{opacity: 0, transition: {duration: 0.4}}}>
     <FullPageCenter>
     <Wrapper>
     {/* <CreateNavbar /> */}

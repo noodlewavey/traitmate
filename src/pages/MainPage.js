@@ -6,6 +6,9 @@ import {motion} from 'framer-motion';
 import MainNavbar from "../components/MainNavbar";
 import { useAuth } from "../components/AuthContext";
 import { useEffect } from "react";
+import { Typography } from "@mui/material";
+import TypewriterComponent from "typewriter-effect";
+import { useTheme } from "@emotion/react";
 
 const FullPageCenter = styled('div')({
     display: 'flex',
@@ -22,6 +25,8 @@ const FullPageCenter = styled('div')({
   
   
   const Wrapper = styled('div')({
+       display: 'flex',
+       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
       height: '45rem',
@@ -30,6 +35,7 @@ const FullPageCenter = styled('div')({
       overflowY: 'hidden',
       marginBottom: '4rem',
       position: 'relative',
+     
       // This is important for the absolute positioning of the child.
       
   });
@@ -46,19 +52,36 @@ const FullPageCenter = styled('div')({
   const CenterContainer = styled('div')(({ theme }) => ({
       width: '100%',
       display: 'flex', //this ensures marginLeft: auto on right box pushes to right
+      flexDirection: 'column',
       minHeight: '98%',
       height: '98%',
       marginTop: '2rem',
+      gap: '1rem',
+      alignItems: 'center', //centers about y axis
+      overflowY: 'hidden',
       //if there isnt enough space, parent container forces horizonal scroll
     }));
 
 
   
   
+  
 
 function MainPage() {
 
   const { isLoggedIn, setIsLoggedIn, isProfileCreated, setIsProfileCreated } = useAuth();
+  
+  const theme = useTheme();
+
+
+  const typewriterStyle = {
+    fontFamily: theme.typography.body2.fontFamily,
+    fontSize: theme.typography.body2.fontSize,
+    color: theme.typography.body2.color,
+    position: "absolute",
+    top: "8rem", // Adjust the top position as needed
+    width: "600px", // Adjust the width as needed
+  };
 
   useEffect(() => { 
 
@@ -72,10 +95,29 @@ function MainPage() {
     animate={{opacity: 1}}
     exit={{opacity: 0, transition: {duration: 0.8}}}>
     <FullPageCenter sx={{zIndex: -1000}}>
-    <Wrapper> 
+    <Wrapper>
      <CenterContainer> 
     <MainNavbar sx={{zIndex: 9999 }} />
-    <MainHeader/> 
+    {/* <Typography variant="body2" sx={{position: 'absolute', top: '8rem', width: '600px'}}>Take our Big Five personality quiz, and we will show you people who have similar traits. We go beyond looks. Dive into the Big Five!</Typography> */}
+    <div style={typewriterStyle}>
+    <TypewriterComponent
+    options={{
+      delay: 50,  
+    }}
+  onInit={(typewriter) => {
+    typewriter.typeString('Take our Big Five personality quiz, and we will show you people who have similar traits. We go beyond looks. Dive into the Big Five!')
+      .callFunction(() => {
+        console.log('String typed out!');
+      })
+      .pauseFor(2500)
+      .callFunction(() => {
+        console.log('All strings were deleted');
+      })
+      .start();
+  }}
+/>
+</div>
+    <MainHeader /> 
     </CenterContainer>
     </Wrapper> 
     </FullPageCenter> 
