@@ -26,8 +26,8 @@ const FullPageCenter = styled('div')({
       alignItems: 'center',
       height: '45rem',
       width: '100%',
-      overflowX: 'scroll',
-      overflowY: 'scroll',
+      overflowX: 'hidden',
+      overflowY: 'hidden',
       marginBottom: '4rem',
       position: 'relative',
       // This is important for the absolute positioning of the child.
@@ -49,7 +49,6 @@ const FullPageCenter = styled('div')({
       minHeight: '98%',
       height: '98%',
       marginTop: '2rem',
-      border: '1px solid black',
       //if there isnt enough space, parent container forces horizonal scroll
     }));
 
