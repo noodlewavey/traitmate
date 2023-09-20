@@ -18,6 +18,7 @@ import { usePersonality } from '../components/PersonalityScoreProvider';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import {CircularProgress} from '@mui/material';
+import MyProfileTemplate from '../components/MyProfileTemplate';
 
 function MyPersonalProfile() {
 
@@ -62,7 +63,7 @@ function MyPersonalProfile() {
         <CircularProgress />
       }
       {  profileData&&
-        <ProfileTemplate data={profileData} /> 
+        <MyProfileTemplate data={profileData} /> 
       }
         {/* <IconButton 
           aria-label="dislike" 

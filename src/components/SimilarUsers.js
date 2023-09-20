@@ -6,7 +6,12 @@ import { IconButton } from '@mui/material';
 import HeartIcon from './HeartIcon';
 import TrashIcon from './TrashIcon';
 
+
+
 function SimilarUsers() {
+
+
+
     const [usersWithCompatibility, setUsersWithCompatibility] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -45,6 +50,11 @@ function SimilarUsers() {
           position: 'relative',        // relative positioning context for the buttons
         }}
       >
+            {usersWithCompatibility.length > 0 && (
+                <>
+                    <ProfileTemplate data={usersWithCompatibility[currentIndex].user} compatibility={usersWithCompatibility[currentIndex].compatibilityScore} />
+                </>
+            )}
           <IconButton 
           aria-label="dislike" 
           sx={{ 
@@ -53,19 +63,10 @@ function SimilarUsers() {
             left: '13.5rem',                  // 1rem from the left edge
             transform: 'translateY(-50%)'  // vertical centering
           }}
+          onClick={goToNextUser}
         >
           <TrashIcon height="115rem" width="115rem"/>
         </IconButton>
-            {usersWithCompatibility.length > 0 && (
-                <>
-                    <ProfileTemplate data={usersWithCompatibility[currentIndex].user} />
-                    <div>
-                        <button onClick={goToPrevUser}>Previous</button>
-                        <button onClick={goToNextUser}>Next</button>
-                    </div>
-                </>
-            )}
-
 <IconButton 
           aria-label="like" 
           sx={{ 
