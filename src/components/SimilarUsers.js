@@ -5,15 +5,19 @@ import { Box } from '@mui/material';
 import { IconButton } from '@mui/material';
 import HeartIcon from './HeartIcon';
 import TrashIcon from './TrashIcon';
+import { motion, useAnimation } from 'framer-motion';
+
+
 
 
 
 function SimilarUsers() {
 
 
-
     const [usersWithCompatibility, setUsersWithCompatibility] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const controls = useAnimation();
+
 
     useEffect(() => {
         axios.get('http://localhost:8080/auth/similar-users', { withCredentials: true })
@@ -25,18 +29,33 @@ function SimilarUsers() {
             });
     }, []);
 
+
+
     const goToNextUser = () => {
-        if (currentIndex < usersWithCompatibility.length - 1) {
-            setCurrentIndex(prevIndex => prevIndex + 1);
-        }
+        controls.start({
+            x: '100vw',
+            opacity: 0,
+            transition: { duration: 0.5 }
+        }).then(() => {
+            if (currentIndex < usersWithCompatibility.length - 1) {
+                setCurrentIndex(prevIndex => prevIndex + 1);
+                controls.start({ x: 0, opacity: 1 });
+            }
+        });
     }
 
-    const goToPrevUser = () => {
-        if (currentIndex > 0) {
-            setCurrentIndex(prevIndex => prevIndex - 1);
-        }
+    const dislike = () => {
+        controls.start({
+            x: '-100vw',
+            opacity: 0,
+            transition: { duration: 0.5 }
+        }).then(() => {
+            if (currentIndex < usersWithCompatibility.length - 1) {
+                setCurrentIndex(prevIndex => prevIndex + 1);
+                controls.start({ x: 0, opacity: 1 });
+            }
+        });
     }
-
     return (
         <div>
              <Box
@@ -50,11 +69,14 @@ function SimilarUsers() {
           position: 'relative',        // relative positioning context for the buttons
         }}
       >
-            {usersWithCompatibility.length > 0 && (
-                <>
-                    <ProfileTemplate data={usersWithCompatibility[currentIndex].user} compatibility={usersWithCompatibility[currentIndex].compatibilityScore} />
-                </>
-            )}
+         {usersWithCompatibility.length > 0 && (
+                    <motion.div initial={{ x: 0, opacity: 1 }} animate={controls}>
+                        <ProfileTemplate
+                            data={usersWithCompatibility[currentIndex].user}
+                            compatibility={usersWithCompatibility[currentIndex].compatibilityScore}
+                        />
+                    </motion.div>
+                )}
           <IconButton 
           aria-label="dislike" 
           sx={{ 
@@ -63,7 +85,7 @@ function SimilarUsers() {
             left: '13.5rem',                  // 1rem from the left edge
             transform: 'translateY(-50%)'  // vertical centering
           }}
-          onClick={goToNextUser}
+          onClick={dislike}
         >
           <TrashIcon height="115rem" width="115rem"/>
         </IconButton>
