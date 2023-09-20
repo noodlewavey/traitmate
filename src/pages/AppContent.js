@@ -21,6 +21,7 @@ import LogoutPage from './LogoutPage';
 import MyPersonalProfile from './MyPersonalProfile';
 import { useAuth } from '../components/AuthContext';
 import MainNavbar from '../components/MainNavbar';
+import FindMatch from './FindMatch';
 
 function AppContent() {
     const location = useLocation();
@@ -110,6 +111,7 @@ function AppContent() {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/logout" element={<LogoutPage />} />
                 <Route path="/nav" element ={<MainNavbar />} />
+                <Route path="/match" element = {<FindMatch />} />
             </Routes>
       </MainContainer>
       </AnimatePresence>
