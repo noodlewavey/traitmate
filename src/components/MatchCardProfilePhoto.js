@@ -7,7 +7,7 @@ const MatchCardProfilePhoto = ({ imageUrl}) => {
         position: "relative",
         width: "4rem",
         height: "4rem",
-        marginTop: "0.4rem",
+        marginTop: "0.2rem",
         marginRight:"1rem",
         borderRadius: "50%",
         overflow: "hidden",

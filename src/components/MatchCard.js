@@ -21,6 +21,7 @@ import CircularFrame from './CircularFrame';
 import MatchCardProfilePhoto from './MatchCardProfilePhoto';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 
 function MatchCard({userEntity}) {
 
@@ -51,7 +52,9 @@ function MatchCard({userEntity}) {
             <StyledText>PHONE NUMBER:<b>{userEntity.phoneNumber ? userEntity.phoneNumber : "no phone number given"}</b></StyledText>  
             </Box>
             <Box display="flex" justifyContent="space-between">
+                <Link to={`/profile/${userEntity.username}`}>
             <StyledText><b>VIEW FULL PROFILE</b></StyledText>
+            </Link>
             </Box>
             </Root>
             </Box>

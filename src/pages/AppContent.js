@@ -23,6 +23,7 @@ import { useAuth } from '../components/AuthContext';
 import MainNavbar from '../components/MainNavbar';
 import FindMatch from './FindMatch';
 import Matches from './Matches';
+import ShowMatchProfile from '../components/ShowMatchProfile';
 
 function AppContent() {
     const location = useLocation();
@@ -114,6 +115,7 @@ function AppContent() {
                 <Route path="/nav" element ={<MainNavbar />} />
                 <Route path="/match" element = {<FindMatch />} />
                 <Route path="/mymatches" element={<Matches />} />
+                <Route path="/profile/:username" element={<ShowMatchProfile />} />
             </Routes>
       </MainContainer>
       </AnimatePresence>
