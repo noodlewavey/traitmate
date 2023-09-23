@@ -87,28 +87,6 @@ function MyPersonalProfile() {
         >
           <FavoriteBorderIcon style={{ fontSize: '6rem' }}/>
         </IconButton> */}
-        <IconButton 
-          aria-label="dislike" 
-          sx={{ 
-            position: 'absolute',          // absolute positioning
-            top: '59%',                    // half the height of the viewport
-            left: '13.5rem',                  // 1rem from the left edge
-            transform: 'translateY(-50%)'  // vertical centering
-          }}
-        >
-          <TrashIcon height="115rem" width="115rem"/>
-        </IconButton>
-        <IconButton 
-          aria-label="like" 
-          sx={{ 
-            position: 'absolute',          // absolute positioning
-            top: '60%',                    // half the height of the viewport
-            right: '14rem',                  // 1rem from the left edge
-            transform: 'translateY(-50%)'  // vertical centering
-          }}
-        >
-          <HeartIcon height="90rem" width="90rem"/>
-        </IconButton>
       </Box>
       </motion.div>
   );
