@@ -18,9 +18,52 @@ import MyStack from '../components/MyStack';
 import styled from "@emotion/styled";
 import { Typography } from '@mui/material';
 import MatchCard from '../components/MatchCard';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function Matches() {
 
+    const [matchesList, setMatchesList ] = useState([]);
+    const [ userEntities, setUserEntities ] = useState([]);
+
+    useEffect(() => {
+        fetchMatches().then(data => {
+            setMatchesList(data);
+
+            // Fetch user entities for each match
+            const fetchUserEntities = async () => {
+                const fetchedEntities = [];
+                for (const match of data) {
+                    try {
+                        const response = await axios.post('http://localhost:8080/auth/search-user', {
+                            targetUsername: match
+                        }, {
+                            withCredentials: true
+                        });
+                        fetchedEntities.push(response.data);
+                    } catch (error) {
+                        console.error(`There was an error fetching user data for match ${match}:`, error);
+                    }
+                }
+                setUserEntities(fetchedEntities);
+            };
+
+            fetchUserEntities();
+        });
+    }, []); 
+
+ 
+    const fetchMatches = async () => {
+        try {
+            const response = await axios.get('http://localhost:8080/auth/get-matches', {
+                withCredentials: true
+            });
+            return response.data;
+        } catch (error) {
+            console.error("There was an error fetching the matches:", error);
+            return [];
+        }
+    };
     const Root = styled('div')(({ theme }) => ({
         width: '100%',
         ...theme.typography.body2,
@@ -52,7 +95,9 @@ function Matches() {
         }}
       >
     <CenteredBox>
-    <MatchCard />
+    {userEntities.map(user => (
+                <MatchCard key={user.id} userEntity={user} />
+            ))}
      </CenteredBox>
     
       </Box>

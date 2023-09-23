@@ -19,8 +19,11 @@ import styled from "@emotion/styled";
 import { Typography } from '@mui/material';
 import CircularFrame from './CircularFrame';
 import MatchCardProfilePhoto from './MatchCardProfilePhoto';
+import axios from 'axios';
+import {useState, useEffect} from 'react';
 
-function MatchCard() {
+function MatchCard({userEntity}) {
+
 
     const Root = styled('div')(({ theme }) => ({
         width: '100%',
@@ -42,10 +45,10 @@ function MatchCard() {
             <Box flexGrow={1}>
             <Root>
         <Box display="flex" justifyContent="space-between">
-            <StyledText>INSTAGRAM:<b>@Jasmine</b></StyledText> 
+            <StyledText>INSTAGRAM:<b>@{userEntity.instagram}</b></StyledText> 
             </Box>
             <Box display="flex" justifyContent="space-between">
-            <StyledText>PHONE NUMBER:<b>111-111-1111</b></StyledText>   
+            <StyledText>PHONE NUMBER:<b>{userEntity.phoneNumber ? userEntity.phoneNumber : "no phone number given"}</b></StyledText>  
             </Box>
             <Box display="flex" justifyContent="space-between">
             <StyledText><b>VIEW FULL PROFILE</b></StyledText>
@@ -53,7 +56,7 @@ function MatchCard() {
             </Root>
             </Box>
             <MatchCardProfilePhoto imageUrl="/heart.gif" />
-            <MatchCardProfilePhoto imageUrl="/uglyman.jpg"/>
+            <MatchCardProfilePhoto imageUrl={`data:image/jpeg;base64,${userEntity.profileImage}`}/> 
             </Box>
         </MyStack>
   );
