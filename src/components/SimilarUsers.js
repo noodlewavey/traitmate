@@ -18,6 +18,8 @@ function SimilarUsers() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const controls = useAnimation();
 
+    const [showMatch, setShowMatch] = useState(false);
+
 
     useEffect(() => {
         axios.get('http://localhost:8080/auth/similar-users', { withCredentials: true })
@@ -32,17 +34,42 @@ function SimilarUsers() {
 
 
     const goToNextUser = () => {
-        controls.start({
-            x: '100vw',
-            opacity: 0,
-            transition: { duration: 0.5 }
-        }).then(() => {
-            if (currentIndex < usersWithCompatibility.length - 1) {
-                setCurrentIndex(prevIndex => prevIndex + 1);
-                controls.start({ x: 0, opacity: 1 });
+
+        const targetUsername = usersWithCompatibility[currentIndex].user.username;
+
+        axios.post('http://localhost:8080/auth/like-user', { targetUsername: targetUsername }, { withCredentials: true })
+        .then(response => {
+            console.log(response.data);
+            console.log(targetUsername);
+        
+            if (response.data === "It's a match!") {
+                setShowMatch(true);
+                setTimeout(() => {
+                    setShowMatch(false);
+                    goToNextUserLogic();
+                }, 10000);  // Wait for 15 seconds
+            } else {
+                goToNextUserLogic();
             }
+        })
+        .catch(error => {
+            console.error("Error liking user:", error);
         });
-    }
+
+}
+
+const goToNextUserLogic = () => {
+    controls.start({
+        x: '100vw',
+        opacity: 0,
+        transition: { duration: 0.5 }
+    }).then(() => {
+        if (currentIndex < usersWithCompatibility.length - 1) {
+            setCurrentIndex(prevIndex => prevIndex + 1);
+            controls.start({ x: 0, opacity: 1 });
+        }
+    });
+}
 
     const dislike = () => {
         controls.start({
@@ -70,13 +97,16 @@ function SimilarUsers() {
         }}
       >
          {usersWithCompatibility.length > 0 && (
-                    <motion.div initial={{ x: 0, opacity: 1 }} animate={controls}>
+                <motion.div initial={{ x: 0, opacity: 1 }} animate={controls}>
+                    {showMatch ? 
+                        <p>It's a match!</p>:
                         <ProfileTemplate
                             data={usersWithCompatibility[currentIndex].user}
                             compatibility={usersWithCompatibility[currentIndex].compatibilityScore}
                         />
-                    </motion.div>
-                )}
+                    }
+                </motion.div>
+            )}
           <IconButton 
           aria-label="dislike" 
           sx={{ 
