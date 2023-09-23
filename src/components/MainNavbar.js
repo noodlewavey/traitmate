@@ -98,6 +98,7 @@ console.log(isLoggedIn, "am i logged in from navbar?");
           <NavbarLink to="/logout"><b>LOG OUT</b></NavbarLink>
           <NavbarLink to="/myprofile"> <b>MY PROFILE</b></NavbarLink>
           <NavbarLink to="/match"> <b>FIND YOUR MATCH</b></NavbarLink>
+          <NavbarLink to="/mymatches"><b>MY MATCHES</b></NavbarLink>
           <a href="http://jasminenoodlewavey.vercel.app" style={{ textDecoration: 'none', color: 'black'}}>ABOUT THE CREATOR</a>
         </NavbarNavlinks>
         }
