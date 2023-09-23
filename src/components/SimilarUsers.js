@@ -6,7 +6,7 @@ import { IconButton } from '@mui/material';
 import HeartIcon from './HeartIcon';
 import TrashIcon from './TrashIcon';
 import { motion, useAnimation } from 'framer-motion';
-
+import MatchMessage from './MatchMessage';
 
 
 
@@ -99,7 +99,7 @@ const goToNextUserLogic = () => {
          {usersWithCompatibility.length > 0 && (
                 <motion.div initial={{ x: 0, opacity: 1 }} animate={controls}>
                     {showMatch ? 
-                        <p>It's a match!</p>:
+                        <MatchMessage />:
                         <ProfileTemplate
                             data={usersWithCompatibility[currentIndex].user}
                             compatibility={usersWithCompatibility[currentIndex].compatibilityScore}
