@@ -6,8 +6,41 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import { Box } from '@mui/material';
+import BarChart from './BarResult';
+import {useEffect, useState} from 'react';
+import axios from 'axios';
 
-export default function BigFive({setting}) {
+export default function BigFive({setting, userEntity}) {
+
+
+  const [personalityScore, setPersonalityScore] = useState(null);
+
+
+  useEffect(() => {
+    const fetchData = () => {
+      const dataToSend = {
+        targetUsername: userEntity // or whatever value you want to send
+      };
+
+      axios.post('http://localhost:8080/auth/search-user', dataToSend, {
+        withCredentials: true
+      })
+      .then(response => {
+        if (response.data && response.data.score) {
+          setPersonalityScore(response.data.score);
+          console.log("my score object", response.data.score)
+        } else {
+          console.error('Unexpected response format:', response.data);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+    };
+
+    fetchData();
+  }, []);
+  
   return (
     <div style={{overflow: 'auto', minWidth: '100%'}}>
       <Accordion
@@ -34,8 +67,8 @@ export default function BigFive({setting}) {
               overflowWrap: 'break-word', // ensures text wraps within the container
               whiteSpace: 'pre-wrap', // preserves spaces and line breaks, but wraps text
             }}>
-              { setting===true&&
-              <p>I want my big five to be shown</p>
+              { setting===true&& personalityScore&&
+            <BarChart width="200px" height="200px" personality={personalityScore} />
               }
               { setting===false&&
               <p>I don't want my big five to be shown</p>}

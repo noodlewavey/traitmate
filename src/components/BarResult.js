@@ -31,7 +31,7 @@ const BarChart = ({ width, height, personality }) => {
     datasets: [
       {
         labels: [3, 12, 4, 5, 2],
-        data: Object.values(personalityScore),
+        data: Object.values(personality),
         backgroundColor: ["red", "green", "blue", "purple", "orange"],
         borderColor: "black",
       },

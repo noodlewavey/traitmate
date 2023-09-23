@@ -108,7 +108,7 @@ const StyledLink = styled(Link)`
                 <b>MAJOR</b>: {data.major}
                
             </MyStack>
-            <BigFive setting={data.displayQuizResults}/>
+            <BigFive setting={data.displayQuizResults} userEntity={data.username}/>
             <Lyrics content={data.about} />
         </CenteredBox>
     );
