@@ -103,30 +103,32 @@ export default function ResultsQuiz({children}) {
     <MainNavbar></MainNavbar>
     {/* adding navbar above container so its rendered above containers... */}
     <CenterContainer>
-        <Typography variant="h1">Your Big 5 Results!</Typography>
+        <Typography variant="h1">Your Big 5 Results!</Typography> 
         {personalityScore && (
     <BarResult height={20} width={40} personality={personalityScore}/>
 )}
- <Button
+<Button
                 variant="text"
                 style={{
-                position: "absolute",
-                  top: '35rem',
-                  left: '17rem',
+                position: "relative",
+                  top: '0rem',
+                  left: '15rem',
                 }}
                 onClick={handleNextClick}
               >
                 <Typography
                   variant="body2"
-                  fontSize="1rem"
+                  fontSize="4rem"
                   color="#000000"
                 >
                   NEXT →
                 </Typography>
               </Button>
+              
     </CenterContainer>
     </Wrapper>
     </FullPageCenter>
+    
     </motion.div>
   );
 }
