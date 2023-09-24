@@ -107,12 +107,13 @@ export default function ResultsQuiz({children}) {
         {personalityScore && (
     <BarResult height={20} width={40} personality={personalityScore}/>
 )}
+<div sx={{position: 'relative', top: '0rem', display: 'flex', flexDirection: 'column'}}>
 <Button
                 variant="text"
                 style={{
                 position: "relative",
-                  top: '0rem',
-                  left: '15rem',
+                 top: '0rem',
+                left: '15rem',
                 }}
                 onClick={handleNextClick}
               >
@@ -124,7 +125,8 @@ export default function ResultsQuiz({children}) {
                   NEXT →
                 </Typography>
               </Button>
-              
+              <Typography variant="body2" sx={{position: 'relative', left: '16rem'}}>finish your profile</Typography>
+              </div>
     </CenterContainer>
     </Wrapper>
     </FullPageCenter>
