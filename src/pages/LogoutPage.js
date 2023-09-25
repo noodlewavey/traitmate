@@ -134,7 +134,7 @@ const handleLogout = async () => {
       },
     };
 
-    const response = await axios.post('http://localhost:8080/auth/logout', emptyRequest, config);
+    const response = await axios.post('${process.env.REACT_APP_API_ENDPOINT}/auth/logout', emptyRequest, config);
 
     if (response.status === 200) {
       // Successful logout

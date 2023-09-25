@@ -30,7 +30,7 @@ function MyPersonalProfile() {
 
   
   useEffect(() => {
-    axios.get('http://localhost:8080/auth/myprofile', { withCredentials: true })
+    axios.get('${process.env.REACT_APP_API_ENDPOINT}/auth/myprofile', { withCredentials: true })
         .then(response => {
             setProfileData(response.data);
             console.log("success");

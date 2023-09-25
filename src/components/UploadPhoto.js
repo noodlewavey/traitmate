@@ -28,7 +28,7 @@ const UploadPhoto = () => {
 
       try {
         // Replace 'YOUR_BACKEND_API_ENDPOINT' with your actual API endpoint
-        const response = await axios.post('http://localhost:8080/auth/update3', formData, {withCredentials: true});
+        const response = await axios.post('${process.env.REACT_APP_API_ENDPOINT}/auth/update3', formData, {withCredentials: true});
         console.log('Photo uploaded:', response.data);
         setSuccess(true);
         setIsProfileCreated(true);

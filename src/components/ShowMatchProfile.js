@@ -70,7 +70,7 @@ const StyledLink = styled(Link)`
 useEffect(() => {
     const fetchData = async () => {
         try {
-            const response = await axios.post('http://localhost:8080/auth/search-user', {
+            const response = await axios.post('${process.env.REACT_APP_API_ENDPOINT}/auth/search-user', {
                 targetUsername: username
             }, {
                 withCredentials: true

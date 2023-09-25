@@ -22,7 +22,7 @@ function SimilarUsers() {
 
 
     useEffect(() => {
-        axios.get('http://localhost:8080/auth/similar-users', { withCredentials: true })
+        axios.get('${process.env.REACT_APP_API_ENDPOINT}/auth/similar-users', { withCredentials: true })
             .then(response => {
                 setUsersWithCompatibility(response.data);
             })
@@ -37,7 +37,7 @@ function SimilarUsers() {
 
         const targetUsername = usersWithCompatibility[currentIndex].user.username;
 
-        axios.post('http://localhost:8080/auth/like-user', { targetUsername: targetUsername }, { withCredentials: true })
+        axios.post('${process.env.REACT_APP_API_ENDPOINT}/auth/like-user', { targetUsername: targetUsername }, { withCredentials: true })
         .then(response => {
             console.log(response.data);
             console.log(targetUsername);

@@ -35,7 +35,7 @@ function Matches() {
                 const fetchedEntities = [];
                 for (const match of data) {
                     try {
-                        const response = await axios.post('http://localhost:8080/auth/search-user', {
+                        const response = await axios.post('${process.env.REACT_APP_API_ENDPOINT}/auth/search-user', {
                             targetUsername: match
                         }, {
                             withCredentials: true
@@ -55,7 +55,7 @@ function Matches() {
  
     const fetchMatches = async () => {
         try {
-            const response = await axios.get('http://localhost:8080/auth/get-matches', {
+            const response = await axios.get('${process.env.REACT_APP_API_ENDPOINT}/auth/get-matches', {
                 withCredentials: true
             });
             return response.data;

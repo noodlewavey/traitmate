@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
     // Send a request to the /update1 
     //In summary, sending an empty request body with an empty Create1Dto object to
     // your /update1 endpoint should not cause any changes to the existing data in the user's profile.
-    axios.post('http://localhost:8080/auth/isloggedin', {}, { withCredentials: true })
+    axios.post('${process.env.REACT_APP_API_ENDPOINT}/auth/isloggedin', {}, { withCredentials: true })
       .then(response => {
         if (response.status === 200) {
           // Profile updated successfully, user is logged in
@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }) => {
     // Send a request to the /update1 
     //In summary, sending an empty request body with an empty Create1Dto object to
     // your /update1 endpoint should not cause any changes to the existing data in the user's profile.
-    axios.post('http://localhost:8080/auth/iscreated', {}, { withCredentials: true })
+    axios.post('${process.env.REACT_APP_API_ENDPOINT}/auth/iscreated', {}, { withCredentials: true })
       .then(response => {
         if (response.status === 200) {
           // Profile updated successfully, user is logged in

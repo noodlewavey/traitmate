@@ -139,7 +139,7 @@ const { isLoggedIn, setIsLoggedIn, isProfileCreated, setIsProfileCreated } = use
         withCredentials: true,
       };
   
-      const response = await axios.post('http://localhost:8080/auth/login', loginDto, config);
+      const response = await axios.post('${process.env.REACT_APP_API_ENDPOINT}/auth/login', loginDto, config);
   
       if (response.status === 200) {
         // Successful login
@@ -217,7 +217,7 @@ const handleRegister = async (inputUsername, inputPassword) => {
       },
     };
 
-    const response = await axios.post('http://localhost:8080/auth/register', registrationDto, config);
+    const response = await axios.post('${process.env.REACT_APP_API_ENDPOINT}/auth/register', registrationDto, config);
 
     if (response.status === 200) {
       // Successful registration

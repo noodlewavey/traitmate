@@ -173,7 +173,7 @@ const handleSubmit = async (event) => {
   console.log(payload); // Just for debugging
 
   try {
-    const response = await axios.post('http://localhost:8080/auth/update1', payload, {
+    const response = await axios.post('${process.env.REACT_APP_API_ENDPOINT}/auth/update1', payload, {
       withCredentials: true, // Set withCredentials to true
       headers: {
         'Accept': 'application/json',

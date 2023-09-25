@@ -22,7 +22,7 @@ export default function BigFive({setting, userEntity}) {
         targetUsername: userEntity // or whatever value you want to send
       };
 
-      axios.post('http://localhost:8080/auth/search-user', dataToSend, {
+      axios.post('${process.env.REACT_APP_API_ENDPOINT}/auth/search-user', dataToSend, {
         withCredentials: true
       })
       .then(response => {
