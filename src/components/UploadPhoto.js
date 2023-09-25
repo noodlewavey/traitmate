@@ -4,11 +4,13 @@ import axios from 'axios';
 import styled from '@emotion/styled';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
+import SelectError from './SelectError';
 
 const UploadPhoto = () => {
   const [selectedFile, setSelectedFile] = useState(null);
  const {isProfileCreated, setIsProfileCreated } = useAuth();
   const [success, setSuccess] = useState(false);
+  const [invalid, setInvalid ] = useState(false);
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -32,9 +34,11 @@ const UploadPhoto = () => {
         console.log('Photo uploaded:', response.data);
         setSuccess(true);
         setIsProfileCreated(true);
+        setInvalid(false);
         
       } catch (error) {
         console.error('Error uploading file:', error);
+        setInvalid(true);
       }
     }
   };
@@ -76,12 +80,15 @@ const UploadPhoto = () => {
       <Button variant="outlined" color="primary" onClick={handleUpload}>
         Upload
       </Button>
-      <Typography variant="body2" sx={{width:"300px"}}>Choose a photo that is well-lit and shows your face clearly. The photo will be cropped automatically in a circular frame and displayed above your profile </Typography>
+      <Typography variant="body2" sx={{width:"300px"}}>Choose a photo that is well-lit and shows your face clearly. The photo will be cropped automatically in a circular frame and displayed above your profile. This only accepts JPEG and PNG files without metadata. </Typography>
       {success &&
       <div>
       <p sx={{fontSize: '5rem'}}>Uploaded!</p>
       <SubmitButton onClick={handleSubmit}>&#8594;</SubmitButton>
       </div>
+      }
+      { invalid &&
+      <SelectError message="Wrong file type or meta data found. Try another photo!" />
       }
     </Container>
   );

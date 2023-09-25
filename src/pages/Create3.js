@@ -120,6 +120,8 @@ const CenterContainer = styled(Box)(({ theme }) => ({
 // you can add styling on top of navbar to position it!
 
 export default function Create3({children}) {
+
+ 
   return (
     <motion.div
     initial={{opacity: 0}}
