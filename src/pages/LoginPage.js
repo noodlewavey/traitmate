@@ -139,7 +139,7 @@ const { isLoggedIn, setIsLoggedIn, isProfileCreated, setIsProfileCreated } = use
         withCredentials: true,
       };
   
-      const response = await axios.post('${process.env.REACT_APP_API_ENDPOINT}/auth/login', loginDto, config);
+      const response = await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/auth/login`, loginDto, config);
   
       if (response.status === 200) {
         // Successful login
