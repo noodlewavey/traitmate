@@ -266,6 +266,9 @@ export default function QuizPage({children, questions}) {
               </Button>
               )}
               </div>
+              <Typography variant="body2" fontSize="0.4rem">
+                {questionIndex+1}/50
+              </Typography>
       </LeftBox>
         <RightBox justify="yes">
         <FormControl>
