@@ -30,7 +30,13 @@ const BarChart = ({ width, height, personality }) => {
     ],
     datasets: [
       {
-        data: Object.values(personality),
+        data: [
+          personality.extraversion,
+          personality.agreeableness,
+          personality.conscientiousness,
+          personality.emotionalStability,
+          personality.intellect,
+        ],
         backgroundColor: ["red", "green", "blue", "purple", "orange"],
         borderColor: "black",
       },
