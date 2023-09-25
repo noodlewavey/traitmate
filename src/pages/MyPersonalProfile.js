@@ -30,7 +30,7 @@ function MyPersonalProfile() {
 
   
   useEffect(() => {
-    axios.get('${process.env.REACT_APP_API_ENDPOINT}/auth/myprofile', { withCredentials: true })
+    axios.get('https://powerful-beach-48698-6df70ccb3bb4.herokuapp.com/auth/myprofile', { withCredentials: true })
         .then(response => {
             setProfileData(response.data);
             console.log("success");

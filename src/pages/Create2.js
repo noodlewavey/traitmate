@@ -244,7 +244,7 @@ const handleSubmit = async (event) => {
   console.log(payload); // Just for debugging
 
   try {
-    const response = await axios.post('${process.env.REACT_APP_API_ENDPOINT}/auth/update2', payload, {
+    const response = await axios.post('https://powerful-beach-48698-6df70ccb3bb4.herokuapp.com/auth/update2', payload, {
       withCredentials: true, // Set withCredentials to true
       headers: {
         'Content-Type': 'application/json',

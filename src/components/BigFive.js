@@ -22,7 +22,7 @@ export default function BigFive({setting, userEntity}) {
         targetUsername: userEntity // or whatever value you want to send
       };
 
-      axios.post('${process.env.REACT_APP_API_ENDPOINT}/auth/search-user', dataToSend, {
+      axios.post('https://powerful-beach-48698-6df70ccb3bb4.herokuapp.com/auth/search-user', dataToSend, {
         withCredentials: true
       })
       .then(response => {

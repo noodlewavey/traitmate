@@ -134,7 +134,7 @@ const handleLogout = async () => {
       },
     };
 
-    const response = await axios.post('${process.env.REACT_APP_API_ENDPOINT}/auth/logout', emptyRequest, config);
+    const response = await axios.post('https://powerful-beach-48698-6df70ccb3bb4.herokuapp.com/auth/logout', emptyRequest, config);
 
     if (response.status === 200) {
       // Successful logout

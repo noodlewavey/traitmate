@@ -204,7 +204,7 @@ export default function QuizPage({children, questions}) {
     const submitAnswers = async () => {
       console.log(answers);
       try {
-          const response = await fetch('${process.env.REACT_APP_API_ENDPOINT}/submit-answers', {
+          const response = await fetch('https://powerful-beach-48698-6df70ccb3bb4.herokuapp.com/submit-answers', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json'

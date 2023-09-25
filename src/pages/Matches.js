@@ -35,7 +35,7 @@ function Matches() {
                 const fetchedEntities = [];
                 for (const match of data) {
                     try {
-                        const response = await axios.post('${process.env.REACT_APP_API_ENDPOINT}/auth/search-user', {
+                        const response = await axios.post('https://powerful-beach-48698-6df70ccb3bb4.herokuapp.com/auth/search-user', {
                             targetUsername: match
                         }, {
                             withCredentials: true
@@ -55,7 +55,7 @@ function Matches() {
  
     const fetchMatches = async () => {
         try {
-            const response = await axios.get('${process.env.REACT_APP_API_ENDPOINT}/auth/get-matches', {
+            const response = await axios.get('https://powerful-beach-48698-6df70ccb3bb4.herokuapp.com/auth/get-matches', {
                 withCredentials: true
             });
             return response.data;

@@ -22,7 +22,7 @@ function SimilarUsers() {
 
 
     useEffect(() => {
-        axios.get('${process.env.REACT_APP_API_ENDPOINT}/auth/similar-users', { withCredentials: true })
+        axios.get('https://powerful-beach-48698-6df70ccb3bb4.herokuapp.com/auth/similar-users', { withCredentials: true })
             .then(response => {
                 setUsersWithCompatibility(response.data);
             })
@@ -37,7 +37,7 @@ function SimilarUsers() {
 
         const targetUsername = usersWithCompatibility[currentIndex].user.username;
 
-        axios.post('${process.env.REACT_APP_API_ENDPOINT}/auth/like-user', { targetUsername: targetUsername }, { withCredentials: true })
+        axios.post('https://powerful-beach-48698-6df70ccb3bb4.herokuapp.com/auth/like-user', { targetUsername: targetUsername }, { withCredentials: true })
         .then(response => {
             console.log(response.data);
             console.log(targetUsername);
