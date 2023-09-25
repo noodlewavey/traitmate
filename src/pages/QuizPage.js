@@ -39,7 +39,7 @@ const FullPageCenter = styled('div')({
 const ItalicText = styled('div')(({ theme }) => ({
   fontFamily: theme.typography.h1.fontFamily,
   fontStyle: 'italic',
-  fontSize: '5.6rem',
+  fontSize: '5rem',
   color: theme.palette.accent.main,  // Accessing the accent.main color
   // other styles for your component
   lineHeight: '0.9',
