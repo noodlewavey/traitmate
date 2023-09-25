@@ -304,7 +304,7 @@ export default function QuizPage({children, questions}) {
               {error && (
                     <SelectError message="You didn't select an answer! Please try again" />
                 )}
-                  <Typography variant="body2" fontSize="0.4rem">
+                  <Typography variant="body2" fontSize="0.6rem">
                 {questionIndex+1}/50
               </Typography>
         </RightBox>
