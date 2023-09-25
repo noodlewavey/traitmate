@@ -139,7 +139,7 @@ const { isLoggedIn, setIsLoggedIn, isProfileCreated, setIsProfileCreated } = use
         withCredentials: true,
       };
   
-      const response = await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/auth/login`, loginDto, config);
+      const response = await axios.post('https://powerful-beach-48698-6df70ccb3bb4.herokuapp.com/auth/login', loginDto, config);
   
       if (response.status === 200) {
         // Successful login
