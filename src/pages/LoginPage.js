@@ -217,7 +217,7 @@ const handleRegister = async (inputUsername, inputPassword) => {
       },
     };
 
-    const response = await axios.post('${process.env.REACT_APP_API_ENDPOINT}/auth/register', registrationDto, config);
+    const response = await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/auth/register`, registrationDto, config);
 
     if (response.status === 200) {
       // Successful registration
