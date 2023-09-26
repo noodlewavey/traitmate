@@ -81,7 +81,6 @@ return (
                     width: '100vw',            // Occupy full viewport width
                 }}>
             <Typography variant="h2" sx={{marginTop: '7rem'}}>It's a match!</Typography>
-            <img src="/heart.gif" alt="Heart Animation" />
             <div style={typewriterStyle}>
             <TypewriterComponent
     options={{
@@ -100,6 +99,7 @@ return (
   }}
 />
 </div>
+<img src="/heart.gif" alt="Heart Animation" />
         </Box>
     </motion.div>
 );

@@ -47,7 +47,7 @@ function SimilarUsers() {
                 setTimeout(() => {
                     setShowMatch(false);
                     goToNextUserLogic();
-                }, 10000);  // Wait for 15 seconds
+                }, 5000);  // Wait for 15 seconds
             } else {
                 goToNextUserLogic();
             }
