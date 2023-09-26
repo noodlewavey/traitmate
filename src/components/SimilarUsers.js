@@ -119,7 +119,9 @@ const dislike = () => {
         usersWithCompatibility[currentIndex] ? (
             <motion.div initial={{ x: 0, opacity: 1 }} animate={controls}>
                 {showMatch ? (
+                    <motion.div initial={{ x: 0, opacity: 1 }} animate={controls}>
                     <MatchMessage />
+                    </motion.div>
                 ) : (
                     <ProfileTemplate
                         data={usersWithCompatibility[currentIndex].user}
@@ -130,6 +132,8 @@ const dislike = () => {
         ) : null
     )
 }
+{/* in a nutshell, dont try to access usersWithCompatibility[currentIndex].user if you're overflowing...
+instead, make a check to see if its defined  */}
 
           <IconButton 
           aria-label="dislike" 
