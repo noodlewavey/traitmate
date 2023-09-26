@@ -251,7 +251,7 @@ useEffect(() => {
     exit={{opacity: 0, transition: {duration: 0.4}}}>
     <FullPageCenter>
     <Wrapper>
-    {/* <MainNavbar /> */}
+    <MainNavbar /> 
     {/* adding navbar above container so its rendered above containers... */}
     <CenterContainer>
       <LeftBox>
