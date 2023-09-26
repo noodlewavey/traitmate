@@ -7,6 +7,7 @@ import HeartIcon from './HeartIcon';
 import TrashIcon from './TrashIcon';
 import { motion, useAnimation } from 'framer-motion';
 import MatchMessage from './MatchMessage';
+import SeenEveryone from './SeenEveryone';
 
 
 
@@ -19,6 +20,7 @@ function SimilarUsers() {
     const controls = useAnimation();
 
     const [showMatch, setShowMatch] = useState(false);
+    const [end, setEnd] = useState(false);
 
 
     useEffect(() => {
@@ -56,7 +58,11 @@ function SimilarUsers() {
             console.error("Error liking user:", error);
         });
 
+   
+
 }
+
+
 
 const goToNextUserLogic = () => {
     controls.start({
@@ -64,25 +70,35 @@ const goToNextUserLogic = () => {
         opacity: 0,
         transition: { duration: 0.5 }
     }).then(() => {
-        if (currentIndex < usersWithCompatibility.length - 1) {
+        if (currentIndex === usersWithCompatibility.length - 1) {
+            setEnd(true);
+        } else {
             setCurrentIndex(prevIndex => prevIndex + 1);
             controls.start({ x: 0, opacity: 1 });
         }
     });
-}
+};
 
-    const dislike = () => {
-        controls.start({
-            x: '-100vw',
-            opacity: 0,
-            transition: { duration: 0.5 }
-        }).then(() => {
-            if (currentIndex < usersWithCompatibility.length - 1) {
-                setCurrentIndex(prevIndex => prevIndex + 1);
-                controls.start({ x: 0, opacity: 1 });
-            }
-        });
-    }
+const dislike = () => {
+    controls.start({
+        x: '-100vw',
+        opacity: 0,
+        transition: { duration: 0.5 }
+    }).then(() => {
+        if (currentIndex === usersWithCompatibility.length - 1) {
+            setEnd(true);
+        } else {
+            setCurrentIndex(prevIndex => prevIndex + 1);
+            controls.start({ x: 0, opacity: 1 });
+        }
+    });
+};
+
+
+
+
+
+
     return (
         <div>
              <Box
@@ -96,17 +112,25 @@ const goToNextUserLogic = () => {
           position: 'relative',        // relative positioning context for the buttons
         }}
       >
-         {usersWithCompatibility.length > 0 && (
-                <motion.div initial={{ x: 0, opacity: 1 }} animate={controls}>
-                    {showMatch ? 
-                        <MatchMessage />:
-                        <ProfileTemplate
-                            data={usersWithCompatibility[currentIndex].user}
-                            compatibility={usersWithCompatibility[currentIndex].compatibilityScore}
-                        />
-                    }
-                </motion.div>
-            )}
+              {
+    end ? (
+        <SeenEveryone />
+    ) : (
+        usersWithCompatibility[currentIndex] ? (
+            <motion.div initial={{ x: 0, opacity: 1 }} animate={controls}>
+                {showMatch ? (
+                    <MatchMessage />
+                ) : (
+                    <ProfileTemplate
+                        data={usersWithCompatibility[currentIndex].user}
+                        compatibility={usersWithCompatibility[currentIndex].compatibilityScore}
+                    />
+                )}
+            </motion.div>
+        ) : null
+    )
+}
+
           <IconButton 
           aria-label="dislike" 
           sx={{ 
