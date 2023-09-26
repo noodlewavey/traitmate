@@ -20,11 +20,14 @@ import { Typography } from '@mui/material';
 import MatchCard from '../components/MatchCard';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import {CircularProgress} from '@mui/material';
+
 
 function Matches() {
 
     const [matchesList, setMatchesList ] = useState([]);
     const [ userEntities, setUserEntities ] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         fetchMatches().then(data => {
@@ -46,6 +49,7 @@ function Matches() {
                     }
                 }
                 setUserEntities(fetchedEntities);
+                setIsLoading(false);
             };
 
             fetchUserEntities();
@@ -95,9 +99,18 @@ function Matches() {
         }}
       >
     <CenteredBox>
-    {userEntities.map(user => (
-                <MatchCard key={user.id} userEntity={user} />
-            ))}
+    { isLoading ? 
+        <CircularProgress size={120} 
+        style={{ 
+            position: 'absolute',
+            top: '40%', 
+            left: '38%', 
+            transform: 'translate(-50%, -50%)'}} /> 
+        :
+        userEntities.map(user => (
+            <MatchCard key={user.id} userEntity={user} />
+        ))
+    }
      </CenteredBox>
     
       </Box>
