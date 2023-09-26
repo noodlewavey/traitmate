@@ -18,6 +18,8 @@ import Box from "@mui/material/Box";
 import { useEffect } from "react";
 import { useRef } from "react";
 import {Link} from "react-router-dom";
+import BuildIcon from '@mui/icons-material/Build';
+import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 
 const MyProfileTemplate = ({data, compatibility}) => {
 
@@ -53,7 +55,8 @@ const MyProfileTemplate = ({data, compatibility}) => {
 
 const StyledLink = styled(Link)`
     color: grey;
-    text-decoration: underline;
+    text-decoration: none;
+    font-weight: 300;
 
     &:hover {
         color: blue;
@@ -66,9 +69,9 @@ const StyledLink = styled(Link)`
             <CircularFrame imageUrl={`data:image/jpeg;base64,${data.profileImage}`}/>
               <Typography variant="h1" style={{justifyContent: 'center', fontSize: '2rem' }}>
   {data.firstName}</Typography>
-  <Box sx={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
-    <StyledLink to="/create/1" sx={{ color: 'grey' , textDecoration: 'underline' }}>⁕EDIT MY PROFILE</StyledLink>
-    <StyledLink to="/quiz/1" sx={{ color: 'grey',  textDecoration: 'underline' }}>⁕RETAKE THE QUIZ</StyledLink>
+  <Box sx={{ display: 'flex', flexDirection: 'row', gap: '5rem' }}>
+    <StyledLink to="/create/1" sx={{ color: 'grey'  }}><BuildIcon fontSize="0.4rem"/> EDIT MY PROFILE</StyledLink>
+    <StyledLink to="/quiz/1" sx={{ color: 'grey' }}><DriveFileRenameOutlineIcon fontSize="0.4rem" /> RETAKE THE QUIZ</StyledLink>
 </Box>
             <MyStack>
                 <Root>
