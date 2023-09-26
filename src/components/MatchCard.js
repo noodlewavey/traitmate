@@ -22,6 +22,10 @@ import MatchCardProfilePhoto from './MatchCardProfilePhoto';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
+import MessageIcon from '@mui/icons-material/Message';
+import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
+import CenterFocusWeakIcon from '@mui/icons-material/CenterFocusWeak';
+
 
 function MatchCard({userEntity}) {
 
@@ -36,7 +40,7 @@ function MatchCard({userEntity}) {
 
       const StyledText = styled(Typography)(({ theme }) => ({
         ...theme.typography.body2,
-        fontSize:"0.7rem"
+        fontSize:"0.65rem"
       }));
 
 
@@ -46,20 +50,28 @@ function MatchCard({userEntity}) {
             <Box flexGrow={1}>
             <Root>
         <Box display="flex" justifyContent="space-between">
-            <StyledText>INSTAGRAM:<b>@{userEntity.instagram}</b></StyledText> 
+          <MyStack>
+            <MessageIcon fontSize="1.5rem"/>
+            <StyledText>INSTA:<b>@{userEntity.instagram}</b></StyledText> 
+            </MyStack>
             </Box>
-            <Box display="flex" justifyContent="space-between">
-            <StyledText>PHONE NUMBER:<b>{userEntity.phoneNumber ? userEntity.phoneNumber : "no phone number given"}</b></StyledText>  
-            </Box>
-            <Box display="flex" justifyContent="space-between">
-                <Link to={`/profile/${userEntity.username}`}>
+          
+              <MyStack>
+                <PhoneInTalkIcon fontSize="1.5rem"/>
+            <StyledText>CELL#:<b>{userEntity.phoneNumber ? userEntity.phoneNumber : "N/A"}</b></StyledText>  
+              </MyStack>
+              
+            <MyStack>
+              <CenterFocusWeakIcon fontSize="1.5rem" />
+                <Link to={`/profile/${userEntity.username}`}> 
             <StyledText><b>VIEW FULL PROFILE</b></StyledText>
             </Link>
-            </Box>
+            </MyStack>
+           
             </Root>
             </Box>
-            <MatchCardProfilePhoto imageUrl="/heart.gif" />
-            <MatchCardProfilePhoto imageUrl={`data:image/jpeg;base64,${userEntity.profileImage}`}/> 
+            <MatchCardProfilePhoto imageUrl="/heart.gif" marginTop="-15rem"/>
+            <MatchCardProfilePhoto imageUrl={`data:image/jpeg;base64,${userEntity.profileImage}`} paddingTop="-35rem"/> 
             </Box>
         </MyStack>
   );

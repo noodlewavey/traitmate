@@ -5,11 +5,11 @@ const MatchCardProfilePhoto = ({ imageUrl}) => {
     <div
       style={{
         position: "relative",
-        width: "4rem",
-        height: "4rem",
+        width: "7rem",
+        height: "7rem",
         marginTop: "0.2rem",
         marginRight:"1rem",
-        borderRadius: "50%",
+        borderRadius: "10px",
         overflow: "hidden",
         display: "flex",
         alignItems: "center",
