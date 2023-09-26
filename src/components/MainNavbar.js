@@ -6,6 +6,8 @@ import { useAuth } from "./AuthContext";
 import { BrowserRouter as Router } from 'react-router-dom';
 import { useEffect } from "react";
 import { AuthProvider } from "./AuthContext";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { Favorite } from "@mui/icons-material";
 
 const NavbarWrapper = styled('div')({
   width: '100vw',//adding this centers the navbar
@@ -42,7 +44,8 @@ pointer-events: 'auto';
 
 const NavbarLink = styled(Link)(({ theme }) => ({
   fontFamily: theme.typography.body2.fontFamily,
-  fontWeight: 300,
+  fontSize: "0.7rem",
+  fontWeight: 150,
   pointerEvents: 'auto',
   textDecoration: 'none',
   zIndex: 9999,
@@ -81,25 +84,25 @@ console.log(isLoggedIn, "am i logged in from navbar?");
       <NavbarToolbar>
       { (isLoggedIn===false || isLoggedIn===null) &&
         <NavbarNavlinks>
-          <NavbarLink to="/login"><b>LOG IN</b></NavbarLink>
-          <NavbarLink to="/"> <b>MAIN</b></NavbarLink>
-          <a href="http://jasminenoodlewavey.vercel.app" style={{ textDecoration: 'none', color: 'black'}}>ABOUT THE CREATOR</a>
+          <NavbarLink to="/login"><FavoriteBorderIcon fontSize="0.3rem" /><b> LOG IN</b></NavbarLink>
+          <NavbarLink to="/"><FavoriteBorderIcon fontSize="0.3rem" /> <b> MAIN</b></NavbarLink>
+          <a href="http://jasminenoodlewavey.vercel.app" style={{ textDecoration: 'none', color: 'black', fontSize:"0.7rem" }}>ABOUT THE CREATOR</a>
         </NavbarNavlinks>
         }
         { isLoggedIn===true && isProfileCreated===false &&
         <NavbarNavlinks>
-          <NavbarLink to="/logout"><b>LOG OUT</b></NavbarLink>
-          <NavbarLink to="/create/1"> <b>CREATE PROFILE</b></NavbarLink>
-          <a href="http://jasminenoodlewavey.vercel.app" style={{ textDecoration: 'none', color: 'black'}}>ABOUT THE CREATOR</a>
+          <NavbarLink to="/logout"><FavoriteBorderIcon fontSize="0.3rem" /><b> LOG OUT</b></NavbarLink>
+          <NavbarLink to="/create/1"> <FavoriteBorderIcon fontSize="0.3rem" /><b> CREATE PROFILE</b></NavbarLink>
+          <a href="http://jasminenoodlewavey.vercel.app" style={{ textDecoration: 'none', color: 'black', fontSize:"0.7rem"}}>ABOUT THE CREATOR</a>
         </NavbarNavlinks>
         }
         { isLoggedIn===true && isProfileCreated===true &&
         <NavbarNavlinks>
-          <NavbarLink to="/logout"><b>LOG OUT</b></NavbarLink>
-          <NavbarLink to="/myprofile"> <b>MY PROFILE</b></NavbarLink>
-          <NavbarLink to="/match"> <b>FIND YOUR MATCH</b></NavbarLink>
-          <NavbarLink to="/mymatches"><b>MY MATCHES</b></NavbarLink>
-          <a href="http://jasminenoodlewavey.vercel.app" style={{ textDecoration: 'none', color: 'black'}}>ABOUT THE CREATOR</a>
+          <NavbarLink to="/logout"><FavoriteBorderIcon fontSize="0.3rem" /><b> LOG OUT</b></NavbarLink>
+          <NavbarLink to="/myprofile"><FavoriteBorderIcon fontSize="0.3rem" /> <b> MY PROFILE</b></NavbarLink>
+          <NavbarLink to="/match"> <FavoriteBorderIcon fontSize="0.3rem" /><b> FIND YOUR MATCH</b></NavbarLink>
+          <NavbarLink to="/mymatches"><FavoriteBorderIcon fontSize="0.3rem" /><b> MY MATCHES</b></NavbarLink>
+          <a href="http://jasminenoodlewavey.vercel.app" style={{ textDecoration: 'none', color: 'black', fontSize:"0.7rem"}}>ABOUT THE CREATOR</a>
         </NavbarNavlinks>
         }
       </NavbarToolbar>
