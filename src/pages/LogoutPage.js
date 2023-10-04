@@ -130,9 +130,11 @@ const handleLogout = async () => {
 
     const config = {
       headers: {
-        'Content-Type': 'application/json', // Set the request header to JSON
+        'Content-Type': 'application/json', 
       },
+      withCredentials: true, // Include this line to send cookies
     };
+
 
     const response = await axios.post('https://powerful-beach-48698-6df70ccb3bb4.herokuapp.com/auth/logout', emptyRequest, config);
 
