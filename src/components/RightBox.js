@@ -14,7 +14,7 @@ function RightBox({ children, justify}) {
       alignItems: 'center', 
       gap: '1rem', //this gives gap to child elements
       flexDirection: 'column', //stacks children top to bottom
-      overflowy: 'hidden',
+      //overflowy: 'hidden',
     }));
 
   return (

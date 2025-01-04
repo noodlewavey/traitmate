@@ -31,8 +31,8 @@ const FullPageCenter = styled('div')({
       alignItems: 'center',
       height: '45rem',
       width: '100%',
-      //overflowX: 'hidden',
-      overflowY: 'hidden',
+      ////overflowx: 'hidden',
+      //overflowy: 'hidden',
       marginBottom: '4rem',
       position: 'relative',
      
@@ -58,7 +58,7 @@ const FullPageCenter = styled('div')({
       marginTop: '2rem',
       gap: '1rem',
       alignItems: 'center', //centers about y axis
-      //overflowY: 'hidden',
+      ////overflowy: 'hidden',
       //if there isnt enough space, parent container forces horizonal scroll
     }));
 

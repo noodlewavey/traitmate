@@ -68,13 +68,13 @@ const CenterContainer = styled(Box)(({ theme }) => ({
     margin: 'auto',
     marginTop: '4rem',
     overflowX: 'scroll',
-    overflowy: 'hidden',
+    //overflowy: 'hidden',
     //if there isnt enough space, parent container forces horizonal scroll
   }));
 
   //this is immediate child of wrapper, contains right box
   //relative makes container point of ref to absolutely positioned children
-  //overflowX: 'scroll' and overflowy: 'hidden': These styles force both horizontal and vertical scrollbars to appear if the content inside CenterContainer exceeds its boundaries.
+  //overflowX: 'scroll' and //overflowy: 'hidden': These styles force both horizontal and vertical scrollbars to appear if the content inside CenterContainer exceeds its boundaries.
   
 
 
