@@ -47,7 +47,7 @@ const Wrapper = styled('div')({
     alignItems: 'center',
     height: '45rem',
     width: '80rem',
-    overflowX: 'hidden',
+    //overflowX: 'hidden',
     overflowY: 'scroll',
     marginBottom: '4rem',
     position: 'relative', // This is important for the absolute positioning of the child.
@@ -69,7 +69,7 @@ const CenterContainer = styled(Box)(({ theme }) => ({
     height: '98%',
     margin: 'auto',
     marginTop: '4rem',
-    overflowX: 'hidden',
+    //overflowX: 'hidden',
     //overflowY: 'hidden',
     //if there isnt enough space, parent container forces horizonal scroll
   }));
