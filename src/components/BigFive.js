@@ -42,7 +42,7 @@ export default function BigFive({setting, userEntity}) {
   }, []);
   
   return (
-    <div style={{, minWidth: '100%'}}>
+    <div style={{minWidth: '100%'}}>
       <Accordion
         sx={{
           backgroundColor: 'transparent', 

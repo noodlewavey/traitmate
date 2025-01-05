@@ -9,7 +9,7 @@ import { MusicNote } from '@mui/icons-material';
 
 export default function Lyrics({content}) {
   return (
-    <div style={{, minWidth: '100%'}}>
+    <div style={{ minWidth: '100%'}}>
       <Accordion
         sx={{
           backgroundColor: 'transparent', 
