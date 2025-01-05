@@ -37,7 +37,7 @@ function AppContent() {
     const MainContainer = styled(Box)({
         minWidth: '80rem', // or your desired value
         minHeight: '45rem', // or your desired value
-        //overflow: 'auto'
+        
       });
       
       const questions = [

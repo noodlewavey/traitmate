@@ -72,7 +72,7 @@ const theme = createTheme({
 const MainContainer = styled(Box)({
   minWidth: '80rem', // or your desired value
   minHeight: '45rem', // or your desired value
-  //overflow: 'auto'
+  
 });
 
 //THIS WAS THE FIX
