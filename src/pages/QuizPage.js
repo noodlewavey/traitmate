@@ -227,6 +227,26 @@ export default function QuizPage({children, questions}) {
       }
   }
 
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.key === "a" || event.key === "A") { // Check for lowercase and uppercase 'A'
+        event.preventDefault(); // Prevent default behavior if necessary
+        handlePrevClick(); // Trigger previous click logic
+      } else if (event.key === "d" || event.key === "D") { // Check for lowercase and uppercase 'D'
+        event.preventDefault(); // Prevent default behavior if necessary
+        handleNextClick(); // Trigger next click logic
+      }
+    };
+  
+    window.addEventListener("keydown", handleKeyPress);
+  
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [handleNextClick, handlePrevClick]);
+  
+
+
 
   return (
     <motion.div
