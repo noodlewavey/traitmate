@@ -23,7 +23,8 @@ const CenteredBox = ({children}) => {
           minWidth: '30rem',
           maxWidth: '30rem',
           position: 'relative',//makes child elements, the children relative
-          height: '85vh',
+          //height: '85vh',
+          height: 'auto',
           borderRadius: '16px',
           padding: '16px',
           color: 'black',
