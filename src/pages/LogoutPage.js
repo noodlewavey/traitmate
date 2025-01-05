@@ -46,7 +46,7 @@ const Wrapper = styled('div')({
     alignItems: 'center',
     height: '45rem',
     width: '80rem',
-    overflowX: 'scroll',
+    overflowx: 'hidden',
     //overflowy: 'hidden',
     marginBottom: '4rem',
     position: 'relative', // This is important for the absolute positioning of the child.
@@ -68,7 +68,7 @@ const CenterContainer = styled(Box)(({ theme }) => ({
     height: '98%',
     margin: 'auto',
     marginTop: '4rem',
-    overflowX: 'scroll',
+    overflowx: 'hidden',
     //overflowy: 'hidden',
     justifyContent:'center', //add this to center content 
     alignItems: 'center', //add this to center content
@@ -78,7 +78,7 @@ const CenterContainer = styled(Box)(({ theme }) => ({
 
   //this is immediate child of wrapper, contains right box
   //relative makes container point of ref to absolutely positioned children
-  //overflowX: 'scroll' and //overflowy: 'hidden': These styles force both horizontal and vertical scrollbars to appear if the content inside CenterContainer exceeds its boundaries.
+  //overflowx: 'hidden' and //overflowy: 'hidden': These styles force both horizontal and vertical scrollbars to appear if the content inside CenterContainer exceeds its boundaries.
   
 
 

@@ -31,7 +31,7 @@ const FullPageCenter = styled('div')({
       alignItems: 'center',
       height: '45rem',
       width: '100%',
-      ////overflowx: 'hidden',
+      //overflowx: 'hidden',
       //overflowy: 'hidden',
       marginBottom: '4rem',
       position: 'relative',
