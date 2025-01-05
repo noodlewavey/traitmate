@@ -98,20 +98,24 @@ function Matches() {
           position: 'relative',        // relative positioning context for the buttons
         }}
       >
-    <CenteredBox>
-    { isLoading ? 
+    
+    { isLoading ? (
         <CircularProgress size={120} 
         style={{ 
-            position: 'absolute',
-            top: '40%', 
-            left: '38%', 
+            position: 'fixed', 
+            top: '45%',
+            left: '47%',
             transform: 'translate(-50%, -50%)'}} /> 
-        :
-        userEntities.map(user => (
+    )
+        : (
+        <CenteredBox>
+        {userEntities.map(user => (
             <MatchCard key={user.id} userEntity={user} />
-        ))
-    }
-     </CenteredBox>
+        ))}
+        </CenteredBox>
+        )}
+
+     
     
       </Box>
       </motion.div>
