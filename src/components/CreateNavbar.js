@@ -8,7 +8,7 @@ const NavbarWrapper = styled('div')({
   height: '4rem', // Set the height to 4rem 
   // Add any other styling you need for the navbar
   position: 'fixed',
-  overflow: 'auto',
+  //overflow: 'auto',
   // i think this overflow auto is what causes it to be fixed size
 });
 
