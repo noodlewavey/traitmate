@@ -289,6 +289,15 @@ export default function QuizPage({children, questions}) {
             
       </LeftBox>
         <RightBox justify="yes">
+        <Typography
+                  variant="body2"
+                  fontSize="0.7rem"
+                  color="#000000"
+                  sx = {{width: '300px'}}
+                >
+                  Shortcut: Press "A" to go back, 
+                  Press "D" to go forward and submit current answer!
+                </Typography>
         <FormControl>
                 <RadioGroup
                     aria-labelledby="demo-radio-buttons-group-label"
