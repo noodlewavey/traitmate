@@ -18,6 +18,7 @@ import Box from "@mui/material/Box";
 import { useEffect } from "react";
 import { useRef } from "react";
 import {Link} from "react-router-dom";
+import FadeInWrapper from "./FadeInWrapper";
 
 const ProfileTemplate = ({data, compatibility}) => {
 
@@ -81,6 +82,7 @@ const StyledLink = styled(Link)`
     
 
     return (
+      <FadeInWrapper>
         <CenteredBox>
             <CircularFrame imageUrl={`data:image/jpeg;base64,${data.profileImage}`}/>
               <Typography variant="h1" style={{justifyContent: 'center', fontSize: '2rem' }}>
@@ -111,6 +113,7 @@ const StyledLink = styled(Link)`
             <BigFive setting={data.displayQuizResults} userEntity={data.username}/>
             <Lyrics content={data.about} />
         </CenteredBox>
+        </FadeInWrapper>
     );
   };
   

@@ -25,7 +25,7 @@ import {Link} from 'react-router-dom';
 import MessageIcon from '@mui/icons-material/Message';
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 import CenterFocusWeakIcon from '@mui/icons-material/CenterFocusWeak';
-
+import FadeInWrapper from './FadeInWrapper';
 
 function MatchCard({userEntity}) {
 
@@ -45,6 +45,7 @@ function MatchCard({userEntity}) {
 
 
   return (
+    <FadeInWrapper>
         <MyStack>
         <Box display="flex" width="100%">
             <Box flexGrow={1}>
@@ -74,6 +75,7 @@ function MatchCard({userEntity}) {
             <MatchCardProfilePhoto imageUrl={`data:image/jpeg;base64,${userEntity.profileImage}`} paddingTop="-35rem"/> 
             </Box>
         </MyStack>
+        </FadeInWrapper>
   );
 }
 

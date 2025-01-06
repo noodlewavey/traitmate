@@ -8,6 +8,7 @@ import TrashIcon from './TrashIcon';
 import { motion, useAnimation } from 'framer-motion';
 import MatchMessage from './MatchMessage';
 import SeenEveryone from './SeenEveryone';
+import FadeInWrapper from './FadeInWrapper';
 
 
 
@@ -101,6 +102,7 @@ const dislike = () => {
 
     return (
         <div>
+            <FadeInWrapper >
              <Box
         sx={{
           display: 'flex',
@@ -160,7 +162,9 @@ instead, make a check to see if its defined  */}
           <HeartIcon height="90rem" width="90rem"/>
         </IconButton>
             </Box>
+            </FadeInWrapper>
         </div>
+    
     );
 }
 

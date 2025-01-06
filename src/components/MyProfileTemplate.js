@@ -20,6 +20,7 @@ import { useRef } from "react";
 import {Link} from "react-router-dom";
 import BuildIcon from '@mui/icons-material/Build';
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
+import FadeInWrapper from './FadeInWrapper';
 
 const MyProfileTemplate = ({data, compatibility}) => {
 
@@ -65,6 +66,7 @@ const StyledLink = styled(Link)`
     
 
     return (
+        <FadeInWrapper>
         <CenteredBox>
             <CircularFrame imageUrl={`data:image/jpeg;base64,${data.profileImage}`}/>
               <Typography variant="h1" style={{justifyContent: 'center', fontSize: '2rem' }}>
@@ -99,6 +101,7 @@ const StyledLink = styled(Link)`
             <BigFive setting={data.displayQuizResults} userEntity={data.username}/>
             <Lyrics content={data.about} />
         </CenteredBox>
+        </FadeInWrapper>
     );
   };
   

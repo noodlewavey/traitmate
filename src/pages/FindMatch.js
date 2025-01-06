@@ -3,7 +3,7 @@ import CenteredBox from '../components/CenteredBox';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import '../index.css';
 import ProfileTemplate from '../components/ProfileTemplate';
-import {CssBaseline} from '@mui/material';
+import {CssBaseline, Fade} from '@mui/material';
 import '../styles.css';
 import IconButton from '@mui/material/IconButton';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -19,6 +19,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import {CircularProgress} from '@mui/material';
 import SimilarUsers from '../components/SimilarUsers';
+import FadeInWrapper from '../components/FadeInWrapper';
 
 function FindMatch() {
 
