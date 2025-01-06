@@ -22,7 +22,7 @@ export default function MyStack({children}) {
     }}>
       <MUIStack direction="row" spacing={2}>
         <Item >
-          <Box sx={{display: 'flex', alignItems: 'center',gap: '0.4rem', maxWidth: '400px'}}
+          <Box sx={{display: 'flex', alignItems: 'center',gap: '0.4rem'}}
           //maxwidth 400px added to fix match card vwith first element too large 
           //this alignItems center aligns the children items about the x axis
           >

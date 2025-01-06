@@ -40,7 +40,7 @@ function MatchCard({userEntity}) {
 
       const StyledText = styled(Typography)(({ theme }) => ({
         ...theme.typography.body2,
-        fontSize:"0.65rem"
+        fontSize:"0.55rem"
       }));
 
 
@@ -53,7 +53,7 @@ function MatchCard({userEntity}) {
         <Box display="flex" justifyContent="space-between">
           <MyStack>
             <MessageIcon fontSize="1.5rem"/>
-            <StyledText>INSTA:<b>@{userEntity.instagram}</b></StyledText> 
+            <StyledText sx={{width:'120px'}}>INSTA:<b>@{userEntity.instagram}</b></StyledText> 
             </MyStack>
             </Box>
           
