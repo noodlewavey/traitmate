@@ -22,6 +22,7 @@ import {useParams} from "react-router-dom";
 import { useState} from "react";
 import axios from "axios";
 import CloseMatch from "./CloseMatch";
+import FadeInWrapper from "./FadeInWrapper";
 
 const ShowMatchProfile = () => {
 
@@ -91,6 +92,7 @@ useEffect(() => {
 return (
     <>
         {data ? (
+            <FadeInWrapper>
             <CenteredBox>
                 <CloseMatch/>
                 <CircularFrame imageUrl={`data:image/jpeg;base64,${data.profileImage}`} />
@@ -117,6 +119,7 @@ return (
                 <BigFive setting={data.displayQuizResults} userEntity={data.username} />
                 <Lyrics content={data.about} />
             </CenteredBox>
+            </FadeInWrapper>
         ) : null}
     </>
 );
