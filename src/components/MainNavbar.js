@@ -10,12 +10,16 @@ import { NavLink } from "react-router-dom";
 
 const NavbarWrapper = styled('div')({
   width: '100vw',
-  height: '4rem',
+  height: '8rem',
   position: 'fixed',
   overflow: 'visible',
   zIndex: '1000',
   pointerEvents: 'auto',
+  background: 'linear-gradient(to bottom, #dfd3bc, #dfd3bc, transparent)', // Vertical gradient fade
+  padding: '0.25rem 0', // Adjust padding to set border thickness if needed
+  boxSizing: 'border-box',
 });
+
 
 const NavbarAppBar = styled(AppBar)`
   background-color: transparent;
